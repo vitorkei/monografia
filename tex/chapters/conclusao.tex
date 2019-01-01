@@ -18,11 +18,11 @@ Há poucas informações para o agente aprender, podendo inclusive ser resolvido
 O \textbf{\textit{Pong}} já se mostrou mais complicado.
 Ainda que seu aprendizado tenha sido \hyperref[fig:pong_score]{promissor} para os hiper-parâmetros utilizados, ele foi lento e a arquitetura é bem sensível, podendo não conseguir aprender por causa de pequenas alterações.
 Por possuir um espaço de estados bem maior que o \textit{Gridworld}, mas bem menos situações diferentes e ações disponíveis que o \textit{Asteroids}, esse resultado refletiu o grau de complexidade médio do ambiente neste trabalho: possível, mas precisa ser feito com cuidado.
-Um fato interessante é que, apesar de ainda haver espaço para o agente aprender, como é possível perceber no \hyperref[fig:pong_score]{gráfico de pontuação final do agente}, ele obteve 21 pontos contra a IA nativa do jogo quando o modelo foi colocado a prova.
+Um fato interessante é que, apesar de ainda haver espaço para o agente aprender, como é possível perceber no \hyperref[fig:pong_score]{gráfico de pontuação final do agente}, ele obteve 21 pontos em média contra a IA nativa do jogo quando o modelo foi colocado a prova, o que significa que não deixou a bola passar nenhuma vez.
 
 Por fim, o \textbf{\textit{Asteroids}} não apresentou resultados promissores.
 Sendo o ambiente mais complexo dos três, com mais regras e ações para se aprender e uma variedade maior de estados possíveis, o agente não conseguiu criar um modelo que conseguisse uma pontuação boa com as arquiteturas testadas.
-Existem diversas técnicas que aceleram o aprendizado de \textit{deep Q-learning} e que poderiam ser aplicadas neste ambiente para tentar obter resultados positivos.
+Existem diversas técnicas que aceleram o aprendizado de \textit{deep Q-learning} e que poderiam ser aplicadas neste ambiente para tentar obter resultados positivos, como \textit{double deep Q-learning}~\cite{DBLP:journals/corr/HasseltGS15}, \textit{dueling deep Q-learning}~\cite{DBLP:journals/corr/WangFL15} e \textit{Rainbow}~\cite{DBLP:journals/corr/abs-1710-02298}.
 Entretanto, isso seria uma garantia somente se um conjunto de hiper-parâmetros e funções boas fosse utilizado, o que já é um obstáculo por si só considerando a quantidade que existe para serem ajustados e o tempo consumido pelos treinamentos.
 
 \textit{Deep Q-learning} apresentou resultados positivos em comparação com o que se esperava.

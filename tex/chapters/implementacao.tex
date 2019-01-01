@@ -145,14 +145,17 @@ O mapa utilizado para os experimentos tinha tamanho de 10x10, oito armadilhas es
 
 \textbf{INSERIR IMAGEM}
 
-Foram 2000 episódios de treinamento, cada um com limite de 200 ações que poderiam ser feitas antes de o episódio ser terminado automaticamente; \textit{mini-batches} de tamanho 200; taxa de desconto $\gamma$ igual a $0.9$; \textit{buffer} de memória de tamanho 200 preenchido previamente com 200 ações tomadas aleatoriamente; e a atualização da \hyperref[sec:ft]{rede alvo} foi feita a cada 200 ações tomadas.
+Foram 2000 episódios de treinamento, cada um com limite de 200 ações tomadas antes de o episódio ser terminado automaticamente;
+\textit{mini-batches} de tamanho 200;
+taxa de desconto $\gamma$ igual a $0.9$; 
+\textit{buffer} de memória de tamanho 200 preenchido previamente com 200 ações tomadas aleatoriamente;
+e atualização da \hyperref[sec:ft]{rede alvo} feita a cada 200 ações tomadas.
 O dilema \hyperref[eq:exp_exp_prob]{\textit{exploration versus exploitation}} utilizou $P_{ini} = 0.9$, $P_{min} = 0.4$ e $decay = 200$.
 
 \subsection{\textit{Pong}}
 \label{sec:exp_pong}
 
 No caso do \textit{Pong}, os treinamentos foram mais demorados, com episódios levando alguns minutos e passando várias horas para se perceber alguma melhoria no aprendizado uma vez que o espaço de estados é muito maior.
-%Isso se deve pelo fato de o espaço de estados ser muito maior e, mesmo com o pré-processamento feito, o de entrada para a rede neural também.
 Além disso, existem diversos momentos em que não há uma ação ótima bem definida a se tomar, como nos estados em que a bola viaja na direção do lado do adversário ou quando ela sai da tela, marcando ponto para um dos jogadores.
 Como os episódios só terminam quando um dos lados consegue 21 pontos (ou o número máximo de passos é excedido, o que não aconteceu neste trabalho), a avaliação foi feita pela pontuação obtida pelo agente ao final de cada partida:
 o mínimo possível é de -21 pontos, com o adversário marcando 21 pontos e o agente nenhum, e o máximo é de 21 pontos, sendo a situação oposta.
@@ -161,18 +164,34 @@ Como este ambiente é muito mais complexo que o \textit{Gridworld}, os \textit{f
 Primeiro, eles são convertidos para escalas de cinza.
 Em seguida, partes que não agregam informação para a IA conseguir jogar, como a área da pontuação, são removidas.
 Por fim, o que restou do \textit{frame} é redimensionado para o tamanho 84x84 pixels.
+Para que o agente possa perceber o movimento dos objetos na tela, os últimos quatro \textit{frames} vistos são inseridos em uma fila e supridos à rede de forma que a entrada tem formato 84x84x4.
 
-Para que o agente consiga perceber o movimento dos objetos na tela, os últimos quatro \textit{frames} são inseridos em uma fila e supridos à rede de forma que a entrada tem formato 84x84x4.
+\textbf{INSERIR IMAGEM EXEMPLO DO QUE ENTRA NA REDE}
+
+O agente foi treinado por 298 episódios, o que equivale a aproximadamente um milhão de \textit{frames}, cada um com limite de 18000 ações antes de o episódio ser terminado automaticamente;
+\textit{mini-batches} de tamanho 32; taxa de desconto $\gamma$ igual a 0.99;
+\textit{buffer} de memória de tamanho 1000000 preenchido previamente com 50000 ações tomadas aleatoriamente;
+e atualização da rede alvo feita a cada 10000 ações.
+O dilema \textit{exploration versus exploitation} utilizou $P_{ini} = 1.0$, $P_{min} = 0.1$ e $decay = 20000$.
 
 \subsection{\textit{Asteroids}}
 \label{sec:exp_asteroids}
 
-Por fim, \textit{Asteroids} foi o ambiente mais experimentado por conta do maior número de alterações feitas nos hiper-parâmetros e nas etapas do aprendizado.
+Por fim, \textit{Asteroids} foi o ambiente em que mais experimentos foram feitos por conta do maior número de alterações feitas nos hiper-parâmetros e nas etapas do aprendizado.
 Assim como no \textit{Pong}, os treinamentos levaram várias horas, chegando a passar de um dia para o outro em algumas ocasiões.
 O espaço de estados é mais complexo também, com mais informações na tela em cada instante e mais ações disponíveis.
 A análise de sucesso foi feita de forma semelhante ao \textit{Pong}: pela pontuação obtida ao longo do treinamento e pelo modelo construído no final.
 Neste ambiente, a pontuação poderia assumir qualquer valor maior ou igual a zero dentro das restrições de tempo que cada episódio tinha.
 Uma vez que perder vida não gera recompensa negativa e colisão com asteróides gera pontos por sua destruição, a pontuação mínima que o agente poderia obter, sem exceder o número de passos definido, é de 80 pontos, que corresponde a destruição de quatro asteróides grandes por colisão com a nave.
+
+Assim como no \textit{Pong}, houve uma etapa de pré-processamento dos \textit{frames} da tela do jogo que consistiu em convertê-los para escalas de cinza, remover partes sem informações relevantes da tela, redimensionando para um tamanho menor, e enfileirando para que o agente percebesse movimento, resultando em uma entrada de formato 84x84x4 para a rede neural.
+
+O agente foi treinado por 100 episódios, o que corresponde a aproximadamente um milhão de \textit{frames}, assim como no \textit{Pong}, cada um com limite de 100000 ações tomadas por episódio antes de ser terminado automaticamente;
+\textit{mini-batches} de tamanho 64;
+taxa de desconto $\gamma$ igual a 0.99;
+\textit{buffer} de memória de tamanho 1000000 preenchido previamente com 500 ações tomadas aleatoriamente;
+e atualização da rede alvo feita a cada 10000 ações.
+O dilema \textit{exploration versus exploitation} utilizou $P_{ini} = 1.0$, $P_{min} = 0.1$ e $decay = 20000$.
 
 %Os experimentos com o \textit{Gridworld} foram simples e rápidos, já que as baixas dimensões permitiram testes com muitos episódios em pouco tempo.
 %O uso de diferentes arquiteturas também permitiu perceber o impacto das mudanças nos hiper-parâmetros no aprendizado do agente.

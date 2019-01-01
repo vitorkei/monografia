@@ -152,4 +152,57 @@
   abstract = 	 {Whereas before 2006 it appears that deep multi-layer neural networks were not successfully trained, since then several algorithms have been shown to successfully train them, with experimental results showing the superiority of deeper vs less deep architectures. All these experimental results were obtained with new initialization or training mechanisms. Our objective here is to understand better why standard gradient descent from random initialization is doing so poorly with deep neural networks, to better understand these recent relative successes and help design better algorithms in the future.  We first observe the influence of the non-linear activations functions. We find that the logistic sigmoid activation is unsuited for deep networks with random initialization because of its mean value, which can drive especially the top hidden layer into saturation. Surprisingly, we find that saturated units can move out of saturation by themselves, albeit slowly, and explaining the plateaus sometimes seen when training neural networks. We find that a new non-linearity that saturates less can often be beneficial. Finally, we study how activations and gradients vary across layers and during training, with the idea that training may be more difficult when the singular values of the Jacobian associated with each layer are far from 1.  Based on these considerations, we propose a new initialization scheme that brings substantially faster convergence.}
 }
 
+@article{DBLP:journals/corr/HasseltGS15,
+  author    = {Hado van Hasselt and
+               Arthur Guez and
+               David Silver},
+  title     = {Deep Reinforcement Learning with Double Q-learning},
+  journal   = {CoRR},
+  volume    = {abs/1509.06461},
+  year      = {2015},
+  url       = {http://arxiv.org/abs/1509.06461},
+  archivePrefix = {arXiv},
+  eprint    = {1509.06461},
+  timestamp = {Mon, 13 Aug 2018 16:47:32 +0200},
+  biburl    = {https://dblp.org/rec/bib/journals/corr/HasseltGS15},
+  bibsource = {dblp computer science bibliography, https://dblp.org}
+}
 
+@article{DBLP:journals/corr/WangFL15,
+  author    = {Ziyu Wang and
+               Nando de Freitas and
+               Marc Lanctot},
+  title     = {Dueling Network Architectures for Deep Reinforcement Learning},
+  journal   = {CoRR},
+  volume    = {abs/1511.06581},
+  year      = {2015},
+  url       = {http://arxiv.org/abs/1511.06581},
+  archivePrefix = {arXiv},
+  eprint    = {1511.06581},
+  timestamp = {Mon, 13 Aug 2018 16:48:17 +0200},
+  biburl    = {https://dblp.org/rec/bib/journals/corr/WangFL15},
+  bibsource = {dblp computer science bibliography, https://dblp.org}
+}
+
+@article{DBLP:journals/corr/abs-1710-02298,
+  author    = {Matteo Hessel and
+               Joseph Modayil and
+               Hado van Hasselt and
+               Tom Schaul and
+               Georg Ostrovski and
+               Will Dabney and
+               Daniel Horgan and
+               Bilal Piot and
+               Mohammad Gheshlaghi Azar and
+               David Silver},
+  title     = {Rainbow: Combining Improvements in Deep Reinforcement Learning},
+  journal   = {CoRR},
+  volume    = {abs/1710.02298},
+  year      = {2017},
+  url       = {http://arxiv.org/abs/1710.02298},
+  archivePrefix = {arXiv},
+  eprint    = {1710.02298},
+  timestamp = {Mon, 13 Aug 2018 16:48:05 +0200},
+  biburl    = {https://dblp.org/rec/bib/journals/corr/abs-1710-02298},
+  bibsource = {dblp computer science bibliography, https://dblp.org}
+}

@@ -44,3 +44,15 @@ Glorot, X., Bengio Y.
 \bibitem[Bel+12]{DBLP:journals/corr/abs-1207-4708}
 Bellemate, M. G., Naddaf, Y., Veness, J., Bowling, M.
 \newblock {\em The Arcade Learning Environment: An Evaluation Platform for General}, Em: {CoRR} 47 (jun. de 2013), pp. 253--279. ISSN: 1207.4708. URL: \url{https://dblp.org/rec/bib/journals/corr/abs-1207-4708}.
+
+\bibitem[HGS15]{DBLP:journals/corr/HasseltGS15}
+van Hasselt, H., Guez, A., Silver, D.
+\newblock {\em Deep Reinforcement Learning with Double Q-Learning}, Em: {CoRR} (set. de 2015). ISSN: 1509.06461. URL: \url{https://dblp.org/rec/bib/journals/corr/HasseltGS15}.
+
+\bibitem[WFL15]{DBLP:journals/corr/WangFL15}
+Wang, Z., de Freitas, N., Lanctot, M.
+\newblock {\em Dueling Network Architectures for Deep Reinforcement Learning}, Em: {CoRR} (nov. de 2015). ISSN: 1511.06581. URL: \url{https://dblp.org/rec/bib/journals/corr/WangFL15}.
+
+\bibitem[Hes+17]{DBLP:journals/corr/abs-1710-02298}
+Hessel, M., Modayil, J., van Hasselt, H., Schaul, T., Ostrovski, G., Dabney, W., Horgan, D., Piot, B., Azar, M. G., Silver, D.
+\newblock {\em Rainbow: Combining Improvements in Deep Reinforcement Learning}, Em: {CoRR} (out. de 2017). ISSN: 1710.02298. URL: \url{https://dblp.org/rec/bib/journals/corr/abs-1710-02298}.
