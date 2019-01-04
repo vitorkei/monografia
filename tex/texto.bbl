@@ -56,3 +56,7 @@ Wang, Z., de Freitas, N., Lanctot, M.
 \bibitem[Hes+17]{DBLP:journals/corr/abs-1710-02298}
 Hessel, M., Modayil, J., van Hasselt, H., Schaul, T., Ostrovski, G., Dabney, W., Horgan, D., Piot, B., Azar, M. G., Silver, D.
 \newblock {\em Rainbow: Combining Improvements in Deep Reinforcement Learning}, Em: {CoRR} (out. de 2017). ISSN: 1710.02298. URL: \url{https://dblp.org/rec/bib/journals/corr/abs-1710-02298}.
+
+\bibitem[GBC16]{Goodfellow-et-al-2016}
+Goodfellow, I., Bengio, Y., Courville, A.
+\newblock {\em Deep Learning}. The MIT Press, 2016. URL: \url{http://www.deeplearningbook.org/}.

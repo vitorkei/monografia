@@ -58,40 +58,44 @@ Dado que aprendem com exemplos, similar a pessoas, é considerada uma técnica d
 Elas são muito utilizadas como aproximadoras de funções desconhecidas, que não são facilmente modeláveis matematicamente.
 
 Com os avanços nos estudos dessa técnica nos últimos anos, diversos tipos diferentes de redes neurais foram desenvolvidos, como redes neurais convolucionais (\textit{Convolutional Neural Networks}, CNN), a utilizada neste trabalho, e redes neurais de memória de curto-longo prazo\footnote{Tradução livre feita pelo autor} (\textit{Long/Short Term Memory}, LSTM), que não será abordada.
-Apesar de cada uma ter sua particularidade, redes neurais clássicas possuem duas características principais: os \textbf{neurônios}, e a estrutura dividida em \textbf{camadas}.
+Apesar de cada uma ter sua particularidade, redes neurais clássicas possuem duas características principais:a estrutura dividida em \textbf{camadas}, e os \textbf{neurônios}.
 %Existem redes que não são consideradas clássicas pela falta de estrutura em camadas, como Redes de Hopfield (\textit{Hopfield Network}) e Máquinas de Boltzmann (\textit{Boltzmann Machine}), que não serão discutidas neste trabalho.
-
-\textbf{Neurônios}, ou nós, são funções que recebem, como entrada, a saída de cada neurônio da camada anterior e devolvem um número, em geral entre 0 e 1 inclusos, cujo significado e como são usados variam de acordo com o trabalho em questão.
-%A maneira mais comum de se trabalhar com eles é fazendo a combinação linear dos valores dos neurônios de uma camada e, ao passar por uma função de ativação não-linear, determinar quais neurônios da camada seguinte serão ativados.
 
 A estrutura de uma rede neural clássica é dividida em \textbf{camadas} que podem ser classificadas de três formas distintas: \textbf{entrada}, \textbf{oculta}, ou \textbf{saída}.
 A de \textbf{entrada} é a que a IA usa para receber os dados que serão processados;
 as camadas \textbf{ocultas} são o processamento;
-e a de \textbf{saída} devolve uma série de números utilizados pela IA para tomar uma decisão ou fazer uma predição.
+e a de \textbf{saída} devolve um vetor de números que representa o resultado da rede neural para a entrada dada.
 %Pode-se dizer que uma rede neural é um aproximador de uma função que mapeia entrada e saída.
-%Pode-se dizer que uma rede neural é um aproximador de uma função
-Enquanto o tipo de entrada e saída da rede neural determinam o número de neurônios das respectivas camadas, a quantidade de nós nas camadas ocultas são arbitrários, normalmente definidos por meio de tentativa e erro.
-%Enquanto o número de neurônios na entrada e na saída são definidos pelo trabalho em questão, o de camadas ocultas e de neurônios em cada uma delas são arbitrários, sendo normalmente definidos por meio de tentativa e erro.
+Enquanto o formato da entrada e da saída da rede neural determinam o número de neurônios das respectivas camadas, a quantidade de nós nas camadas ocultas são arbitrários, normalmente definidos por meio de tentativa e erro.
 
+\textbf{Neurônios}, ou nós, são funções que recebem, como entrada, a saída de cada neurônio da camada anterior e devolvem um número, em geral entre 0 e 1 inclusos, cujo significado e como são usados variam de acordo com o trabalho em questão.
+%A maneira mais comum de se trabalhar com eles é fazendo a combinação linear dos valores dos neurônios de uma camada e, ao passar por uma função de ativação não-linear, determinar quais neurônios da camada seguinte serão ativados.
 Cada neurônio das camadas ocultas representa uma característica detectada ao longo do treinamento.
 Se essa característica estiver presente na camada de entrada, então o neurônio correspondente será \textbf{ativado}.
-A ativação de um ou mais neurônios pode levar a ativação de outros neurônios na camada seguinte e assim sucessivamente. Esse é um comportamento inspirado na forma como neurônios do cérebro enviam sinais de um para o outro.
-Em redes neurais artificiais, um neurônio é ativado quando a combinação linear dos neurônios da camada anterior (soma do valor dos nós multiplicados pelos respectivos pesos) passa de um valor determinado pela função de ativação.
+A ativação de um ou mais neurônios pode levar a ativação de outros neurônios na camada seguinte e assim sucessivamente.
+Esse é um comportamento inspirado na forma como neurônios do cérebro enviam sinais de um para o outro.
+A forma mais comum de se utilizar neurônios em redes neurais artificiais é por meio da \textbf{combinação linear} dos neurônios da camada anterior, ou seja, multiplicação do valor dos neurônios da camada anterior pelos respectivos pesos, e pelo uso de uma \textbf{função de ativação não-linear}.
+%Em redes neurais artificiais, um neurônio é ativado quando a combinação linear dos neurônios da camada anterior (soma do valor dos nós multiplicados pelos respectivos pesos) passa de um valor determinado pela função de ativação.
+%Porém, nem todos os valores de entrada devem ser igualmente importantes, então cada um desses números recebe um peso que determina sua importância para a ativação da característica.
+%Matematicamente, isso é representado da seguinte forma:
 
-Porém, nem todos os valores de entrada devem ser igualmente importantes, então cada um desses números recebe um peso que determina sua importância para a ativação da característica.
-Matematicamente, isso é representado da seguinte forma:
-seja $n$ o número de neurônios na camada anterior, $w_{i}$, $i = 1, ..., n$, os pesos das saídas de cada neurônio da camada anterior, e $a_{i}$, $i = 1, ..., n$, o valor de saída de cada neurônio da camada anterior e, por consequência, cada valor de entrada do neurônio atual, e $b$ o viés (\textit{bias}) da função.
+Seja $n$ o número de neurônios na camada anterior, $w_{i}$, $i = 1, ..., n$, os pesos das saídas de cada neurônio da camada anterior, e $a_{i}$, $i = 1, ..., n$, o valor de saída de cada neurônio da camada anterior
+%e, por consequência, cada valor de entrada do neurônio atual,
+e $b$ o viés \footnote{\textit{bias}, em inglês} da função.
+A combinação linear dos neurônios é feita da seguinte forma:
 
 \begin{equation} \label{eq:nn01}
 w_{1}a_{1} + w_{2}a_{2} + ... + w_{n}a_{n} - b
 \end{equation}
 
-Como essa soma pode ter qualquer valor no intervalo $(-\infty, +\infty)$, o neurônio precisa saber a partir de que ponto ele estará ativado.
-Para isso, utiliza-se uma \textbf{função de ativação}.
-Funções de ativação recebem a soma \ref{eq:nn01} como entrada, limitam seu valor a um certo intervalo 
-e determinam se o neurônio deve ser ativado ou não.
+Em seguida, o resultado da somatória \ref{eq:nn01} é passado para a função de ativação, que realiza uma transformação não-linear para mapear essa entrada em um determinado intervalo, como $[0, 1]$ ou $[-1, 1]$, a depender da função utilizada.
+O resultado da função de ativação é utilizado como entrada para um dos nós da camada oculta seguinte.
+%Como essa soma pode ter qualquer valor no intervalo $(-\infty, +\infty)$, o neurônio precisa saber a partir de que ponto ele estará ativado.
+%Para isso, utiliza-se uma \textbf{função de ativação}.
+%Funções de ativação recebem a soma \ref{eq:nn01} como entrada, limitam seu valor a um certo intervalo 
+%e determinam se o neurônio deve ser ativado ou não.
 
-Esse procedimento é feito em cada neurônio de cada camada da rede neural, o que pode ser muito custoso se não executado com cuidado.
+Esse procedimento é feito em cada neurônio de cada camada da rede neural, cada um com seus respectivos pesos para a camada anterior.
 Como existem diversas bibliotecas que otimizam operações matriciais, é mais rápido e conveniente utilizar matrizes, além de facilitar a leitura do código:
 seja $W$ a matriz tal que cada linha contém os pesos de cada neurônio da camada anterior para um determinado neurônio da camada atual, $a^{(i)}$ o vetor tal que cada elemento é o valor de saída de cada neurônio da camada anterior, e $b$ o viés, é possível efetuar a soma \ref{eq:nn01} para todos os neurônios de uma camada da seguinte forma:
 
@@ -113,7 +117,7 @@ Otimizar os pesos de forma que se reduza a média dos erros obtidos com os exemp
 Os exemplos utilizados nessa etapa compõe o \textbf{conjunto de treinamento}.
 Se o modelo tiver zero de erro em relação a esse conjunto, ele estará sofrendo de \textit{overfitting}: a inteligência se adequa tanto ao conjunto de treinamento que saberá o que fazer apenas nele.
 Para determinar o grau de \textit{overfitting}, utiliza-se um \textbf{conjunto de testes}, exemplos independente do conjunto de treinamento, mas gerado pela mesma distribuição de probabilidade, escolhidos da mesma forma.
-Um modelo que tenha bom desempenho nos dois conjuntos não tem problemas de \textit{overfitting}.
+Um modelo que tenha bom desempenho, ou seja, erro baixo nos dois conjuntos não tem problemas de \textit{overfitting}.
 %O mais desejável é minimizar o erro sobre todas as entradas possíveis ou, no mínimo, as esperadas em cenários reais, e o conjunto de treinamento dificilmente conseguirá abranger todos eles.
 
 De forma resumida, uma rede neural clássica aprende recebendo uma série de números como entrada (exemplo) e devolve uma saída;
@@ -130,9 +134,15 @@ se a arquitetura da rede tiver sido contruída adequadamente, a IA deverá apren
 %https://machinelearningmastery.com/what-is-deep-learning/
 %https://stats.stackexchange.com/questions/182734/what-is-the-difference-between-a-neural-network-and-a-deep-neural-network-and-w
 
-Como explicado anteriormente, redes neurais podem ser divididas em três tipos distintos de camadas: entrada, ocultas, e saída. Enquanto existe apenas uma camada de entrada e uma de saída, é possível haver uma ou mais camadas ocultas. Se houver muitas camadas ocultas, a rede neural passa a ser chamada de rede neural profunda (\textit{deep neural network}). Atualmente, não existe uma definição exata de quantas camadas a rede neural precisa ter para começar a ser classificada como profunda e, mesmo que houvesse, esse número provavelmente mudaria com o passar do tempo.
+Como explicado anteriormente, redes neurais podem ser divididas em três tipos distintos de camadas: entrada, ocultas, e saída.
+Enquanto existe apenas uma camada de entrada e uma de saída, é possível haver uma ou mais camadas ocultas.
+Se houver muitas camadas ocultas, a rede neural passa a ser chamada de rede neural profunda (\textit{deep neural network}).
+Atualmente, não existe uma definição exata de quantas camadas a rede neural precisa ter para começar a ser classificada como profunda e, mesmo que houvesse, esse número provavelmente mudaria com o passar do tempo.
 
-Uma rede neural profunda que segue o modelo apresentado na seção anterior é chamada de \textit{feedforward} e é o mais típico de \textit{deep learning}. Ele recebe esse nome pois a informação flui da entrada para a saída sem haver conexões de \textit{feedback} para que a previsão seja feita. Este tipo de rede neural forma a base para \textbf{redes neurais convolucionais}, técnica muito utilizada em reconhecimento de imagens. Como a ideia é treinar uma inteligência artificial que aprende vendo imagens do ambiente, esse foi o tipo escolhido para este trabalho.
+Uma rede neural profunda que segue o modelo apresentado na seção anterior é chamada de \textit{feedforward} e é o mais típico de \textit{deep learning}.
+Ele recebe esse nome pois a informação flui da entrada para a saída sem haver conexões de \textit{feedback} para que a previsão seja feita.
+Este tipo de rede neural forma a base para \textbf{redes neurais convolucionais}, técnica muito utilizada em reconhecimento de imagens.
+Como a ideia é treinar uma inteligência artificial que aprende vendo imagens do ambiente, esse foi o tipo escolhido para este trabalho.
 
 \begin{figure}[h!]
 \includegraphics[scale=.3]{nn}
@@ -168,9 +178,9 @@ Na etapa de \textbf{previsão}, a informação passa por uma ou mais redes neura
 \end{figure}
 
 % ver http://www.deeplearningbook.org/ para resolver a anotação da Nina
-É possível haver mais de uma camada de convolução assim como pode haver mais de uma camada \textit{fully-connected}, e isso pode ser mais vantajoso. 
-Quanto mais camadas houver, mais precisa será a predição.
-Entretanto, não só o custo de tempo e de espaço aumenta, como há um limite para o quão melhor será o desempenho da IA.
+É possível haver mais de uma camada de convolução assim como pode haver mais de uma camada \textit{fully-connected} além da de saída, e isso pode ser mais vantajoso, uma vez que aumentar a profundidade da rede, em muitos casos, aparenta melhora a predição~\cite{Goodfellow-et-al-2016}.
+%Quanto mais camadas ocultas houver, mais precisa será a predição.
+Entretanto, não só o custo de tempo e de espaço aumentam, como há um limite para o quão melhor será o desempenho da IA.
 A partir de um certo ponto, a melhora se torna ínfima em comparação com o tempo desprendido e, portanto, deixa de ser benéfico colocar mais camadas.
 
 %% ---------------------------------------------------------------------------- %
@@ -420,8 +430,8 @@ Existem diversos algoritmos de redução do erro e otimização dos pesos, como 
 \section{Aprimorando o aprendizado}
 \label{sec:enhance}
 
-\textit{Deep Q-Learning} é a base para o aprendizado da inteligência artificial deste trabalho.
-Porém, ao longo do tempo, foram descobertas outras técnicas que melhoram a aprendizagem do agente, seja acelerando ou ajudando a evitar decisões ruins.
+\textit{Deep Q-Learning} é a base para o aprendizado da inteligência artificial deste trabalho, mas esse processo é normalmente muito demorado.
+%Porém, ao longo do tempo, foram descobertas outras técnicas que melhoram a aprendizagem do agente, seja acelerando ou ajudando a evitar decisões ruins.
 Nesta seção, serão apresentadas duas técnicas que ajudam a estabilizar e acelerar o aprendizado do programa:
 \textit{\textbf{experience replay}}~\cite{Lin1992} e \textbf{alvo fixo}.
 

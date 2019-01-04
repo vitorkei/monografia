@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.14159265-2.6-1.40.19 (TeX Live 2018/Arch Linux) (preloaded format=pdflatex 2018.12.31)  1 JAN 2019 17:49
+This is pdfTeX, Version 3.14159265-2.6-1.40.19 (TeX Live 2018/Arch Linux) (preloaded format=pdflatex 2018.12.31)  4 JAN 2019 15:22
 entering extended mode
  restricted \write18 enabled.
  %&-line parsing enabled.
@@ -1452,39 +1452,35 @@ Cap\'{\i }tulo 2.
 [5
 
 ] [6]
-<./images/nn.png, id=282, 1445.4pt x 554.07pt>
+<./images/nn.png, id=284, 1445.4pt x 554.07pt>
 File: ./images/nn.png Graphic file (type png)
 <use ./images/nn.png>
-Package pdftex.def Info: ./images/nn.png  used on input line 138.
+Package pdftex.def Info: ./images/nn.png  used on input line 147.
 (pdftex.def)             Requested size: 433.62335pt x 166.22227pt.
  [7 <./images/nn.png>]
-<./images/cnn.png, id=291, 951.555pt x 266.9975pt>
+<./images/cnn.png, id=293, 951.555pt x 266.9975pt>
 File: ./images/cnn.png Graphic file (type png)
 <use ./images/cnn.png>
-Package pdftex.def Info: ./images/cnn.png  used on input line 165.
+Package pdftex.def Info: ./images/cnn.png  used on input line 174.
 (pdftex.def)             Requested size: 380.61525pt x 106.79709pt.
-<./images/reinforcement_learning.png, id=294, 856.70062pt x 298.11375pt>
+<./images/reinforcement_learning.png, id=297, 856.70062pt x 298.11375pt>
 File: ./images/reinforcement_learning.png Graphic file (type png)
 <use ./images/reinforcement_learning.png>
 Package pdftex.def Info: ./images/reinforcement_learning.png  used on input lin
-e 189.
+e 198.
 (pdftex.def)             Requested size: 385.51172pt x 134.14995pt.
-
-
-LaTeX Warning: `!h' float specifier changed to `!ht'.
-
-[8 <./images/cnn.png>]
-<./images/pong_unknown_best_action.png, id=305, 876.27374pt x 638.385pt>
+ [8 <./images/cnn.png> <./images/reinforcement_learning.png>]
+<./images/pong_unknown_best_action.png, id=312, 876.27374pt x 638.385pt>
 File: ./images/pong_unknown_best_action.png Graphic file (type png)
 <use ./images/pong_unknown_best_action.png>
 Package pdftex.def Info: ./images/pong_unknown_best_action.png  used on input l
-ine 241.
+ine 250.
 (pdftex.def)             Requested size: 240.96933pt x 175.55154pt.
 
 
 LaTeX Warning: `!h' float specifier changed to `!ht'.
 
-[9 <./images/reinforcement_learning.png>]
+[9]
 
 ! Package amsmath Error: Erroneous nesting of equation structures;
 (amsmath)                trying to recover with `aligned'.
@@ -1493,7 +1489,7 @@ See the amsmath package documentation for explanation.
 Type  H <return>  for immediate help.
  ...                                              
                                                   
-l.269 \end{align*}
+l.278 \end{align*}
                   
 ? 
 
@@ -1504,24 +1500,23 @@ See the amsmath package documentation for explanation.
 Type  H <return>  for immediate help.
  ...                                              
                                                   
-l.290 \end{align*}
+l.299 \end{align*}
                   
 ? 
 [10 <./images/pong_unknown_best_action.png (PNG copy)>] [11] [12]
-<./images/gradientDescentHighLR.png, id=351, 761.84625pt x 558.085pt>
+<./images/gradientDescentHighLR.png, id=356, 761.84625pt x 558.085pt>
 File: ./images/gradientDescentHighLR.png Graphic file (type png)
 <use ./images/gradientDescentHighLR.png>
 Package pdftex.def Info: ./images/gradientDescentHighLR.png  used on input line
- 401.
+ 410.
 (pdftex.def)             Requested size: 114.272pt x 83.70914pt.
-<./images/gradientDescentLowLR.png, id=352, 759.83875pt x 559.08875pt>
+<./images/gradientDescentLowLR.png, id=357, 759.83875pt x 559.08875pt>
 File: ./images/gradientDescentLowLR.png Graphic file (type png)
 <use ./images/gradientDescentLowLR.png>
 Package pdftex.def Info: ./images/gradientDescentLowLR.png  used on input line 
-408.
+417.
 (pdftex.def)             Requested size: 113.97089pt x 83.85968pt.
- [13 <./images/gradientDescentHighLR.png> <./images/gradientDescentLowLR.png>])
-
+)
 (./chapters/implementacao.tex
 
 Package xr Warning: 
@@ -1529,13 +1524,14 @@ No file fundamentos.aux
 LABELS NOT IMPORTED.
  on input line 6.
 
-[14]
+[13 <./images/gradientDescentHighLR.png> <./images/gradientDescentLowLR.png>]
+[14
+
+]
 Cap\'{\i }tulo 3.
 LaTeX Font Info:    Font shape `OMS/cmr/m/n' in size <10> not available
 (Font)              Font shape `OMS/cmsy/m/n' tried instead on input line 20.
-[15
-
-]
+[15]
 LaTeX Font Info:    Try loading font information for T1+pcr on input line 79.
  (/usr/share/texmf-dist/tex/latex/psnfss/t1pcr.fd
 File: t1pcr.fd 2001/06/04 font definitions for T1/pcr.
@@ -1547,12 +1543,12 @@ na-mento para o ca-pí-tulo [][]Re-sul-ta-dos[][], registrou-
 
 [17]) (./chapters/resultados.tex [18]
 Cap\'{\i }tulo 4.
-<./images/pong_ai_score.png, id=402, 722.7pt x 433.62pt>
+<./images/pong_ai_score.png, id=406, 722.7pt x 433.62pt>
 File: ./images/pong_ai_score.png Graphic file (type png)
 <use ./images/pong_ai_score.png>
 Package pdftex.def Info: ./images/pong_ai_score.png  used on input line 60.
 (pdftex.def)             Requested size: 216.81166pt x 130.087pt.
-<./images/pong_random_score.png, id=403, 722.7pt x 433.62pt>
+<./images/pong_random_score.png, id=407, 722.7pt x 433.62pt>
 File: ./images/pong_random_score.png Graphic file (type png)
 <use ./images/pong_random_score.png>
 Package pdftex.def Info: ./images/pong_random_score.png  used on input line 65.
@@ -1569,7 +1565,7 @@ LaTeX Warning: `!h' float specifier changed to `!ht'.
 [19
 
 ]
-<./images/asteroids_ai_score.png, id=408, 794.97pt x 433.62pt>
+<./images/asteroids_ai_score.png, id=412, 794.97pt x 433.62pt>
 File: ./images/asteroids_ai_score.png Graphic file (type png)
 <use ./images/asteroids_ai_score.png>
 Package pdftex.def Info: ./images/asteroids_ai_score.png  used on input line 10
@@ -1580,7 +1576,7 @@ Overfull \hbox (10.87079pt too wide) in paragraph at lines 108--109
  [][] 
  []
 
-<./images/asteroids_random_score.png, id=409, 794.97pt x 433.62pt>
+<./images/asteroids_random_score.png, id=413, 794.97pt x 433.62pt>
 File: ./images/asteroids_random_score.png Graphic file (type png)
 <use ./images/asteroids_random_score.png>
 Package pdftex.def Info: ./images/asteroids_random_score.png  used on input lin
@@ -1635,7 +1631,7 @@ l.22
 ? 
 )
 Runaway argument?
- Hessel, M., Modayil, J., van Hasselt, H., Schaul, T., Ostrovski, G.,\ETC.
+ Goodfellow, I., Bengio, Y., Courville, A. \newblock {\em Deep Learni\ETC.
 ! File ended while scanning use of \BR@@lbibitem.
 <inserted text> 
                 \par 
@@ -1666,7 +1662,7 @@ Package atveryend Info: Executing hook `AtEndAfterFileList' on input line 84.
 Package rerunfilecheck Info: File `texto.out' has not changed.
 (rerunfilecheck)             Checksum: 08FFC093A02D2BDE024A077834850D75;2154.
 Package rerunfilecheck Info: File `texto.brf' has not changed.
-(rerunfilecheck)             Checksum: 9BB9656AA94B3DE17CDF925E01703A51;533.
+(rerunfilecheck)             Checksum: A8605629C391FD803307DBD4EB595579;595.
 Package atveryend Info: Empty hook `AtVeryVeryEnd' on input line 84.
  )
 (\end occurred inside a group at level 1)
@@ -1674,13 +1670,13 @@ Package atveryend Info: Empty hook `AtVeryVeryEnd' on input line 84.
 ### semi simple group (level 1) entered at line 1 (\begingroup)
 ### bottom level 
 Here is how much of TeX's memory you used:
- 24585 strings out of 492639
- 410501 string characters out of 6135496
+ 24591 strings out of 492639
+ 410636 string characters out of 6135496
  692957 words of memory out of 5000000
- 28022 multiletter control sequences out of 15000+600000
+ 28026 multiletter control sequences out of 15000+600000
  556023 words of font info for 75 fonts, out of 8000000 for 9000
  1141 hyphenation exceptions out of 8191
- 47i,13n,65p,947b,551s stack positions out of 5000i,500n,10000p,200000b,80000s
+ 47i,12n,65p,947b,551s stack positions out of 5000i,500n,10000p,200000b,80000s
 {/usr/share/texmf-dist/fonts/enc/dvips/base/8r.enc}{/usr/share/
 texmf-dist/fonts/enc/dvips/cm-super/cm-super-t1.enc}</usr/share/texmf-dist/font
 s/type1/public/amsfonts/cm/cmex10.pfb></usr/share/texmf-dist/fonts/type1/public
@@ -1708,10 +1704,10 @@ st/fonts/type1/public/cm-super/sfti0800.pfb></usr/share/texmf-dist/fonts/type1/
 public/cm-super/sfti0900.pfb></usr/share/texmf-dist/fonts/type1/public/cm-super
 /sfti1000.pfb></usr/share/texmf-dist/fonts/type1/public/cm-super/sfti1200.pfb><
 /usr/share/texmf-dist/fonts/type1/urw/courier/ucrr8a.pfb>
-Output written on texto.pdf (33 pages, 1134842 bytes).
+Output written on texto.pdf (33 pages, 1135536 bytes).
 PDF statistics:
- 594 PDF objects out of 1000 (max. 8388607)
- 497 compressed objects within 5 object streams
- 105 named destinations out of 1000 (max. 500000)
+ 602 PDF objects out of 1000 (max. 8388607)
+ 504 compressed objects within 6 object streams
+ 107 named destinations out of 1000 (max. 500000)
  361 words of extra memory for PDF output out of 10000 (max. 10000000)
 
