@@ -13,7 +13,7 @@
 \contentsline {section}{\numberline {2.3}Rede neural convolucional}{7}{section.2.3}
 \contentsline {section}{\numberline {2.4}Processo de Decis\IeC {\~a}o de Markov}{8}{section.2.4}
 \contentsline {section}{\numberline {2.5}Aprendizado por refor\IeC {\c c}o}{9}{section.2.5}
-\contentsline {section}{\numberline {2.6}\textit {Q-learning}}{9}{section.2.6}
+\contentsline {section}{\numberline {2.6}\textit {Q-learning}}{10}{section.2.6}
 \contentsline {section}{\numberline {2.7}\textit {Approximate Q-learning}}{11}{section.2.7}
 \contentsline {section}{\numberline {2.8}\textit {Deep Q-Learning}}{12}{section.2.8}
 \contentsline {section}{\numberline {2.9}Aprimorando o aprendizado}{13}{section.2.9}
