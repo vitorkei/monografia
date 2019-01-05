@@ -11,8 +11,18 @@ São Paulo, 2018.
 \textit{Deep Q-Learning} é uma técnica de aprendizado de máquina que une a capacidade de visualização de imagem e detecção de características de redes neurais convolucionais com aprendizado por reforço para ensinar uma inteligência artificial a ter sucesso no ambiente em que se encontra.
 Por conta disso, um agente que aprende por esse método se assemelha a forma como pessoas aprendem a, por exemplo, jogar um jogo quando não utilizam manual de instruções ou recebem ajuda externa.
 
-O objetivo do trabalho foi avaliar a capacidade de uma inteligência artificial aprender a ter sucesso em um ambiente utilizando essa técnica de aprendizado de máquina e, com isso, estudar uma técnica de aprendizado de máquina que não é ensinada nas matérias de inteligência artificial da graduação.
+O objetivo do trabalho foi avaliar a capacidade de uma inteligência artificial aprender a ter sucesso em um ambiente utilizando essa técnica de aprendizado de máquina e as dificuldades do processo.
+Com isso, estudar uma técnica de aprendizado de máquina que não é ensinada nas matérias de inteligência artificial da graduação.
+A implementação foi feita utilizando TensorFlow na linguagem Python.
+
 Os experimentos foram feitos em três ambientes de características e graus de dificuldades distintos, para verificar a flexibilidade do \textit{deep Q-learning} tanto dos resultados quanto da dificuldade de se obtê-los.
+Os ambientes foram o \textit{Gridworld}, \textit{Pong} do Atari2600, e \textit{Asteroids} do Atari2600.
+Enquanto o primeiro é o ambiente mais simples, podendo ser resolvidos com técnicas menos complexas, os jogos do Atari2600 precisaram utilizar \textit{Deep Q-Learning} por utilizar a tela do jogo como entrada, assim como uma pessoa faria.
+O desempenho foi avaliado pelo sucesso de se alcançar o objetivo, no caso do \textit{Gridworld}, e pela pontuação obtida, no caso do \textit{Pong} e do \textit{Asteroids}.
+
+A implementação obteve sucesso no \textit{Gridworld} e no \textit{Pong}, mas não no \textit{Asteroids}.
+A arquitetura da rede e número de episódios de treinamento foi diferente para cada ambiente.
+Trabalhos relacionados indicam que \textit{Asteroids} obteria sucesso com as devidas otimizações, escolhas de hiper-parâmetros e suficiente tempo de treinamento.
 
 \\
 

@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.14159265-2.6-1.40.19 (TeX Live 2018/Arch Linux) (preloaded format=pdflatex 2018.12.31)  4 JAN 2019 18:22
+This is pdfTeX, Version 3.14159265-2.6-1.40.19 (TeX Live 2018/Arch Linux) (preloaded format=pdflatex 2018.12.31)  4 JAN 2019 23:37
 entering extended mode
  restricted \write18 enabled.
  %&-line parsing enabled.
@@ -1355,7 +1355,7 @@ See the LaTeX manual or LaTeX Companion for explanation.
 Type  H <return>  for immediate help.
  ...                                              
                                                   
-l.13 
+l.28 
      
 ? 
 )pdfTeX warning (ext4): destination with the same identifier (name{page.i}) has
@@ -1665,17 +1665,8 @@ Package atveryend Info: Executing hook `AtVeryEndDocument' on input line 84.
 Package atveryend Info: Executing hook `AtEndAfterFileList' on input line 84.
 Package rerunfilecheck Info: File `texto.out' has not changed.
 (rerunfilecheck)             Checksum: 08FFC093A02D2BDE024A077834850D75;2154.
-
-
-Package rerunfilecheck Warning: File `texto.brf' has changed.
-(rerunfilecheck)                Rerun to get bibliographical references right.
-
-Package rerunfilecheck Info: Checksums for `texto.brf':
-(rerunfilecheck)             Before: A8605629C391FD803307DBD4EB595579;595
-(rerunfilecheck)             After:  924A6291A7177315C09ACBA72F6648D9;595.
-
-LaTeX Warning: Label(s) may have changed. Rerun to get cross-references right.
-
+Package rerunfilecheck Info: File `texto.brf' has not changed.
+(rerunfilecheck)             Checksum: 924A6291A7177315C09ACBA72F6648D9;595.
 Package atveryend Info: Empty hook `AtVeryVeryEnd' on input line 84.
  )
 (\end occurred inside a group at level 1)
@@ -1717,7 +1708,7 @@ st/fonts/type1/public/cm-super/sfti0800.pfb></usr/share/texmf-dist/fonts/type1/
 public/cm-super/sfti0900.pfb></usr/share/texmf-dist/fonts/type1/public/cm-super
 /sfti1000.pfb></usr/share/texmf-dist/fonts/type1/public/cm-super/sfti1200.pfb><
 /usr/share/texmf-dist/fonts/type1/urw/courier/ucrr8a.pfb>
-Output written on texto.pdf (33 pages, 1135962 bytes).
+Output written on texto.pdf (33 pages, 1137621 bytes).
 PDF statistics:
  602 PDF objects out of 1000 (max. 8388607)
  504 compressed objects within 6 object streams
