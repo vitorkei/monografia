@@ -1,5 +1,6 @@
-\backcite {Goodfellow-et-al-2016}{{8}{2.3}{figure.caption.7}}
-\backcite {sutton2018reinforcement}{{9}{2.3}{figure.caption.8}}
+\backcite {stella}{{2}{1.1}{figure.caption.3}}
+\backcite {Goodfellow-et-al-2016}{{8}{2.3}{figure.caption.6}}
+\backcite {sutton2018reinforcement}{{9}{2.3}{figure.caption.7}}
 \backcite {Lin1992}{{13}{2.9}{section.2.9}}
 \backcite {pmlr-v9-glorot10a}{{16}{3.1.1}{subsection.3.1.1}}
 \backcite {huber_loss}{{16}{3.1.1}{subsection.3.1.1}}
