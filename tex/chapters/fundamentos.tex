@@ -38,7 +38,7 @@
 
 Para se criar e treinar uma inteligência artificial, diversos arcabouçous são necessários.
 Por um lado, existe a parte teórica e matemática na qual a inteligência se baseia para aprender. 
-Por outro, do lado computacional, existem as bibliotecas que auxiliam no desenvolvimento, efetuando as contas necessárias e, neste trabalho em particular, emulando o jogo que serve de ambiente para o aprendizado.
+Por outro, do lado computacional, existem as bibliotecas que auxiliam no desenvolvimento, efetuando as contas necessárias e, neste trabalho em particular, emulando os ambiente.
 Este capítulo tem o intuito de familiarizar o leitor com a teoria e técnicas utilizadas na modelagem e treinamento da inteligência artificial deste trabalho.
 
 % ---------------------------------------------------------------------------- %
@@ -53,77 +53,76 @@ Este capítulo tem o intuito de familiarizar o leitor com a teoria e técnicas u
 % http://alexlenail.me/NN-SVG/index.html
 
 Redes neurais artificiais, mais conhecidas como redes neurais, são uma forma de processamento de informação inspirada no funcionamento do cérebro.
-Assim como o órgão no qual foram baseadas, elas possuem uma grande quantidade de elementos de processamento de informação conectados entre si, chamados de neurônios, que trabalham em conjunto para resolver problemas.
+Assim como o órgão no qual foram baseadas, elas possuem uma grande quantidade de elementos de processamento de informação conectados entre si, chamados de \textbf{neurônios}, que trabalham em conjunto para resolver problemas.
 Dado que aprendem com exemplos, similar a pessoas, é considerada uma técnica de aprendizado supervisionado.
 Elas são muito utilizadas como aproximadoras de funções desconhecidas, que não são facilmente modeláveis matematicamente.
 
 Com os avanços nos estudos dessa técnica nos últimos anos, diversos tipos diferentes de redes neurais foram desenvolvidos, como redes neurais convolucionais (\textit{Convolutional Neural Networks}, CNN), a utilizada neste trabalho, e redes neurais de memória de curto-longo prazo\footnote{Tradução livre feita pelo autor} (\textit{Long/Short Term Memory}, LSTM), que não será abordada.
-Apesar de cada uma ter sua particularidade, redes neurais clássicas possuem duas características principais:a estrutura dividida em \textbf{camadas}, e os \textbf{neurônios}.
-%Existem redes que não são consideradas clássicas pela falta de estrutura em camadas, como Redes de Hopfield (\textit{Hopfield Network}) e Máquinas de Boltzmann (\textit{Boltzmann Machine}), que não serão discutidas neste trabalho.
+Apesar de cada uma ter sua particularidade, redes neurais clássicas possuem duas características principais: a estrutura dividida em \textbf{camadas}, e os \textbf{neurônios}.
+Existem redes que não são consideradas clássicas pela falta de estrutura em camadas, como Redes de Hopfield (\textit{Hopfield Network}) e Máquinas de Boltzmann (\textit{Boltzmann Machine}), que também não serão discutidas neste trabalho.
 
-A estrutura de uma rede neural clássica é dividida em \textbf{camadas} que podem ser classificadas de três formas distintas: \textbf{entrada}, \textbf{oculta}, ou \textbf{saída}.
-A de \textbf{entrada} é a que a IA usa para receber os dados que serão processados;
-as camadas \textbf{ocultas} são o processamento;
+%A estrutura de uma rede neural clássica é dividida em \textbf{camadas} que podem ser classificadas de três formas distintas: \textbf{entrada}, \textbf{oculta}, ou \textbf{saída}.
+As camadas de uma rede neural são compostas por neurônios e podem ser separadas em três categorias: \textbf{entrada}, \textbf{oculta} e \textbf{saída}.
+Quando um dado é suprido à rede, ele vem no formato de um vetor de tal forma que os neurônios da camada de \textbf{entrada} recebem seus elementos para serem processados;
+as \textbf{ocultas} realizam o processamento;
 e a de \textbf{saída} devolve um vetor de números que representa o resultado da rede neural para a entrada dada.
 %Pode-se dizer que uma rede neural é um aproximador de uma função que mapeia entrada e saída.
 Enquanto o formato da entrada e da saída da rede neural determinam o número de neurônios das respectivas camadas, a quantidade de nós nas camadas ocultas são arbitrários, normalmente definidos por meio de tentativa e erro.
 
-\textbf{Neurônios}, ou nós, são funções que recebem, como entrada, a saída de cada neurônio da camada anterior e devolvem um número, em geral entre 0 e 1 inclusos, cujo significado e como são usados variam de acordo com o trabalho em questão.
+\textbf{Neurônios}, ou nós, são funções que recebem, como entrada, a saída de cada neurônio da camada anterior e devolvem um número
+%, em geral entre 0 e 1 inclusos,
+cujo significado e como são usados variam de acordo com o trabalho em questão.
 %A maneira mais comum de se trabalhar com eles é fazendo a combinação linear dos valores dos neurônios de uma camada e, ao passar por uma função de ativação não-linear, determinar quais neurônios da camada seguinte serão ativados.
 Cada neurônio das camadas ocultas representa uma característica detectada ao longo do treinamento.
 Se essa característica estiver presente na camada de entrada, então o neurônio correspondente será \textbf{ativado}.
 A ativação de um ou mais neurônios pode levar a ativação de outros neurônios na camada seguinte e assim sucessivamente.
-Esse é um comportamento inspirado na forma como neurônios do cérebro enviam sinais de um para o outro.
-A forma mais comum de se utilizar neurônios em redes neurais artificiais é por meio da \textbf{combinação linear} dos neurônios da camada anterior, ou seja, multiplicação do valor dos neurônios da camada anterior pelos respectivos pesos, e pelo uso de uma \textbf{função de ativação não-linear}.
-%Em redes neurais artificiais, um neurônio é ativado quando a combinação linear dos neurônios da camada anterior (soma do valor dos nós multiplicados pelos respectivos pesos) passa de um valor determinado pela função de ativação.
-%Porém, nem todos os valores de entrada devem ser igualmente importantes, então cada um desses números recebe um peso que determina sua importância para a ativação da característica.
-%Matematicamente, isso é representado da seguinte forma:
+%Esse é um comportamento inspirado na forma como neurônios do cérebro enviam sinais de um para o outro.
+A forma mais comum de se utilizá-los em redes neurais é por meio da \textbf{combinação linear} dos valores dos neurônios de uma camada seguido por uma \textbf{função de ativação}.
 
-Seja $n$ o número de neurônios na camada anterior, $w_{i}$, $i = 1, ..., n$, os pesos das saídas de cada neurônio da camada anterior, e $a_{i}$, $i = 1, ..., n$, o valor de saída de cada neurônio da camada anterior
-%e, por consequência, cada valor de entrada do neurônio atual,
-e $b$ o viés \footnote{\textit{bias}, em inglês} da função.
+Para um neurônio $n$ de uma camada $k$ que não seja a de entrada, seja $N$ o número de neurônios da camada anterior $k-1$, $w_{i}$, $i = 1, ..., N$, o peso do $i$-ésimo neurônio da camada $k-1$, e $a_{i}$, $i = 1, ..., N$, o valor de saída do $i$-ésimo neurônio da camada $k-1$.
+%, e $b$ o viés \footnote{\textit{bias}, em inglês} da função.
 A combinação linear dos neurônios é feita da seguinte forma:
 
 \begin{equation} \label{eq:nn01}
-w_{1}a_{1} + w_{2}a_{2} + ... + w_{n}a_{n} - b
+w_{1}a_{1} + w_{2}a_{2} + ... + w_{n}a_{n}
 \end{equation}
 
-Em seguida, o resultado da somatória \ref{eq:nn01} é passado para a função de ativação, que realiza uma transformação não-linear para mapear essa entrada em um determinado intervalo, como $[0, 1]$ ou $[-1, 1]$, a depender da função utilizada.
-O resultado da função de ativação é utilizado como entrada para um dos nós da camada oculta seguinte.
-%Como essa soma pode ter qualquer valor no intervalo $(-\infty, +\infty)$, o neurônio precisa saber a partir de que ponto ele estará ativado.
-%Para isso, utiliza-se uma \textbf{função de ativação}.
-%Funções de ativação recebem a soma \ref{eq:nn01} como entrada, limitam seu valor a um certo intervalo 
-%e determinam se o neurônio deve ser ativado ou não.
+Antes de ser passada para a função de ativação, é comum adicionar à somatória \ref{eq:nn01} um viés \footnote{\textit{bias}, em inglês} $b$, uma constante que ajuda a melhor aproximar da função desconhecida.
+A função de ativação realiza uma transformação não-linear no número que recebe como argumento, no caso a soma de \ref{eq:nn01} com o viés, para mapear seu resultado em um intervalo e determinar se o neurônio $n$ deve ser ativado ou não.
+Tanto a transformação quanto a forma de mapear e o intervalo são determinados pela função utilizada.
+%Em seguida, o resultado da somatória \ref{eq:nn01} é passado para a função de ativação, que realiza uma transformação não-linear para mapear essa entrada em um determinado intervalo, como $[0, 1]$ ou $[-1, 1]$, a depender da função utilizada.
+%O resultado da função de ativação é utilizado como entrada para um dos nós da camada oculta seguinte.
 
-Esse procedimento é feito em cada neurônio de cada camada da rede neural, cada um com seus respectivos pesos para a camada anterior.
-Como existem diversas bibliotecas que otimizam operações matriciais, é mais rápido e conveniente utilizar matrizes, além de facilitar a leitura do código:
-seja $W$ a matriz tal que cada linha contém os pesos de cada neurônio da camada anterior para um determinado neurônio da camada atual, $a^{(i)}$ o vetor tal que cada elemento é o valor de saída de cada neurônio da camada anterior, e $b$ o viés, é possível efetuar a soma \ref{eq:nn01} para todos os neurônios de uma camada da seguinte forma:
+Esse processo, que consiste em várias multiplicações e adições, precisa ser feito em todos os neurônios das camadas da rede neural, o que pode gerar problemas de ponto flutuante e de tempo de processamento.
+Portanto, é conveniente realizar esse processo utilizando matrizes, uma vez que existem diversas bibliotecas com funções que otimizam operações matriciais.
+Para um neurônio $n$ de uma camada $k$ que não seja a de entrada, seja $N$ o número de neurônios da camada $k-1$, $W$ uma matriz tal que $w_{n, j}$, $j = 1, ..., N$, o peso do $j$-ésimo neurônio da camada $k-1$, $a_{k-1}$ o vetor com os valores de saída dos neurônios da camada $k-1$, e $b$ o viés.
+Os valores dos neurônios da camada $k$ podem ser representados como resultado da seguinte operação:
 
 \begin{equation} \label{eq:nn02}
-Wa^{(i)} + b, \qquad i = 1, ..., n
+Wa_{k-1} + b
 \end{equation}
 
 As funções de ativação mais comuns são a sigmoide (curva logística), ReLU (\textit{Rectified Linear Unit}) e ELU (\textit{Exponential Linear Unit}), sendo a sigmoide a mais antiga e a ELU a mais recente.
 
-O próximo passo é entender como os valores dos neurônios e os respectivos pesos são utilizados para devolver a resposta correta.
-Como mencionado anteriormente, conforme as características se mostram presentes na camada de entrada, os neurônios referentes a esses atributos são ativados até que o neurônio com a resposta dada pela inteligência artificial seja ativado.
-Como rede neural é um tipo de aprendizado supervisionado, os exemplos inseridos nela possuem rótulos, saídas esperadas (qual valor que cada neurônio de saída deve ter).
-Para que o computador saiba o quão ruim foi sua saída, é definida uma função de erro, também conhecida como função de custo.
-%Em muitos casos, utiliza-se o erro quadrático médio, que dá mais peso para erros maiores uma vez que a diferença é elevada ao quadrado, mas existem diversas funções diferentes para isso.
-Naturalmente, quanto maior for o erro (valor calculado pela função de custo), mais incorreta foi a previsão, e isso permite avaliar o desempenho da rede neural.
+O próximo passo é entender como os valores dos neurônios e os respectivos pesos são utilizados para tentar devolver a resposta correta.
+%Como mencionado anteriormente, conforme as características se mostram presentes na camada de entrada, os neurônios referentes a esses atributos são ativados até que o neurônio com a resposta dada pela inteligência artificial seja ativado.
+Como rede neural é um tipo de aprendizado supervisionado, os exemplos inseridos nela possuem rótulos, saídas esperadas.
+%(qual valor que cada neurônio de saída deve ter).
+Para que o computador saiba o quão próxima sua resposta estava da correta, é definida uma função de erro, também conhecida como função de custo.
+Naturalmente, quanto maior for o erro, mais incorreta foi a previsão, e isso permite avaliar o desempenho da rede neural.
 %Depois de esse procedimento ser feito com milhares ou até milhões de exemplos, calcula-se a média dos erros obtidos e, com isso, avalia-se o desempenho da inteligência.
 
-Otimizar os pesos de forma que se reduza a média dos erros obtidos com os exemplos parece ser o melhor caminho para melhorar o modelo, mas isso não é necessariamente verdade.
+Otimizar os pesos de forma que se reduz a média dos erros obtidos com os exemplos parece ser o melhor caminho para melhorar o modelo, mas isso não é necessariamente verdade.
 Os exemplos utilizados nessa etapa compõe o \textbf{conjunto de treinamento}.
-Se o modelo tiver zero de erro em relação a esse conjunto, ele estará sofrendo de \textit{overfitting}: a inteligência se adequa tanto ao conjunto de treinamento que saberá o que fazer apenas nele.
-Para determinar o grau de \textit{overfitting}, utiliza-se um \textbf{conjunto de testes}, exemplos independente do conjunto de treinamento, mas gerado pela mesma distribuição de probabilidade, escolhidos da mesma forma.
-Um modelo que tenha bom desempenho, ou seja, erro baixo nos dois conjuntos não tem problemas de \textit{overfitting}.
-%O mais desejável é minimizar o erro sobre todas as entradas possíveis ou, no mínimo, as esperadas em cenários reais, e o conjunto de treinamento dificilmente conseguirá abranger todos eles.
+Se o modelo tiver zero de erro em relação a esse conjunto, ele estará sofrendo de \textit{overfitting}, ou seja, a rede neural se adequa tanto ao conjunto de treinamento que saberá o que fazer apenas nele, estando possivelmente muito diferente da função que se deseja aproximar.
+%Para determinar o grau de \textit{overfitting}, utiliza-se um \textbf{conjunto de testes}, exemplos independentes do conjunto de treinamento, mas gerados pela mesma distribuição de probabilidade, escolhidos da mesma forma.
+Para determinar o grau de \textit{overfitting}, utiliza-se um \textbf{conjunto de validação}, exemplos diferentes de treinamento e que são supridos à rede neural ocasionalmente e que não são utilizados para atualização dos pesos.
+Se o erro do conjunto de treinamento diminuir, mas o do conjunto de validação não, então o modelo estará começando a sofrer de \textit{overfitting} e o treinamento deve ser interrompido.
+Idealmente, um modelo com bom desempenho, ou seja, erro baixo nos dois conjuntos não tem problemas de \textit{overfitting}.
 
 De forma resumida, uma rede neural clássica aprende recebendo uma série de números como entrada (exemplo) e devolve uma saída;
 calcula-se o quão errada essa saída está em relação ao desejado para aquela determinada entrada (rótulo do exemplo), e ajusta os pesos conforme a necessidade para minimizar o erro;
 se a arquitetura da rede tiver sido contruída adequadamente, a IA deverá aprender a resolver o problema para o qual foi feita após exemplos suficientes serem supridos.
-%após repetir esses passos diversas vezes, espera-se que a IA tenha aprendido o suficiente a resolver o problema em mãos.
 
 % ---------------------------------------------------------------------------- %
 
@@ -135,9 +134,9 @@ se a arquitetura da rede tiver sido contruída adequadamente, a IA deverá apren
 %https://stats.stackexchange.com/questions/182734/what-is-the-difference-between-a-neural-network-and-a-deep-neural-network-and-w
 
 Como explicado anteriormente, redes neurais podem ser divididas em três tipos distintos de camadas: entrada, ocultas, e saída.
-Enquanto existe apenas uma camada de entrada e uma de saída, é possível haver uma ou mais camadas ocultas.
-Se houver muitas camadas ocultas, a rede neural passa a ser chamada de rede neural profunda (\textit{deep neural network}).
-Atualmente, não existe uma definição exata de quantas camadas a rede neural precisa ter para começar a ser classificada como profunda e, mesmo que houvesse, esse número provavelmente mudaria com o passar do tempo.
+Enquanto existe apenas uma camada de entrada e uma de saída, é possível haver mais de uma camada oculta.
+Se houver muitas ocultas, a rede neural passa a ser chamada de rede neural profunda.
+Atualmente, não existe uma definição exata de quantas camadas são necessárias para uma rede ser classificada como profunda e, mesmo que houvesse, esse número provavelmente mudaria com o passar do tempo.
 
 Uma rede neural profunda que segue o modelo apresentado na seção anterior é chamada de \textit{feedforward} e é o mais típico de \textit{deep learning}.
 Ele recebe esse nome pois a informação flui da entrada para a saída sem haver conexões de \textit{feedback} para que a previsão seja feita.
@@ -178,7 +177,7 @@ Na etapa de \textbf{previsão}, a informação passa por uma ou mais redes neura
 \end{figure}
 
 % ver http://www.deeplearningbook.org/ para resolver a anotação da Nina
-É possível haver mais de uma camada de convolução assim como pode haver mais de uma camada \textit{fully-connected} além da de saída, e isso pode ser mais vantajoso, uma vez que aumentar a profundidade da rede, em muitos casos, aparenta melhora a predição~\cite{Goodfellow-et-al-2016}.
+É possível haver mais de uma camada de convolução assim como pode haver mais de uma camada \textit{fully-connected} além da de saída, o que pode ser mais vantajoso, uma vez que aumentar a profundidade da rede, em muitos casos, melhora a predição~\cite{Goodfellow-et-al-2016}.
 %Quanto mais camadas ocultas houver, mais precisa será a predição.
 Entretanto, não só o custo de tempo e de espaço aumentam, como há um limite para o quão melhor será o desempenho da IA.
 A partir de um certo ponto, a melhora se torna ínfima em comparação com o tempo desprendido e, portanto, deixa de ser benéfico colocar mais camadas.
@@ -204,8 +203,7 @@ e a recompensa é imediatamente recebida após cada ação ser tomada.
 As probabilidades de o agente tomar cada ação em um dado espaço são definidas por uma política $\pi$.
 A qualidade de uma política é medida por sua \textbf{utilidade esperada}, e a política ótima é denotada por $\pi^{*}$.
 Para calcular $\pi^{*}$, utiliza-se um algoritmo de iteração de valor que computa a utilidade esperada do estado atual:
-começando a partir de um estado arbitrário $S$, tal que seu valor esperado é $V(S)$, aplica-se a equação de Bellman até haver convergência de $V(S)$, que será denotado por $V^{*}(S)$.
-Esse $V^{*}(S)$ é usado para calcular a política ótima $\pi^{*}(s)$.
+começando a partir de um estado arbitrário $S$, tal que seu valor esperado é $V(S)$, aplica-se a equação de Bellman até haver convergência de $V(S)$, denotado por $V^{*}(S)$, que é usado para calcular a política ótima $\pi^{*}(s)$.
 
 Seja $i$ a iteração atual, $S$ o estado atual, $S'$ o estado futuro, $A$ a ação tomada no estado atual, $R(S,A,S')$ a recompensa pela transição do estado $S$ para o estado $S'$ por tomar a ação $A$, e $\gamma$ o valor de desconto (valor entre 0 e 1 que determina a importância de recompensas futuras para o agente), temos que:
 
@@ -225,8 +223,8 @@ Política gulosa para função valor ótima:
 \pi^{*}(s) = \argmax_{A}\sum_{S'}P(S'|S,A)[R(S,A,S') + \gamma V^{*}(S')]
 \end{equation}
 
-Um dado das fórmulas acima comum de se faltar é a probabilidade de transição $P(S'|S,A)$.
-Portanto, utiliza-se \textbf{aprendizado por reforço} para contornar esse problema.
+Um processo de decisão de Markov cuja função de probabilidade de transição $P(S'|S,A)$ ou função de recompensa $R(S,A,S')$ é desconhecida se torna um problema de \textbf{aprendizado por reforço}.
+%\textbf{Aprendizado por reforço} é um processo de decisão de Markov cuja função de probabilidade de transição $P(S'|S,A)$ ou função de recompensa $R(S,A,S')$ é desconhecida.
 
 %% ---------------------------------------------------------------------------- %
 
@@ -243,7 +241,7 @@ Isso é possível em domínios simples, como um Jogo da Velha, mas se torna impr
 No caso do \textit{Pong} e do \textit{Asteroids}, os \textit{frames} do jogo são os estados.
 Um pixel que mude de cor já faz ser um estado completamente diferente do ponto de vista do computador.
 Em uma tela de 210x160 pixels, com cada pixel armazenando três números que vão de 0 à 255 para determinar sua cor, é evidente não ser possível armazenar na memória um mapeamento das ações para cada um desses estados.
-Mesmo que não houvesse esse obstáculo computacional, é comum haver situações em que não é possível determinar qual ação retornará a maior recompensa. A figura \ref{fig:unknown_best_action} exemplifica um momento desse tipo.
+Mesmo que não houvesse esse obstáculo computacional, existem situações em que não é possível determinar qual ação retornará a maior recompensa. A figura \ref{fig:unknown_best_action} exemplifica um momento desse tipo.
 
 \begin{figure}[h!]
 %  \begin{minipage}[b]{.45\textwidth}
@@ -255,7 +253,7 @@ Mesmo que não houvesse esse obstáculo computacional, é comum haver situaçõe
 %  \includegraphics[scale=.275]{asteroids_unknown_best_action}
 %  \end{minipage}
 %  \centering
-  \caption{Quando a bola no \textit{Pong} ou os asteróides em \textit{Asteroids} ficam fora da tela, não é possível dizer qual a melhor ação a ser tomada por falta de informação. No \textit{Pong}, não é possível ver a bola somente quando algum dos jogadores marca um ponto, pois ela saiu da tela pelo lado esquerdo ou direito; quando isso ocorre, todas as ações tomadas têm o mesmo resultado, pois é preciso esperar alguns instantes para uma nova bola aparece e o jogo continuar.}
+  \caption{Quando a bola no \textit{Pong} fica fora da tela, não é possível dizer qual a melhor ação a ser tomada por falta de informação ou porque todas terão o mesmo resultado. No \textit{Pong}, não é possível ver a bola somente quando algum dos jogadores marca um ponto, pois ela saiu da tela pelo lado esquerdo ou direito; quando isso ocorre, todas as ações tomadas têm o mesmo resultado, pois é preciso esperar alguns instantes para uma nova bola aparecer e o jogo continuar.}
   \label{fig:unknown_best_action}
 \end{figure}
 
