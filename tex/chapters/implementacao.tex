@@ -23,14 +23,14 @@ Portanto, o número de estados existentes é igual ao número de espaços válid
 As ações possíveis $A$ são mover-se para o espaço acima, abaixo, a direita ou a esquerda.
 As recompensas $R(S,A)$ são definidas pelo desenvolvedor do ambiente.
 No caso deste trabalho, chegar ao objetivo (estado terminal de recompensa positiva) gera uma recompensa de 1000 pontos, chegar a uma armadilha (estado terminal de recompensa negativa) gera uma recompensa de -200 pontos, e estados não-terminais geram recompensas de -1 ponto.
-As probabilidades de transição $P(S,A,S')$ são as probabilidades de o agente estar em um determinado espaço do mapa (estado $S$) e, a partir do movimento para algum dos espaços adjacentes (ação $A$), chegar em algum outro espaço do mapa (estado futuro $S'$).
+As probabilidades de transição $P(S,A,S')$ são as probabilidades de o agente estar em um determinado espaço do mapa (estado $S$) e, a partir do movimento para algum dos espaços adjacentes (ação $A$), chegar a algum outro espaço do mapa (estado futuro $S'$).
 Não existe aleatoriedade no movimento do agente sempre se desloca para a direção que ele escolheu, não sendo possível, por exemplo, mover-se para a direita quando a ação de mover-se para cima for escolhida.
 
 \item \textbf{Pong}:
 Os estados $S$ são a tela do jogo, uma matriz de 210x160x3 pixels.
 A parte "x3"{} representa o número de canais que conferem cor ao pixel.
 As ações possíveis $A$ são mover a barra que o jogador controla para cima ou para baixo.
-As recompensas $R(S,A)$ são de +1 ponto se fizer a bola chegar no fim da tela do lado do oponente e de -1 ponto se a bola chegar no fim da tela do lado do jogador.
+As recompensas $R(S,A)$ são de +1 ponto se fizer a bola chegar ao fim da tela do lado do oponente e de -1 ponto se a bola chegar ao fim da tela do lado do jogador.
 As probabilidades de transição $P(S,A,S')$ são as probabilidades de o jogo estar em um estado $S$, por exemplo com a bola sendo rebatida pelo jogador, e transitar para algum outro estado futuro $S'$, como marcar um ponto, após tomar uma ação $A$, como mover a barra para cima.
 \textit{Pong} é um jogo determinístico no sentido que não existe aleatoriedade na consequência das ações do jogador: se a bola colidir com a barra sempre no mesmo lugar, ela sempre será retornada na mesma direção com a mesma velocidade; marcar ponto sempre aumenta a pontuação do jogador em um.
 Por outro lado, existe um oponente contra o qual se está jogando e cujo comportamento configura um elemento de aleatoriedade no ambiente.
@@ -135,13 +135,13 @@ Os experimentos consumiram a maior parte do trabalho por poderem levar alguns mi
 %O ambiente mais simples conseguia finalizar treinamentos de centenas de episódios em alguns minutos, e até milhares de episódios em pouco mais de uma hora por conta de suas baixas dimensões e não necessitar de arquiteturas muito grandes.
 Por ser um ambiente com um número baixo de estados e ações possíveis, a arquitetura da rede neural pôde ser simples, com poucas camadas convolucionais e \textit{fully-connected}, com poucos nós cada uma.
 Como resultado dessa baixa complexidade, foi possível realizar milhares de episódios de treinamento em poucas horas.
-Além disso, foi mais fácil analisar o aprendizado por ter poucos estados bem definido e por haver soluções evidentes de como chegar no objetivo.
-A análise do sucesso do agente foi feita pela sua capacidade de conseguir chegar na recompensa positiva do mapa.
-%O número de vezes que ele conseguiu chegar no objetivo ao longo dos episódios de treinamento foi considerado como menos importante para avaliar o desempenho do aprendizado, pois a ação tomada é aleatória com probabilidade de 40\% no mínimo.
+Além disso, foi mais fácil analisar o aprendizado por ter poucos estados bem definido e por haver soluções evidentes de como chegar ao objetivo.
+A análise do sucesso do agente foi feita pela sua capacidade de conseguir chegar à recompensa positiva do mapa.
+O número de vezes que ele conseguiu chegar ao objetivo ao longo dos episódios de treinamento foi considerado como menos importante para avaliar o desempenho do aprendizado, pois há uma alta probabilidade de se tomar uma ação aleatoriamente, de 40\%.
 %%e, em parte, pelo grau de sucesso em fazer isso ao longo do treinamento.
 %%A taxa de sucesso ao longo do treinamento, apesar de relevante, foi menos considerada por conta da alta probabilidade de se tomar uma ação aleatória a qualquer momento (mínimo de 0.4).
 
-O mapa utilizado para os experimentos tinha tamanho de 10x10, oito armadilhas espalhadas, o agente começava no canto superior esquerdo e o objetivo encontrava-se no canto inferior esquerdo.
+O mapa utilizado para os experimentos tinha tamanho de 10x10, oito armadilhas espalhadas, o agente começava no canto superior esquerdo e o objetivo encontrava-se no canto inferior direito.
 
 \textbf{INSERIR IMAGEM}
 

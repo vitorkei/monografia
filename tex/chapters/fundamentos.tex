@@ -375,19 +375,22 @@ Percebe-se neste ponto uma semelhança bem grande com a forma como redes neurais
 Agora que as técnicas de aprendizado profundo e de aprendizado por reforço foram apresentadas, falta falar do tipo de aprendizado obtido quando é feita a junção delas, que é o utilizado neste trabalho: \textit{\textbf{Deep Q-Learning}}.
 Por se tratar de um tipo de aprendizado por reforço, mais precisamente \textit{approximate Q-learning}, a inteligência artificial também será referida como agente.
 
-Como a ideia é o agente aprender enxergando a tela e tudo que ele vê são matrizes, a primeira etapa consiste em processar essas informações para poder aprender.
-Ou seja, o primeiro passo é passar os \textit{frames} da tela do jogo por uma \textbf{rede neural convolucional}.
-Essa etapa funciona conforme descrito na seção sobre \hyperref[sec:cnn]{redes neurais convolucionais}: os \textit{frames} são a entrada, ocorre o processamento nas camadas ocultas e, na camada de saída, cada neurônio tem um valor.
+Dado que o agente deve aprender enxergando a tela e tudo que ele vê são matrizes, a primeira etapa consiste em processar essas informações para poder aprender.
+Ou seja, o primeiro passo é passar as imagens da tela por uma \textbf{rede neural convolucional}.
+Essa etapa funciona conforme descrito na seção sobre \hyperref[sec:cnn]{redes neurais convolucionais}: as imagens são a entrada, ocorre o processamento nas camadas ocultas e, na camada de saída, cada neurônio tem um valor que determinam a ação tomada.
 Contudo, calcular o erro é diferente.
-Como as imagens passadas não são rotuladas e não é possível fazer isso manualmente, a IA precisa calcular o erro da saída da rede de outra forma.
-É nessa etapa que entra o \textbf{aprendizado por reforço}.
-Como explicado \hyperref[sec:rl]{anteriormente}, aprendizado por reforço aprende sem o uso de exemplos rotulados, mas precisa que as características que a IA deve aprender estejam bem definidas.
-Enquanto tais características são definidas pela rede, o cálculo do erro e otimização dos pesos é feito pela parte de aprendizado por reforço.
+Como as imagens passadas não são rotuladas e não é possível fazer isso manualmente, a IA precisa calcular o erro da saída da rede de outra forma, utilizando \textbf{aprendizado por reforço}.
+Conforme explicado \hyperref[sec:rl]{anteriormente}, aprendizado por reforço aprende sem o uso de exemplos rotulados, mas precisa que as características que a IA deve aprender estejam bem definidas.
+Enquanto tais características são definidas pela rede, o cálculo do erro para a otimização dos pesos é feita pela parte de aprendizado por reforço.
 
-O \textbf{cálculo do erro} é feito por uma função que, como toda função, possui um mínimo.
-Esse mínimo é normalmente calculado por alguma variação do \textbf{método do maior declive} ou \textbf{método do gradiente} \footnote{\textit{Gradient descent} em inglês}.
-Em matématica, gradiente é uma generalização de derivada para múltiplas variáveis e, portanto, aponta para a direção de maior crescimento da função sobre a qual foi aplicado no ponto dado.
-Método do gradiente, por sua vez, utiliza o \textbf{negativo} do gradiente para apontar para o mínimo local e, com isso, minimizar o valor da função.
+O \textbf{cálculo do erro} é feito por funções que retornam valores altos quando o modelo devolve respostas incorretas, e baixos, próximos de zero caso contrário, como o erro quadrático médio, \textit{cross-entropy} e \textit{Huber loss}~\cite{huber_loss}.
+Para minimizar o erro, normalmente utiliza-se alguma variação do \textbf{método do maior declive}, também conhecido como \textbf{método do gradiente}~\cite{cauchy1847} \footnote{\textit{Gradient descent}, em inglês}, como o RMSProp~\cite{rmsprop} e o Adam~\cite{DBLP:journals/corr/KingmaB14}.
+Em matemática, gradiente é uma generalização de derivada para múltiplas variáveis e, portanto,a ponta para a direção de maior crescimento da função.
+O método do gradiente, por outro lado, utiliza o negativo do gradiente para apontar para a direção de maior decrescimento e, por consequência, para o mínimo local.
+%O \textbf{cálculo do erro} é feito por uma função que, como toda função, possui um mínimo.
+%Esse mínimo é normalmente calculado por alguma variação do \textbf{método do maior declive} ou \textbf{método do gradiente} \footnote{\textit{Gradient descent} em inglês}.
+%Em matématica, gradiente é uma generalização de derivada para múltiplas variáveis e, portanto, aponta para a direção de maior crescimento da função sobre a qual foi aplicado no ponto dado.
+%Método do gradiente, por sua vez, utiliza o \textbf{negativo} do gradiente para apontar para o mínimo local e, com isso, minimizar o valor da função.
 
 Seja $F(x)$ uma função de múltiplas variáveis, $x_{t}$ um ponto no instante $t$ e $\alpha$ um número real que multiplica o gradiente de $F(x)$.
 Em contexto de aprendizado de máquina, $F(x)$ é a função de erro, $x_{t}$ é o vetor de pesos na $t$-ésima iteração e $\alpha$ é a taxa de aprendizado.
@@ -399,9 +402,9 @@ x_{t+1} = x_{t} - \alpha \nabla F(x_{t})
 
 Intuitivamente, começa-se em um ponto $x_{0}$ qualquer e utiliza-se esse algoritmo para deslocar-se para um ponto vizinho $x_{1}$ que, se $\alpha$ for pequeno o suficiente, $F(x_{0}) \geq F(x_{1})$.
 Se isso for feito iterativamente, tem-se $F(x_{t}) \geq F(x_{t+1})$ a cada passo.
-Importante notar que, se o $\alpha$ for muito alto, a redução do erro é rápida, porém instável e  pode sequer chegar perto do mínimo do erro.
-Por outro lado, se for muito pequeno, a redução fica precisa, mas lenta.
-A figura \ref{fig:gradientDescent} representa essas situações.
+Importante notar que, se o $\alpha$ for muito alto, a redução do erro é rápida, porém instável ou pode sequer acontecer.
+Por outro lado, se for muito pequeno, a redução é precisa, mas lenta.
+A figura \ref{fig:gradientDescent} ilustra essas situações.
 
 \begin{figure}[h!]
   \begin{minipage}[b]{.45\textwidth}
@@ -428,7 +431,7 @@ Existem diversos algoritmos de redução do erro e otimização dos pesos, como 
 \section{Aprimorando o aprendizado}
 \label{sec:enhance}
 
-\textit{Deep Q-Learning} é a base para o aprendizado da inteligência artificial deste trabalho, mas esse processo é normalmente muito demorado.
+\textit{Deep Q-Learning} é a base para o aprendizado da inteligência artificial deste trabalho, mas esse processo se torna muito demorado conforme o problema se torna mais complexo.
 %Porém, ao longo do tempo, foram descobertas outras técnicas que melhoram a aprendizagem do agente, seja acelerando ou ajudando a evitar decisões ruins.
 Nesta seção, serão apresentadas duas técnicas que ajudam a estabilizar e acelerar o aprendizado do programa:
 \textit{\textbf{experience replay}}~\cite{Lin1992} e \textbf{alvo fixo}.
@@ -438,12 +441,13 @@ Nesta seção, serão apresentadas duas técnicas que ajudam a estabilizar e ace
 \subsection{\textit{Experience Replay}}
 \label{sec:er}
 
+Estudado inicialmente como um método para acelerar a convergência em aprendizado por reforço, \textit{experience replay} mostrou-se útil para \textit{Deep Q-Learning} por ser uma técnica desse tipo de aprendizado.
 Por conta da forma como \textit{Deep Q-Learning} funciona, se a rede aprendesse com os \textit{frames} conforme o agente os vê, a entrada seria composta de estados sequenciais altamente correlacionados.
-Isso significa que ela se atualizaria apenas com as experiências passadas mais próximas, esquecendo as mais antigas, ou seja, sobrescrevedo os pesos obtidos no passado.
-Para contornar esse problema, utiliza-se um \textit{buffer} de memória.
+Isso significa que ela se atualizaria apenas com as experiências passadas mais recentes, esquecendo as mais antigas, sobrescrevedo os pesos obtidos no passado.
+Para contornar esse problema, utiliza-se um \textit{buffer} de memória que armazena uma quantidade pré-determinada de experiências passadas.
 
 A cada passo, uma tupla é armazenada no \textit{buffer} enquanto um conjunto de tuplas desse mesmo formato é escolhido aleatoriamente e suprido à CNN para a atualização dos pesos.
-Essas tuplas tem o formato $t = (S, A, R, S', done)$ onde $S$ é o estado atual, $A$ é a ação tomada no estado $S$, $S'$ é o estado resultado de se tomar a ação $A$ no estado $S$, $R$ é a recompensa obtida pela transição do estado $S$ para o estado $S'$ como resultado da ação $A$ e $done$ é uma variável que sinaliza se o agente chegou a um estado terminal.
+Essas tuplas tem o formato $t = (S, A, R, S', done)$ onde $S$ é o estado atual, $A$ é a ação tomada no estado $S$, $S'$ é o estado resultante por se tomar a ação $A$ no estado $S$, $R$ é a recompensa obtida pela transição do estado $S$ para o estado $S'$ como resultado da ação $A$, e $done$ é uma variável que sinaliza se o agente chegou a um estado terminal.
 Dessa forma, o aprendizado ocorre sem o esquecimento de experiências passadas.
 %\textit{Experience replay} também ajuda o agente a tomar ações diferentes ao invés de se prender a algumas que tiveram sucesso no passado próximo e que, possivelmente, não serão tão úteis no futuro.
 
