@@ -19,7 +19,7 @@ Por conta da natureza de cada ambiente e de seus resultados, formas diferentes d
 O agente se saiu bem no \textbf{\textit{Gridworld}}, consistentemente encontrando um caminho para o objetivo com diferentes arquiteturas que não fossem drasticamente diferentes.
 A tabela abaixo apresenta a proporção média de vezes que o agente treinado por \textit{deep Q-learning} e que um aleatório chegaram ao objetivo.
 Para o agente treinado, o número foi obtido após ele passar por cinco treinamentos de 2000 episódios no mapa de tamanho 10x10 apresentado anteriormente.
-Nesses cinco treinamentos, ele chegou ao objetivo quatro vezes e excedeu o número máximo de ações uma vez, pois chegou a uma célula da qual não conseguiu sair, pois as melhores ações tomadas eram ir em direção às paredes adjacentes.
+O modelo final conseguiu fazer o agente chegar ao objetivo quatro vezes e exceder o número máximo de ações uma vez, pois chegou a uma célula da qual não conseguiu sair já que as melhores ações tomadas eram ir em direção às paredes adjacentes.
 Para o agente aleatório, o número foi obtido após 10000 tentativas de se chegar ao objetivo, mesmo número de episódios que o agente treinado teve para chegar ao objetivo.
 
 \textbf{LINKAR PARA A IMAGEM DO MAPA}
@@ -43,8 +43,7 @@ DQL & 66.15\% \\
 \section{\textit{Pong}}
 \label{sec:res_pong}
 
-Já o \textbf{\textit{Pong}} mostrou uma arquitetura bem mais sensível.
-Pequenas alterações nos hiper-parâmetros faziam o aprendizado se tornar muito mais lento ou nem acontecer.
+\textbf{\textit{Pong}} mostrou uma arquitetura bem mais sensível, com pequenas alterações nos hiper-parâmetros fazendo o aprendizado se tornar muito mais lento ou nem acontecer.
 Mesmo assim, os resultados se mostraram promissores dado tempo suficiente para o agente treinar e aprender.
 
 %A pontuação final obtida é igual ao número de pontos feitos pelo jogador subtraído do número de pontos feitos pelo adversário.
@@ -76,9 +75,10 @@ Mesmo assim, os resultados se mostraram promissores dado tempo suficiente para o
 
 O crescimento lento, mas estável da pontuação total obtida por episódio reflete a capacidade do agente de aprender, ainda que com dificuldade, a se comportar neste ambiente de maneira positiva.
 
-Nos experimentos, foram coletadas a pontuação final média de uma pessoa experiente jogando com o mouse no emulador Stella, de um agente jogando aleatoriamente, e da inteligência artificial treinada, cada um jogando cinco partidas contra o computador pré-programado do jogo.
-A tabela abaixo resume os resultados obtidos.
+Nos experimentos, foram coletadas a pontuação final média de uma pessoa experiente jogando com o mouse no emulador Stella, de um agente jogando aleatoriamente, e da inteligência artificial treinada, cada um jogando cinco partidas contra o computador pré-programado pelos desenvolvedores do jogo.
+A tabela \ref{table:pong_score} resume os resultados obtidos.
 
+\begin{table}
 \begin{center}
 \begin{tabular}{l c}
 \hline
@@ -89,8 +89,10 @@ Aleatório & -20.27 \\
 DQL & 21 \\
 \hline
 \end{tabular}
+\caption{Pontuação média de um jogador humano experiente após cinco partidas jogando com o mouse, o que equivale a aproximadamente uma hora de jogo; de um agente jogando aleatoriamente; e da inteligência artificial utilizando o modelo que construiu após 298 episódios de treinamento, o que equivale a aproximadamente um milhão de \textit{frames}.}
 \label{table:pong_score}
 \end{center}
+\end{table}
 
 %O modelo desenvolvido conseguiu atingir pontuação de 21 consistentemente contra a IA criada pelos desenvolvedores, enquanto um agente aleatório conseguiu uma média de -20.27 pontos e uma pessoa experiente em jogos eletrônicos conseguiu uma média de 7 pontos após uma hora de jogo.
 

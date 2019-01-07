@@ -33,5 +33,5 @@
 \contentsline {section}{\numberline {4.2}\textit {Pong}}{19}{section.4.2}
 \contentsline {section}{\numberline {4.3}\textit {Asteroids}}{20}{section.4.3}
 \contentsline {chapter}{\numberline {5}Conclus\IeC {\~a}o}{23}{chapter.5}
-\contentsline {chapter}{Refer\^encias Bibliogr\'aficas}{25}{appendix*.12}
+\contentsline {chapter}{Refer\^encias Bibliogr\'aficas}{25}{appendix*.13}
 \contentsfinish 
