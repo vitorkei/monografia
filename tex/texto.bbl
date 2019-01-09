@@ -1,17 +1,17 @@
 \begin{thebibliography}{Mni+13}
 
 %\bibitem[RP16]{russel2016artificial}
-%Russel, S. J., & Norvig, P.
+%Russel, S. J., Norvig, P.
 %\newblock {\em Artificial intelligence: a morden approach.}
 %\newblock 3rd. ed. Upper Saddle River, NJ: Prentice Hall, 2010. ISBN: 9781292153964
 
 \bibitem[SB18]{sutton2018reinforcement}
-Sutton, R. S., & Barto, A. G.
+Sutton, R. S., Barto, A. G.
 \newblock {\em Reinforcement learning: an introduction.}
 \newblock 2nd ed. The MIT Press, 2018. ISBN: 9780262039246
 
 \bibitem[HSS14]{rmsprop}
-Hinton, G., Srivastava N., & Swersky K.
+Hinton, G., Srivastava N., Swersky K.
 %\newblock {\em Overview of mini-batch gradient descent}.
 \newblock Aula 6.5 - {\m Divide the gradient by running average of its recent magnitude.}
 \newblock {\em COURSERA: Neural Networks for Machine Learning}, 4(2): 26--31.
@@ -21,7 +21,7 @@ Kingma, D. P., Ba, J.
 \newblock {\em Adam: A Method for Stochastic Optimization}. Em: {\em CoRR} (dez. de 2014). ISSN: 1412.6980.
 
 \bibitem[Mni+13]{DBLP:journals/corr/MnihKSGAWR13}
-Mnih, V., Kavukcuoglu, K., Silver, D., Graves, A., Antonoglou, I., Wierstra, D., & Riedmiller, M. A.
+Mnih, V., Kavukcuoglu, K., Silver, D., Graves, A., Antonoglou, I., Wierstra, D., Riedmiller, M. A.
 \newblock {\em Playing Atari with Deep Reinforcement Learning}. Em: {\em CoRR} (dez. de 2013). ISSN: 1312.5602.
 
 \bibitem[Hub64]{huber_loss}
@@ -73,3 +73,8 @@ URL: \url{https://stella-emu.github.io/}. Último acesso em 05 de janeiro de 201
 \bibitem[C1847]{cauchy1847}
 Cauchy, A.
 \newblock {\em Méthode générale pour la résolution de systèmes d'équations simultanées}. Em: {\em Compte rendu des séances de l'académie des sciences} (1847), pp. 536--538.
+
+\bibitem[Mni+15]{humanLevelControlDRL}
+\hypertarget{Mni+15}{}
+Mnih, V., Kavukcuoglu, K., Silver, D., Rusu, A. A., Veness, J., Bellemare, M. G., Graves, A., Riedmiller, M., Fidjeland, A. K., Ostrovski, G., Petersen, S., Beattie, C., Sadik, A., Antonoglou, I., King, H., Kumaran, D., Wierstra, D., Legg, S., Hassabis, D.
+\newblock {\em Human-level control through deep reinforcement learning}. Em: {\em Nature} (518) (fev. de 2015), pp. 529--533. DOI: 10.1038/nature14236. URL: \url{https://doi.org/10.1038/nature14236}.~\pageref{sec:ft},

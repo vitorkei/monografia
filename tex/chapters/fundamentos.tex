@@ -29,7 +29,6 @@
 % sec:enhance ....... enhancements
 % sec:er ............ experience replay
 % sec:ft ............ fixed target
-% sec:ddql .......... double deep q learning
 
 %% ---------------------------------------------------------------------------- %
 \chapter{Fundamentos}
@@ -266,7 +265,7 @@ No contexto deste trabalho, a política ótima será encontrada utilizando uma v
 \label{sec:ql}
 
 Quando não se conhece as probabilidades de transição, informação necessária para se obter a função valor pela equação de Bellman, é possível estimar $V(S)$ a partir de observações feitas sobre o ambiente.
-Logo, o problema deixa de ser tentar encontrar $P$ e passa a ser como extrair a política do agente de uma função valor estimada.
+Logo, o problema passa a ser como extrair a política do agente de uma função valor estimada.
 
 Seja $Q^{*}(S,A)$ a função Q-valor\footnote{O nome "Q-valor"{} vem do valor da qualidade da ação} que expressa a recompensa esperada de se começar no estado $S$, tomar a ação $A$ e continuar de maneira ótima. $Q^{*}(S,A)$ é uma parte da política gulosa para função valor ótima e é dada por:
 
@@ -434,7 +433,7 @@ Existem diversos algoritmos de redução do erro e otimização dos pesos, como 
 \textit{Deep Q-Learning} é a base para o aprendizado da inteligência artificial deste trabalho, mas esse processo se torna muito demorado conforme o problema se torna mais complexo.
 %Porém, ao longo do tempo, foram descobertas outras técnicas que melhoram a aprendizagem do agente, seja acelerando ou ajudando a evitar decisões ruins.
 Nesta seção, serão apresentadas duas técnicas que ajudam a estabilizar e acelerar o aprendizado do programa:
-\textit{\textbf{experience replay}}~\cite{Lin1992} e \textbf{alvo fixo}.
+\textit{\textbf{experience replay}}~\cite{Lin1992} e \textbf{alvo fixo}~\cite{humanLevelControlDRL}.
 
 %***********%
 
@@ -455,8 +454,22 @@ Dessa forma, o aprendizado ocorre sem o esquecimento de experiências passadas.
 
 \subsection{Alvo fixo}
 \label{sec:ft}
+%https://arxiv.org/pdf/1509.02971.pdf
 
-A inteligência artificial utiliza os Q-valores tanto para decidir quais ações tomar quanto para atualizá-los na tentativa de melhor aproximar o Q-valor real.
-Entretanto, se o mesmo for utilizado para essas duas etapas, o aprendizado se torna instável, pois o agente não conseguirá alcançar o Q-valor alvo já que ele está em constante mudança.
-Para resolver esse problema, utiliza-se uma segunda rede neural alvo para a atualização dos Q-valores e que é atualizada de tempos em tempos, enquanto a primeira, a principal, continua sendo utilizada para escolher as ações.
+Para fazer o cálculo do erro da ação tomada, compara-se a saída da rede com um valor alvo dado por
+
+\begin{equation} \label{eq:q_target}
+Q_{T}(S,A) = R(S,A,S') + \gamma max_{A'}Q(S',A')
+\end{equation}
+
+Como os mesmos parâmetros da rede são utilizados para gerar sua saída e para calcular o $Q_{T}(S,A)$, quando os ajustes são feitos para reduzir o erro, os dois valores são alterados.
+Ou seja, a alteração dos pesos tenta aproximar a saída da rede de um alvo que está em movimento, o que gera uma grande oscilação no treinamento, desestabilizando-o.
+A solução proposta por \hyperlink{Mni+15}{Mnih et al.(2015)} para amenizar esse problema foi utilizar uma segunda rede neural, inicialmente com os mesmos pesos da rede principal, que é atualizada periodicamente para o cálculo de $Q_{T}(S,A)$ ao invés de a cada passo.
+Com um alvo que se move pouco, os ajustes dos parâmetros se tornam mais estáveis, melhorando o aprendizado.
+%Uma vez que o $Q_{T}(S,A)$ é calculado com os mesmos parâmetros que a rede utilizou para gerar sua saída, quando ela faz os ajustes para aproximar
+%Quando os parâmetros da rede são atualizados para que sua saída se aproxime do valor alvo $Q_{T}(S,A)$, por utilizar os mesmos parâmetros para ser calculado, ele também muda
+
+%A inteligência artificial utiliza os Q-valores tanto para decidir quais ações tomar quanto para atualizá-los na tentativa de melhor aproximar o Q-valor real.
+%Entretanto, se o mesmo for utilizado para essas duas etapas, o aprendizado se torna instável, pois o agente não conseguirá alcançar o Q-valor alvo já que ele está em constante mudança.
+%Para resolver esse problema, utiliza-se uma segunda rede neural alvo para a atualização dos Q-valores e que é atualizada de tempos em tempos, enquanto a primeira, a principal, continua sendo utilizada para escolher as ações.
 

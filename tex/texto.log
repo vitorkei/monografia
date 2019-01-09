@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.14159265-2.6-1.40.19 (TeX Live 2018/Arch Linux) (preloaded format=pdflatex 2018.12.31)  9 JAN 2019 00:48
+This is pdfTeX, Version 3.14159265-2.6-1.40.19 (TeX Live 2018/Arch Linux) (preloaded format=pdflatex 2018.12.31)  9 JAN 2019 17:48
 entering extended mode
  restricted \write18 enabled.
  %&-line parsing enabled.
@@ -1457,19 +1457,19 @@ Cap\'{\i }tulo 2.
 <./images/nn.png, id=285, 1445.4pt x 554.07pt>
 File: ./images/nn.png Graphic file (type png)
 <use ./images/nn.png>
-Package pdftex.def Info: ./images/nn.png  used on input line 147.
+Package pdftex.def Info: ./images/nn.png  used on input line 146.
 (pdftex.def)             Requested size: 433.62335pt x 166.22227pt.
  [7 <./images/nn.png>]
 <./images/cnn.png, id=296, 951.555pt x 266.9975pt>
 File: ./images/cnn.png Graphic file (type png)
 <use ./images/cnn.png>
-Package pdftex.def Info: ./images/cnn.png  used on input line 174.
+Package pdftex.def Info: ./images/cnn.png  used on input line 173.
 (pdftex.def)             Requested size: 380.61525pt x 106.79709pt.
 <./images/reinforcement_learning.png, id=300, 856.70062pt x 298.11375pt>
 File: ./images/reinforcement_learning.png Graphic file (type png)
 <use ./images/reinforcement_learning.png>
 Package pdftex.def Info: ./images/reinforcement_learning.png  used on input lin
-e 198.
+e 197.
 (pdftex.def)             Requested size: 385.51172pt x 134.14995pt.
 
 
@@ -1480,7 +1480,7 @@ LaTeX Warning: `!h' float specifier changed to `!ht'.
 File: ./images/pong_unknown_best_action.png Graphic file (type png)
 <use ./images/pong_unknown_best_action.png>
 Package pdftex.def Info: ./images/pong_unknown_best_action.png  used on input l
-ine 249.
+ine 248.
 (pdftex.def)             Requested size: 240.96933pt x 175.55154pt.
 
 
@@ -1495,7 +1495,7 @@ See the amsmath package documentation for explanation.
 Type  H <return>  for immediate help.
  ...                                              
                                                   
-l.277 \end{align*}
+l.276 \end{align*}
                   
 ? 
 [10 <./images/pong_unknown_best_action.png (PNG copy)>]
@@ -1507,7 +1507,7 @@ See the amsmath package documentation for explanation.
 Type  H <return>  for immediate help.
  ...                                              
                                                   
-l.298 \end{align*}
+l.297 \end{align*}
                   
 ? 
 [11] [12]
@@ -1515,13 +1515,13 @@ l.298 \end{align*}
 File: ./images/gradientDescentHighLR.png Graphic file (type png)
 <use ./images/gradientDescentHighLR.png>
 Package pdftex.def Info: ./images/gradientDescentHighLR.png  used on input line
- 412.
+ 411.
 (pdftex.def)             Requested size: 114.272pt x 83.70914pt.
 <./images/gradientDescentLowLR.png, id=362, 759.83875pt x 559.08875pt>
 File: ./images/gradientDescentLowLR.png Graphic file (type png)
 <use ./images/gradientDescentLowLR.png>
 Package pdftex.def Info: ./images/gradientDescentLowLR.png  used on input line 
-419.
+418.
 (pdftex.def)             Requested size: 113.97089pt x 83.85968pt.
  [13 <./images/gradientDescentHighLR.png> <./images/gradientDescentLowLR.png>])
  (./chapters/implementacao.tex
@@ -1544,12 +1544,12 @@ File: t1pcr.fd 2001/06/04 font definitions for T1/pcr.
 ) [16] [17])
 (./chapters/resultados.tex [18]
 Cap\'{\i }tulo 4.
-<./images/pong_ai_score.png, id=415, 722.7pt x 433.62pt>
+<./images/pong_ai_score.png, id=420, 722.7pt x 433.62pt>
 File: ./images/pong_ai_score.png Graphic file (type png)
 <use ./images/pong_ai_score.png>
 Package pdftex.def Info: ./images/pong_ai_score.png  used on input line 58.
 (pdftex.def)             Requested size: 216.81166pt x 130.087pt.
-<./images/pong_random_score.png, id=416, 722.7pt x 433.62pt>
+<./images/pong_random_score.png, id=421, 722.7pt x 433.62pt>
 File: ./images/pong_random_score.png Graphic file (type png)
 <use ./images/pong_random_score.png>
 Package pdftex.def Info: ./images/pong_random_score.png  used on input line 63.
@@ -1566,7 +1566,7 @@ LaTeX Warning: `!h' float specifier changed to `!ht'.
 [19
 
 ]
-<./images/asteroids_ai_score.png, id=424, 794.97pt x 433.62pt>
+<./images/asteroids_ai_score.png, id=429, 794.97pt x 433.62pt>
 File: ./images/asteroids_ai_score.png Graphic file (type png)
 <use ./images/asteroids_ai_score.png>
 Package pdftex.def Info: ./images/asteroids_ai_score.png  used on input line 10
@@ -1577,7 +1577,7 @@ Overfull \hbox (10.87079pt too wide) in paragraph at lines 109--110
  [][] 
  []
 
-<./images/asteroids_random_score.png, id=425, 794.97pt x 433.62pt>
+<./images/asteroids_random_score.png, id=430, 794.97pt x 433.62pt>
 File: ./images/asteroids_random_score.png Graphic file (type png)
 <use ./images/asteroids_random_score.png>
 Package pdftex.def Info: ./images/asteroids_random_score.png  used on input lin
@@ -1606,33 +1606,15 @@ Cap\'{\i }tulo 5.
 \openout6 = `texto.brf'.
 
 
-! Misplaced alignment tab character &.
-<argument>  Sutton, R. S., &
-                             Barto, A. G. \newblock {\em Reinforcement learn...
-l.12 
-     
-? 
-! Misplaced alignment tab character &.
-<argument>  Hinton, G., Srivastava N., &
-                                         Swersky K. \newblock Aula 6.5 - {\m...
-l.18 
-     
-? 
 ! Undefined control sequence.
 <argument> ...Swersky K. \newblock Aula 6.5 - {\m 
                                                   Divide the gradient by run...
 l.18 
      
 ? 
-! Misplaced alignment tab character &.
-<argument> ... A., Antonoglou, I., Wierstra, D., &
-                                                   Riedmiller, M. A. \newblo...
-l.26 
-     
-? 
 )
 Runaway argument?
- Cauchy, A. \newblock {\em Méthode générale pour la résolution de\ETC.
+ \hypertarget {Mni+15}{} Mnih, V., Kavukcuoglu, K., Silver, D., Rusu,\ETC.
 ! File ended while scanning use of \BR@@lbibitem.
 <inserted text> 
                 \par 
@@ -1663,7 +1645,7 @@ Package atveryend Info: Executing hook `AtEndAfterFileList' on input line 84.
 Package rerunfilecheck Info: File `texto.out' has not changed.
 (rerunfilecheck)             Checksum: CEBCA537F38752E674D2A854F5AE643E;2130.
 Package rerunfilecheck Info: File `texto.brf' has not changed.
-(rerunfilecheck)             Checksum: F74169DDD24D9536D4386C122C760A23;912.
+(rerunfilecheck)             Checksum: B6E840EE80B843CA549EEAEF4DDF6785;969.
 Package atveryend Info: Empty hook `AtVeryVeryEnd' on input line 84.
  )
 (\end occurred inside a group at level 1)
@@ -1671,13 +1653,13 @@ Package atveryend Info: Empty hook `AtVeryVeryEnd' on input line 84.
 ### semi simple group (level 1) entered at line 1 (\begingroup)
 ### bottom level 
 Here is how much of TeX's memory you used:
- 24605 strings out of 492639
- 410767 string characters out of 6135496
+ 24613 strings out of 492639
+ 410920 string characters out of 6135496
  693957 words of memory out of 5000000
- 28036 multiletter control sequences out of 15000+600000
+ 28041 multiletter control sequences out of 15000+600000
  556023 words of font info for 75 fonts, out of 8000000 for 9000
  1141 hyphenation exceptions out of 8191
- 47i,12n,65p,947b,591s stack positions out of 5000i,500n,10000p,200000b,80000s
+ 47i,13n,65p,947b,591s stack positions out of 5000i,500n,10000p,200000b,80000s
 {/usr/share/texmf-dist/fonts/enc/dvips/base/8r.enc}{/usr/share/
 texmf-dist/fonts/enc/dvips/cm-super/cm-super-t1.enc}</usr/share/texmf-dist/font
 s/type1/public/amsfonts/cm/cmex10.pfb></usr/share/texmf-dist/fonts/type1/public
@@ -1704,10 +1686,10 @@ m1200.pfb></usr/share/texmf-dist/fonts/type1/public/cm-super/sfrm1440.pfb></usr
 st/fonts/type1/public/cm-super/sfti0900.pfb></usr/share/texmf-dist/fonts/type1/
 public/cm-super/sfti1000.pfb></usr/share/texmf-dist/fonts/type1/public/cm-super
 /sfti1200.pfb></usr/share/texmf-dist/fonts/type1/urw/courier/ucrr8a.pfb>
-Output written on texto.pdf (34 pages, 1148582 bytes).
+Output written on texto.pdf (34 pages, 1150057 bytes).
 PDF statistics:
- 623 PDF objects out of 1000 (max. 8388607)
- 526 compressed objects within 6 object streams
- 112 named destinations out of 1000 (max. 500000)
+ 632 PDF objects out of 1000 (max. 8388607)
+ 535 compressed objects within 6 object streams
+ 115 named destinations out of 1000 (max. 500000)
  356 words of extra memory for PDF output out of 10000 (max. 10000000)
 
