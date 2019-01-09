@@ -21,11 +21,10 @@ Diversas ciências mostraram-se importantes ao longo de sua história, como filo
 %Um tipo muito conhecido de inteligência artificial dos dias atuais é a que controla oponentes em jogos eletrônicos.
 %Porém, nesses casos, os adversários apenas seguem um conjunto pré-determinado de regras escritas pelo desenvolvedor, não possuindo a capacidade de se adaptar como seres humanos fazem.
 %Por mais que isso seja um tipo de IA e que possa ser mais eficiente em determinadas tarefas, não se assemelha à forma que as pessoas pensam e jogam.
-\textbf{FALAR UM POUCO SOBRE APRENDIZADO DE MÁQUINA}
 É interessante a forma como, em particular, seres humanos aprendem.
 Crianças pequenas e bebês principalmente aprendem interagindo com o ambiente, tocando em objetos, tentando entender aquilo que os rodeia e qual o resultado de suas ações, mesmo que inconscientemente.
 %Em um jogo, se não passar por um tutorial ou ler um manual, não será muito diferente: o jogador precisará descobrir o que é hostíl, o que cada comando faz e qual o objetivo.
-Avanços recentes em inteligência artificial permitiram que máquinas simulassem esse tipo de aprendizado por meio de \textbf{aprendizado por reforço}.
+Avanços em inteligência artificial nas últimas décadas permitiram que máquinas simulassem esse tipo de aprendizado por meio de \textbf{aprendizado por reforço}.
 
 Entretanto, para muitos casos, somente esse tipo de técnica não é o suficiente.
 Utilizando jogos eletrônicos como exemplo, uma pessoa consegue inferir o que é inimigo e o que é terreno quando aparece na tela em poucos movimentos ou a partir de experiências passadas com jogos diferentes.
@@ -40,7 +39,10 @@ Utilizando uma variante de rede neural profunda chamada \textbf{rede neural conv
 \section{Proposta e Motivação}
 \label{sec:motivacao_proposta}
 
-Motivado pelo interesse na técnica de aprendizado de máquina \textbf{\textit{deep Q-learning}} e suas possíveis aplicações a jogos digitais, a proposta deste trabalho é fazer um estudo de caso desse método em três ambientes com características e graus de dificuldade distintos: \textit{Gridworld}, \textit{Pong} do Atari 2600, e \textit{Asteroids} do Atari 2600.
+\textbf{\textit{Deep Q-Learning}}~\cite{DBLP:journals/corr/MnihKSGAWR13} é uma técnica de aprendizado de máquina que combina a visualização de imagens de redes neurais convolucionais com aprendizado profundo.
+Esse método permite que uma inteligência artificial aprenda a se comportar em certos ambientes, como jogos digitais, recebendo como entrada apenas a tela do jogo, assim como uma pessoa faria.
+
+A proposta deste trabalho surgiu do interesse nessa técnica e consiste em fazer um estudo de caso dela quando utilizada por uma inteligência artificial em três ambientes com características e graus de dificuldade distintos: \textit{Gridworld}, \textit{Pong} do Atari 2600, e \textit{Asteroids} do Atari 2600.
 O estudo busca analisar a capacidade de um agente obter bons resultados utilizando este método, e as dificuldades enfrentadas no processo, além de aprofundar o conhecimento em aprendizado de máquina.
 
 %A proposta deste trabalho é fazer um estudo de caso da técnica de aprendizado de máquina \textbf{\textit{deep Q-learning}} em três ambientes digitais com características e graus de dificuldade diferentes.
@@ -63,7 +65,8 @@ O estudo busca analisar a capacidade de um agente obter bons resultados utilizan
 
 \section{Ferramentas}
 \label{sec:tools}
-Nesta seção, serão apresentados os ambientes e as principais ferramentas utilizadas no desenvolvimento deste trabalho, uma breve descrição sobre elas e o motivo de suas escolhas.
+Nesta seção, serão brevemente apresentados e descritos os ambientes e as principais ferramentas utilizadas no desenvolvimento deste trabalho.
+%, uma breve descrição sobre elas e o motivo de suas escolhas.
 
 \subsection{\textit{Gridworld}}
 \label{sec:gridworld}
@@ -73,7 +76,12 @@ Ele consiste em um mapa de espaços quadrados em que o agente começa em um dele
 Alguns dos espaços geram recompensa positiva (objetivo) e outros geram recompensa negativa (armadilha) ao ser alcançado, além de encerrarem o episódio e fazerem o agente retornar ao ponto inicial.
 O desenvolvedor pode optar por gerar pequenas recompensas positivas ou negativas a cada passo, mesmo que não alcance um estado terminal, para analisar seu comportamente em tais circunstâncias.
 
-\textbf{INSERIR IMAGEM DO AMBIENTE UTILIZADO}
+\begin{figure}[h!]
+  \centering
+  \includegraphics[scale=.2]{env_gridworld}
+  \caption{Mapa utilizado para os experimentos. A estrela azul indica a posição inicial do agente, o verde com +1000 representa o objetivo, e os vermelhos com -200 as armadilhas. Não há espaços inválidos.}
+  \label{fig:env_grid}
+\end{figure}
 %\begin{figure}[h!]
 %  \begin{minipage}[b]{.6\textwidth}
 %  \centering
@@ -89,19 +97,17 @@ O desenvolvedor pode optar por gerar pequenas recompensas positivas ou negativas
 %  \caption{Exemplos de mapas de \textit{Gridworld}. A estrela azul indica a posição inicial do agente, o espaço cinza com um $\times$ indica um espaço inválido, o verde com +1000 representa o objetivo e os vermelhos com -200 representam as armadilhas.}
 %\end{figure}
 
-O número de estados deste ambiente é igual ao número de espaços válidos, uma vez que são definidos pela posição em que o agente se encontra.
+O número de estados deste tipo de ambiente é igual ao número de espaços válidos, uma vez que são definidos pela posição em que o agente se encontra.
 Como os treinamentos foram feitos em um mapa de tamanho 10x10 sem espaços inválidos, o ambiente possui 100 estados com 4 ações possíveis em cada um.
+\textit{Gridworld} é o ambiente mais simples estudado neste trabalho, pois possui poucas regras, estados possíveis, e ações válidas em cada um deles.
 
-\textit{Gridworld} é o ambiente mais simples estudado neste trabalho, pois possui poucas regras, a menor quantidade de estados possíveis, e poucas ações válidas em cada um deles.
-
-\subsection{\textit{Pong} - Atari 2600}
+\subsection{\textit{Pong}}
 \label{sec:pong}
 
 \textit{Pong} foi um dos primeiros jogos criados e o primeiro desenvolvido pela Atari, lançado em novembro de 1972.
 O jogo simula uma partida de tênis de mesa por meio de duas barras verticais, uma do lado esquerdo e uma do lado direito, e uma bola que se move pela tela.
 Cada jogador controla uma das barras movendo-a para cima e para baixo, rebatendo a bola para evitar que chegue ao fim da tela do próprio lado enquanto tenta fazê-la chegar ao fim da tela do lado do adversário.
-
-A principal diferença entre as versões do jogo é o número de pontos necessário para vencer que, no caso da utilizada neste trabalho, do Atari 2600, é de 21.
+A principal diferença entre as versões do jogo é o número de pontos necessário para vencer, que é de 21 no caso da utilizada neste trabalho, do Atari 2600.
 %A versão do \textit{Pong} utilizada neste trabalho é a do Atari 2600, emulada pelo emulador Stella~\cite{stella}, na qual vence o jogador que fizer 21 pontos primeiro.
 
 \begin{figure}[h!]
@@ -122,9 +128,10 @@ Os estados são definidos pela tela do jogo, que é uma matriz de 210x160 pixels
 Esses números se traduzem em 33600 pixels e, portanto, $128^{33600}$ estados possíveis.
 Mesmo que apenas uma parcela deles sejam utilizados, é evidente que há muitos estados a mais que o \textit{Gridworld}.
 
+%Uma vez que o agente deverá aprender observando a tela, o número de estados é proporcional ao número de pixels e quais cores podem assumir.
 \textit{Pong} é o ambiente de complexidade intermediária estudada neste trabalho, pois possui poucas regras, grande espaço de estados, e poucas ações possíveis em cada um deles.
 
-\subsection{\textit{Asteroids} - Atari 2600}
+\subsection{\textit{Asteroids}}
 \label{sec:asteroids}
 
 \textit{Asteroids} é um jogo de fliperama
@@ -137,7 +144,6 @@ Quando um asteroide é destruído, outros menores aparecem no lugar.
 O jogador possui cinco ações disponíveis: mover-se para frente, girar a nave no sentido horário, girar a nave no sentido anti-horário, mover-se no hiper-espaço, e atirar para frente.
 Mover-se para frente e girar são as principais formas de movimento no jogo, enquanto atirar é a de destruir asteroides e ganhar pontos.
 Mover-se no hiper-espaço consiste em fazer a nave desaparecer por alguns instantes e reaparecer em um local aleatório da tela.
-
 As principais diferenças entre as iterações de \textit{Asteroids} incluem a presença de naves espaciais inimigas que atiram contra o jogador, formatos e tamanhos diferentes dos asteroides, e direção em que se movem.
 A versão de \textit{Asteroids} utilizada neste trabalho é a do Atari 2600, com 4 vidas inicialmente, sem naves espaciais inimigas e três tamanhos distintos de asteroides, com o maior gerando uma recompensa de 20 pontos ao ser destruído, o médio gerando 50, e o menor 100.
 
@@ -157,6 +163,7 @@ A versão de \textit{Asteroids} utilizada neste trabalho é a do Atari 2600, com
 
 Assim como no \textit{Pong}, os estados são compostos por uma matriz de 210x160 pixels, cada um sendo representado por 3 canais que determinam a cor, o que significa que possui a mesma quantidade de estados, com apenas uma parcela sendo utilizada.
 
+%Assim como no \textit{Pong}, o número de estados é proporcional ao número de pixels na tela e as cores que podem ter.
 \textit{Asteroids} é o mais complexo dos ambientes estudados neste trabalho, pois possui mais regras que são mais complexas, o maior espaço de estados dentre os três ambientes, e mais ações possíveis. 
 
 %------------------------%
@@ -187,7 +194,7 @@ O ambiente do \textit{Pong} e do \textit{Asteroids} foram utilizados conforme di
 \label{sec:tensorflow}
 
 TensorFlow é um arcabouço de código aberto para computações numéricas de alta performance sobre tensores, desenvolvido e mantido pela Google.
-Seu núcleo de computação numérica flexível permite o uso da biblioteca em diversos campos científicos, oferecendo, em particular, grande suporte a aprendizado de máquina e aprendizado profundo, ou, como é mais conhecido, \textit{deep learning}.
+Seu núcleo de computação numérica flexível permite o uso da biblioteca em diversos campos científicos, oferecendo, em particular, grande suporte a aprendizado de máquina e aprendizado profundo.
 Esta ferramenta foi escolhida por oferecer uma API em Python estável, ter grande suporte, comunidade ativa, e ser de código aberto.
 
 %------------------------%

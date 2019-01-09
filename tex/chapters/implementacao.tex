@@ -97,17 +97,16 @@ A taxa de aprendizado $\alpha$ foi igual a $0.00025$; o \textit{momentum} foi ig
 \subsection{\textit{Asteroids}}
 \label{sec:arq_asteroids}
 
-O \textit{Asteroids} foi testado com diversas arquiteturas diferentes, maiores que as do \textit{Pong} por ser um ambiente consideravelmente mais complexos, mas sem sucessos.
-Tentou-se utilizar diferentes números de camadas ocultas, número de filtros, tamanhos e passos, funções inicializadores e ativadores, unidades de saída nas camadas \textit{fully-connected}, funções de erro, de otimização e de exploração, taxas de aprendizado, de desconto e de atualização da rede alvo, assim como outras configurações externas à rede neural, como tamanho dos \textit{mini-batches}, do \textit{buffer} de memória e número de episódios de treinamento.
+O \textit{Asteroids} foi testado com diversas arquiteturas diferentes, mas sem sucessos.
+Tentou-se utilizar diferentes números de camadas ocultas, número de filtros, tamanhos e passos, funções inicializadoras e ativadoras, unidades de saída nas camadas \textit{fully-connected}, funções de erro, de otimização e de exploração, taxas de aprendizado, de desconto e de atualização da rede alvo, assim como outras configurações externas à rede neural, como tamanho dos \textit{mini-batches}, do \textit{buffer} de memória e número de episódios de treinamento.
 %Tentou-se utilizar diferentes tamanhos de redimensionamento no pré-processamento, números de filtros, tamanhos e passos, funções inicializadoras e ativadoras, unidades de saída nas camadas \textit{fully-connected}, funções de erro, de otimização e de exploração, taxas de aprendizado, de desconto e de atualização da rede alvo, tamanho dos \textit{mini-batches} e do \textit{buffer} de memória.
-Por conta da grande gama de hiper-parâmetros a serem ajustados e o tempo consumido para treinar, os testes com este ambiente foram os que precisaram de mais tempo para finalizar.
+Por conta da grande gama de hiper-parâmetros a serem ajustados e o tempo consumido para treinar, os testes com este ambiente foram os mais longos.
 
-Para poder demonstrar um exemplo de resultados de treinamento para o capítulo \hyperref[cap:resultados]{Resultados}, registrou-se os resultados de um treinamento cuja rede neural utilizou a seguinte arquitetura.
-Foram utilizadas três camadas de convolução e duas \textit{fully-connected}.
+Para poder demonstrar um exemplo de resultados de treinamento para o capítulo \hyperref[cap:resultados]{Resultados}, foram registrados os resultados de um treinamento cuja rede neural tinha três camadas de convolução e duas \textit{fully-connected}.
 A primeira convolucional tinha 48 filtros de tamanho 8x8 e passo 4; a segunda tinha 96 filtros de tamanho 4x4 e passo 2; e a terceira tinha 96 filtros de tamanho 3x3 e passo 1.
 A primeira \textit{fully-connected} tinha vetor de saída de tamaho 512; e a segunda tinha um nó de saída para cada ação possível, ou seja, um vetor de tamanho 5.
 Assim como na rede do \textit{Pong}, foi utilizada função de ativação ReLU em todas as camadas com exceção da segunda \textit{fully-connected}, e inicializador de He para os pesos.
-O cálculo de erro foi feito pela função \textit{Huber loss} e a otimização dos pelo RMSProp.
+O cálculo de erro foi feito pela função \textit{Huber loss} e a otimização dos pesos pelo RMSProp.
 A taxa de aprendizado $\alpha$ foi igual a $0.00025$; o \textit{momentum} foi igual a $0.95$; a probabilidade mínima de se jogar aleatoriamente igual a $0.1$; e $\epsilon$ igual a $0.1$.
 %O mesmo pré-processamento do \hyperref[sec:arq_pong]{\textit{Pong}} e fileiras de quatro \textit{frames} foi feito.
 %A primeira camada de convolução tinha 48 filtros de tamanho 8x8 e passo 4; a segunda tinha 96 filtros de tamanho 4x4 e passo 2; e a terceira tinha 96 filtros de tamanho 3x3 e passo 1.
@@ -127,7 +126,7 @@ A taxa de aprendizado $\alpha$ foi igual a $0.00025$; o \textit{momentum} foi ig
 \section{Experimentos}
 \label{sec:exp}
 
-Os experimentos consumiram a maior parte do trabalho por poderem levar alguns minutos, no caso do \textit{Gridworld} até mesmo horas ou dias, como no caso do \textit{Pong} e do \textit{Asteroids}.
+Os experimentos consumiram a maior parte do trabalho por poderem levar alguns minutos, no caso do \textit{Gridworld}, até mesmo horas, podendo passar de um dia para o outro, como no caso do \textit{Pong} e do \textit{Asteroids}.
 
 \subsection{\textit{Gridworld}}
 \label{sec:exp_gridworld}
@@ -141,9 +140,7 @@ O número de vezes que ele conseguiu chegar ao objetivo ao longo dos episódios 
 %%e, em parte, pelo grau de sucesso em fazer isso ao longo do treinamento.
 %%A taxa de sucesso ao longo do treinamento, apesar de relevante, foi menos considerada por conta da alta probabilidade de se tomar uma ação aleatória a qualquer momento (mínimo de 0.4).
 
-O mapa utilizado para os experimentos tinha tamanho de 10x10, oito armadilhas espalhadas, o agente começava no canto superior esquerdo e o objetivo encontrava-se no canto inferior direito.
-
-\textbf{INSERIR IMAGEM}
+O \hyperref[fig:env_grid]{mapa} utilizado para os experimentos tinha tamanho de 10x10, oito armadilhas espalhadas, o agente começava no canto superior esquerdo e o objetivo encontrava-se no canto inferior direito.
 
 Foram 2000 episódios de treinamento, cada um com limite de 200 ações tomadas antes de o episódio ser terminado automaticamente;
 \textit{mini-batches} de tamanho 200;
@@ -156,8 +153,8 @@ O dilema \hyperref[eq:exp_exp_prob]{\textit{exploration versus exploitation}} ut
 \label{sec:exp_pong}
 
 No caso do \textit{Pong}, os treinamentos foram mais demorados, com episódios levando alguns minutos e passando várias horas para se perceber alguma melhoria no aprendizado uma vez que o espaço de estados é muito maior.
-Além disso, existem diversos momentos em que não há uma ação ótima bem definida a se tomar, como nos estados em que a bola viaja na direção do lado do adversário ou quando ela sai da tela, marcando ponto para um dos jogadores.
-Como os episódios só terminam quando um dos lados consegue 21 pontos (ou o número máximo de passos é excedido, o que não aconteceu neste trabalho), a avaliação foi feita pela pontuação obtida pelo agente ao final de cada partida:
+Além disso, existem diversos momentos em que não há uma ação ótima bem definida a se tomar, como nos momentos em que a bola está se deslocando na direção do lado do adversário ou quando ela sai da tela, marcando ponto para um dos jogadores.
+Como os episódios só terminam quando um dos lados consegue 21 pontos (ou o número máximo de passos é excedido, o que não aconteceu neste trabalho), a avaliação foi feita pela pontuação obtida pelo agente ao final de cada episódio e da partida realizada após o treinamento, em que foram tomadas apenas ações ótimas segundo o modelo construído:
 o mínimo possível é de -21 pontos, com o adversário marcando 21 pontos e o agente nenhum, e o máximo é de 21 pontos, sendo a situação oposta.
 
 Como este ambiente é muito mais complexo que o \textit{Gridworld}, os \textit{frames} da tela do jogo passam por uma etapa de pré-processamento para reduzir o tempo de processamento pela rede neural.
@@ -165,8 +162,6 @@ Primeiro, eles são convertidos para escalas de cinza.
 Em seguida, partes que não agregam informação para a IA conseguir jogar, como a área da pontuação, são removidas.
 Por fim, o que restou do \textit{frame} é redimensionado para o tamanho 84x84 pixels.
 Para que o agente possa perceber o movimento dos objetos na tela, os últimos quatro \textit{frames} vistos são inseridos em uma fila e supridos à rede de forma que a entrada tem formato 84x84x4.
-
-\textbf{INSERIR IMAGEM EXEMPLO DO QUE ENTRA NA REDE}
 
 O agente foi treinado por 298 episódios, o que equivale a aproximadamente um milhão de \textit{frames}, cada um com limite de 18000 ações antes de o episódio ser terminado automaticamente;
 \textit{mini-batches} de tamanho 32; taxa de desconto $\gamma$ igual a 0.99;

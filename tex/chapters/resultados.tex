@@ -20,9 +20,8 @@ O agente se saiu bem no \textbf{\textit{Gridworld}}, consistentemente encontrand
 A tabela abaixo apresenta a proporção média de vezes que o agente treinado por \textit{deep Q-learning} e que um aleatório chegaram ao objetivo.
 Para o agente treinado, o número foi obtido após ele passar por cinco treinamentos de 2000 episódios no mapa de tamanho 10x10 apresentado anteriormente.
 O modelo final conseguiu fazer o agente chegar ao objetivo quatro vezes e exceder o número máximo de ações uma vez, pois chegou a uma célula da qual não conseguiu sair já que as melhores ações tomadas eram ir em direção às paredes adjacentes.
-Para o agente aleatório, o número foi obtido após 10000 tentativas de se chegar ao objetivo, mesmo número de episódios que o agente treinado teve para chegar ao objetivo.
+Para o agente aleatório, o número foi obtido após 10000 tentativas de se chegar ao objetivo, equivalente ao número de episódios que o agente treinado teve para chegar ao objetivo.
 
-\textbf{LINKAR PARA A IMAGEM DO MAPA}
 %Os gráficos não se mostraram informativos por conta da alta probabilidade, de 40\%, de se tomar uma ação aleatória a cada passo, então os resultados serão apresentados por uma tabela.
 %A comparação foi feita apenas entre um agente aleatório e o treinado por \textit{deep Q-learning}, uma vez que um agente humano conseguiria chegar no objetivo facilmente por ter visão completa do mapa.
 
@@ -98,11 +97,11 @@ DQL & 21 \\
 
 \section{\textit{Asteroids}}
 \label{sec:res_asteroids}
-O \textbf{\textit{Asteroids}}, por outro lado, não obteve resultados positivos nos vários testes feitos.
+O agente não obteve resultados positivos em \textbf{\textit{Asteroids}} ao longo dos vários testes feitos.
 Apesar de ser um ambiente propício para o aprendizado por \textit{deep Q-learning}, tendo todas as informações claras na tela, ações bem definidas e recebimento de recompensas simples e consistente, o agente teve grandes dificuldades em conseguir aprender.
 Por conta dessas características, esperava-se que ele conseguisse aprender a se comportar nesse domínio, ainda que com dificuldade.
 
-O gráfico abaixo exemplifica a pontuação obtida pelo agente nos treinamentos pelos quais passou e compara com a pontuação obtida por um agente aleatório.
+O gráfico abaixo foi obtido ao utilizar a arquitetura de rede e treinamento descritos no capítulo \hyperref[cap:implementacao]{Implementação} e exemplifica a pontuação obtida pelo agente nos treinamentos pelos quais passou, comparando com a pontuação obtida por um agente aleatório.
 
 \begin{figure}[h!]
   \begin{minipage}[b]{.5\textwidth}

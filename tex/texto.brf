@@ -1,10 +1,11 @@
-\backcite {stella}{{2}{1.1}{figure.caption.3}}
-\backcite {Goodfellow-et-al-2016}{{8}{2.3}{figure.caption.6}}
-\backcite {sutton2018reinforcement}{{9}{2.3}{figure.caption.7}}
+\backcite {DBLP:journals/corr/MnihKSGAWR13}{{1}{1.1}{section.1.1}}
+\backcite {stella}{{3}{1.2}{figure.caption.4}}
+\backcite {Goodfellow-et-al-2016}{{8}{2.3}{figure.caption.7}}
+\backcite {sutton2018reinforcement}{{9}{2.3}{figure.caption.8}}
 \backcite {huber_loss}{{12}{2.8}{section.2.8}}
-\backcite {cauchy1847}{{12}{2.8}{section.2.8}}
-\backcite {rmsprop}{{12}{2.8}{section.2.8}}
-\backcite {DBLP:journals/corr/KingmaB14}{{12}{2.8}{section.2.8}}
+\backcite {cauchy1847}{{13}{2.8}{section.2.8}}
+\backcite {rmsprop}{{13}{2.8}{section.2.8}}
+\backcite {DBLP:journals/corr/KingmaB14}{{13}{2.8}{section.2.8}}
 \backcite {Lin1992}{{13}{2.9}{section.2.9}}
 \backcite {pmlr-v9-glorot10a}{{16}{3.1.1}{subsection.3.1.1}}
 \backcite {huber_loss}{{16}{3.1.1}{subsection.3.1.1}}

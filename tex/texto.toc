@@ -3,8 +3,8 @@
 \contentsline {section}{\numberline {1.1}Proposta e Motiva\IeC {\c c}\IeC {\~a}o}{1}{section.1.1}
 \contentsline {section}{\numberline {1.2}Ferramentas}{2}{section.1.2}
 \contentsline {subsection}{\numberline {1.2.1}\textit {Gridworld}}{2}{subsection.1.2.1}
-\contentsline {subsection}{\numberline {1.2.2}\textit {Pong} - Atari 2600}{2}{subsection.1.2.2}
-\contentsline {subsection}{\numberline {1.2.3}\textit {Asteroids} - Atari 2600}{3}{subsection.1.2.3}
+\contentsline {subsection}{\numberline {1.2.2}\textit {Pong}}{2}{subsection.1.2.2}
+\contentsline {subsection}{\numberline {1.2.3}\textit {Asteroids}}{3}{subsection.1.2.3}
 \contentsline {subsection}{\numberline {1.2.4}Gym \& Gym-Retro}{4}{subsection.1.2.4}
 \contentsline {subsection}{\numberline {1.2.5}TensorFlow}{4}{subsection.1.2.5}
 \contentsline {chapter}{\numberline {2}Fundamentos}{5}{chapter.2}
@@ -33,5 +33,5 @@
 \contentsline {section}{\numberline {4.2}\textit {Pong}}{19}{section.4.2}
 \contentsline {section}{\numberline {4.3}\textit {Asteroids}}{20}{section.4.3}
 \contentsline {chapter}{\numberline {5}Conclus\IeC {\~a}o}{23}{chapter.5}
-\contentsline {chapter}{Refer\^encias Bibliogr\'aficas}{25}{appendix*.13}
+\contentsline {chapter}{Refer\^encias Bibliogr\'aficas}{25}{appendix*.14}
 \contentsfinish 
