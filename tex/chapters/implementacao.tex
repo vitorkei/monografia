@@ -169,6 +169,10 @@ O agente foi treinado por 298 episódios, o que equivale a aproximadamente um mi
 e atualização da rede alvo feita a cada 10000 ações.
 O dilema \textit{exploration versus exploitation} utilizou $P_{ini} = 1.0$, $P_{min} = 0.1$ e $decay = 20000$.
 
+Para acelerar o treinamento, foi utilizada uma técnica de pular \textit{frames}~\cite{DBLP:journals/corr/abs-1207-4708} para economizar tempo.
+Ela consiste em o agente escolher uma ação a cada 4 \textit{frames} e repeti-la nos três seguintes, ao invés de calcular qual a melhor em cada um deles, uma vez que é mais rápido avançar o emulador em um \textit{frame} do que o agente selecionar uma ação.
+Esse comportamento é próprio do ambiente \footnote{PongDeterministic-v4 do Gym} utilizado, não havendo partes do código destinada a isso.
+
 \subsection{\textit{Asteroids}}
 \label{sec:exp_asteroids}
 
@@ -187,6 +191,10 @@ taxa de desconto $\gamma$ igual a 0.99;
 \textit{buffer} de memória de tamanho 1000000 preenchido previamente com 500 ações tomadas aleatoriamente;
 e atualização da rede alvo feita a cada 10000 ações.
 O dilema \textit{exploration versus exploitation} utilizou $P_{ini} = 1.0$, $P_{min} = 0.1$ e $decay = 20000$.
+
+Assim como no \textit{Pong}, a técnica de pular \textit{frames} foi utilizada, mas a escolha de ação foi feita a cada 3 \textit{frames} ao invés de 4, pois a nave e os tiros aparecem em \textit{frames} intercalados com os dos asteroides.
+Fazer a decisão de qual ação tomar a cada 3 \textit{frames} permite que tanto a nave e os tiros quanto os asteroides sejam vistos pelo agente.
+Não existe um ambiente de \textit{Asteroids} com esse comportamento no Gym-Retro, então ele foi implementado no código.
 
 %Os experimentos com o \textit{Gridworld} foram simples e rápidos, já que as baixas dimensões permitiram testes com muitos episódios em pouco tempo.
 %O uso de diferentes arquiteturas também permitiu perceber o impacto das mudanças nos hiper-parâmetros no aprendizado do agente.

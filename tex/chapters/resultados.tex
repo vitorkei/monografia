@@ -27,6 +27,7 @@ Para o agente aleatório, o número foi obtido após 10000 tentativas de se cheg
 
 %Foram feitos dois mil episódios de treinamento em um mapa de tamanho 10x10 com oito armadilhas, um objetivo no canto inferior direito e a posição inicial do agente no canto superior esquerdo.
 
+\begin{table}
 \begin{center}
 \begin{tabular}{l c}
 \hline
@@ -36,8 +37,10 @@ Aleatório & 1.74\% \\
 DQL & 66.15\% \\
 \hline
 \end{tabular}
+%\caption{Proporção de vezes que o agente conseguiu chegar ao objetivo no mapa de tamanho 10x10 descrito anteriormente (\textbf{COLOCAR LINK}). Foram 10000 tentativas para o agente aleatório e 5 treinamentos de 2000 episódios cada para o agente treinado por \textit{Deep Q-Learning}, de forma que o número total de tentativas fosse igual.}
 \label{table:gridworld_score}
 \end{center}
+\end{table}
 
 \section{\textit{Pong}}
 \label{sec:res_pong}
@@ -88,7 +91,7 @@ Aleatório & -20.27 \\
 DQL & 21 \\
 \hline
 \end{tabular}
-\caption{Pontuação média de um jogador humano experiente após cinco partidas jogando com o mouse, o que equivale a aproximadamente uma hora de jogo; de um agente jogando aleatoriamente; e da inteligência artificial utilizando o modelo que construiu após 298 episódios de treinamento, o que equivale a aproximadamente um milhão de \textit{frames}.}
+%\caption{Pontuação média de um jogador humano experiente após cinco partidas jogando com o mouse, o que equivale a aproximadamente uma hora de jogo; de um agente jogando aleatoriamente; e da inteligência artificial utilizando o modelo que construiu após 298 episódios de treinamento, o que equivale a aproximadamente um milhão de \textit{frames}.}
 \label{table:pong_score}
 \end{center}
 \end{table}
@@ -122,6 +125,7 @@ Nos experimentos, foram coletadas a pontuação final média de uma pessoa sem e
 %A tabela abaixo resume a pontuação média obtida pelo agente treinado, pelo agente aleatório e por uma pessoa com pouca experiência jogando após aproximadamente uma hora de jogo.
 A pontuação de jogadores experientes não foi considerada por estar muito acima, passando com facilidade dos 30000 pontos, não sendo um bom parâmetro de comparação.
 
+\begin{table}
 \begin{center}
 \begin{tabular}{l c}
 \hline
@@ -132,8 +136,10 @@ Aleatório & 1458.1 \\
 DQL & 607.8 \\
 \hline
 \end{tabular}
+%\caption{Pontuação média obtida ao longo de cinco partidas por uma pessoa sem experiência, um agente aleatório, e o agente treinado por \textit{Deep Q-Learning}.}
 \label{table:asteroids_score}
 \end{center}
+\end{table}
 
 %Todavia, essas observações ainda estão próximos das expectativas.
 %O ambiente mais simples, com poucos estados, recompensa e penalidades bem definidos foi o que obteve maior grau de sucesso;

@@ -12,6 +12,7 @@
 \backcite {huber_loss}{{16}{3.1.1}{subsection.3.1.1}}
 \backcite {rmsprop}{{16}{3.1.1}{subsection.3.1.1}}
 \backcite {DBLP:journals/corr/HeZR015}{{16}{3.1.2}{subsection.3.1.2}}
-\backcite {DBLP:journals/corr/HasseltGS15}{{23}{5}{chapter.5}}
-\backcite {DBLP:journals/corr/WangFL15}{{23}{5}{chapter.5}}
-\backcite {DBLP:journals/corr/abs-1710-02298}{{23}{5}{chapter.5}}
+\backcite {DBLP:journals/corr/abs-1207-4708}{{18}{3.2.2}{subsection.3.2.2}}
+\backcite {DBLP:journals/corr/HasseltGS15}{{25}{5}{chapter.5}}
+\backcite {DBLP:journals/corr/WangFL15}{{25}{5}{chapter.5}}
+\backcite {DBLP:journals/corr/abs-1710-02298}{{25}{5}{chapter.5}}

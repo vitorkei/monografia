@@ -28,10 +28,10 @@
 \contentsline {subsection}{\numberline {3.2.1}\textit {Gridworld}}{17}{subsection.3.2.1}
 \contentsline {subsection}{\numberline {3.2.2}\textit {Pong}}{17}{subsection.3.2.2}
 \contentsline {subsection}{\numberline {3.2.3}\textit {Asteroids}}{18}{subsection.3.2.3}
-\contentsline {chapter}{\numberline {4}Resultados}{19}{chapter.4}
-\contentsline {section}{\numberline {4.1}\textit {Gridworld}}{19}{section.4.1}
-\contentsline {section}{\numberline {4.2}\textit {Pong}}{19}{section.4.2}
-\contentsline {section}{\numberline {4.3}\textit {Asteroids}}{20}{section.4.3}
-\contentsline {chapter}{\numberline {5}Conclus\IeC {\~a}o}{23}{chapter.5}
-\contentsline {chapter}{Refer\^encias Bibliogr\'aficas}{25}{appendix*.14}
+\contentsline {chapter}{\numberline {4}Resultados}{21}{chapter.4}
+\contentsline {section}{\numberline {4.1}\textit {Gridworld}}{21}{section.4.1}
+\contentsline {section}{\numberline {4.2}\textit {Pong}}{21}{section.4.2}
+\contentsline {section}{\numberline {4.3}\textit {Asteroids}}{22}{section.4.3}
+\contentsline {chapter}{\numberline {5}Conclus\IeC {\~a}o}{25}{chapter.5}
+\contentsline {chapter}{Refer\^encias Bibliogr\'aficas}{27}{appendix*.16}
 \contentsfinish 
