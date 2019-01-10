@@ -445,9 +445,10 @@ Por conta da forma como \textit{Deep Q-Learning} funciona, se a rede aprendesse 
 Isso significa que ela se atualizaria apenas com as experiências passadas mais recentes, esquecendo as mais antigas, sobrescrevedo os pesos obtidos no passado.
 Para contornar esse problema, utiliza-se um \textit{buffer} de memória que armazena uma quantidade pré-determinada de experiências passadas.
 
-A cada passo, uma tupla é armazenada no \textit{buffer} enquanto um conjunto de tuplas desse mesmo formato é escolhido aleatoriamente e suprido à CNN para a atualização dos pesos.
-Essas tuplas tem o formato $t = (S, A, R, S', done)$ onde $S$ é o estado atual, $A$ é a ação tomada no estado $S$, $S'$ é o estado resultante por se tomar a ação $A$ no estado $S$, $R$ é a recompensa obtida pela transição do estado $S$ para o estado $S'$ como resultado da ação $A$, e $done$ é uma variável que sinaliza se o agente chegou a um estado terminal.
-Dessa forma, o aprendizado ocorre sem o esquecimento de experiências passadas.
+Primeiro, o \textit{buffer} de memória é preenchido com $M$ tuplas $t$ de formato $(S, A, R, S', done)$ antes do treinamento, onde $S$ é o estado atual, $A$ é a ação tomada no estado $S$, $S'$ é o estado resultante por se tomar a ação $A$ no estado $S$, $R$ é a recompensa obtida pela transição do estado $S$ para o estado $S'$ como resultado da ação $A$, e $done$ é uma variável que sinaliza se o agente chegou a um estado terminal.
+Depois, no treinamento, uma tupla é armazenada no \textit{buffer} a cada passo, enquanto um conjunto de tuplas desse mesmo formato é escolhido aleatoriamente e suprido à CNN para a atualização dos pesos.
+%Essas tuplas tem o formato $t = (S, A, R, S', done)$ onde $S$ é o estado atual, $A$ é a ação tomada no estado $S$, $S'$ é o estado resultante por se tomar a ação $A$ no estado $S$, $R$ é a recompensa obtida pela transição do estado $S$ para o estado $S'$ como resultado da ação $A$, e $done$ é uma variável que sinaliza se o agente chegou a um estado terminal.
+Dessa forma, o aprendizado ocorre sem o esquecimento de experiências passadas, pois elas também são utilizadas para atualização dos pesos.
 %\textit{Experience replay} também ajuda o agente a tomar ações diferentes ao invés de se prender a algumas que tiveram sucesso no passado próximo e que, possivelmente, não serão tão úteis no futuro.
 
 %***********%

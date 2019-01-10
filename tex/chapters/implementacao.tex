@@ -213,3 +213,76 @@ Não existe um ambiente de \textit{Asteroids} com esse comportamento no Gym-Retr
 %No geral, o \textit{Gridworld} foi rápido por conta de suas baixas dimensões e resultados rápidos.
 %\textit{Pong}, por outro lado, já levou várias horas, passando de um dia para o outro, por conta de sua maior entrada e espaço de estados.
 
+\subsection{Pseudocódigo}
+\label{sec:pseudocodigo}
+
+Apesar de cada ambiente ter suas particularidades nos treinamentos, como número de episódio e tamanho dos \textit{mini-batches}, todos os treinamentos seguiram o mesmo formato.
+Seja \textit{DQN} o nome da classe que possui a rede neural DQN e as operações de cálculo de erro e otimização de pesos, \textit{TN} o nome da rede alvo (\textit{Target Network}) para a técnica \hyperref[sec:ft]{alvo fixo}, $N$ o número de tuplas ($S$,$A$,$R$,$S'$,$done$) inseridas no \hyperref[sec:ep]{\textit{buffer} de memória} antes do treinamento começar, $M$ o número de episódios de treinamento, e $\tau$ o número de passos entre atualizações dos pesos da \textit{TN}.
+As linhas marcadas com um asterisco não são executadas no \textit{Gridworld}, uma vez que as entradas para a rede neste ambiente não necessitam de pré-processamento.
+O pseudocódigo do treinamento encontra-se a seguir.
+\\
+
+%\begin{left}
+\begin{tabular}{l}
+
+\hline
+\textit{Deep Q-Learning} com \textit{Experience Replay} e alvo fixo\\
+\hline
+
+inicializa \textit{DQN} e \textit{TN} com pesos inicializados pelo inicializador de He;\\
+inicializa o \textit{buffer} de memória \textit{B};\\
+inicia o ambiente e recebe estado inicial $X_{0}$;\\
+*cria $X^{p}_{0}$ = $X_{0}$ pré-processado;\\
+*cria fila $S_{0}$ = $\{X^{p}_{0}, X^{p}_{0}, X^{p}_{0}, X^{p}_{0}\}$;\\
+\textbf{para} \textit{n} = 0 até $N$ \textbf{faça}\\
+%\qquad cria $f_{n}$ como pré-processamento de $S_{0}$\\
+\qquad executa uma ação aleatória $A_{n}$;\\
+\qquad recebe a recompensa $R_{n}$, estado seguinte $X_{n+1}$ e variável $done$;\\
+\qquad \textbf{se} for estado terminal \textbf{então}\\
+\qquad \qquad $S_{n+1} \leftarrow$ vetor do formato de $S_{n}$ preenchido com zeros;\\
+\qquad \qquad adiciona tupla ($S_{n}$, $A_{n}$, $R_{n}$, $S_{n+1}$, $done$) a \textit{B};\\
+\qquad \qquad reinicia o ambiente e recebe estado inicial em $X_{n+1}$;\\
+*\qquad \qquad cria $X^{p}_{n+1}$ = $X_{n+1}$ pré-processado;\\
+*\qquad \qquad cria fila $S_{n+1}$ = $\{X^{p}_{n+1}, X^{p}_{n+1}, X^{p}_{n+1}, X^{p}_{n+1}\}$;\\
+\qquad \textbf{senão}\\
+*\qquad \qquad atualiza $S_{n}$, removendo o elemento do começo da fila e inserindo $X_{n+1}$ no final, como $S_{n+1}$;\\
+\qquad \qquad adiciona tupla ($S_{n}$, $A_{n}$, $R_{n}$, $S_{n+1}$, $done$) a \textit{B};\\
+\qquad \qquad $S_{n} \leftarrow S_{n+1};$ \\
+
+\textbf{para} m = 0 até $M$ \textbf{faça}\\
+\qquad reinicia o ambiente e recebe estado inicial $X_{0}$\\
+*\qquad cria $X^{p}_{0}$ = $X_{0}$ pré-processado;\\
+*\qquad cria fila $S_{0}$ = $\{X^{p}_{0}, X^{p}_{0}, X^{p}_{0}, X^{p}_{0}\}$;\\
+\qquad \textbf{enquanto} número máximo de passos não for excedido \textbf{faça}\\
+\qquad \qquad escolhe uma ação $A_{m}$ aleatoriamente com probabilidade $\epsilon$;\\
+\qquad \qquad caso contrário, seleciona a melhor ação $A_{m}$ segundo a rede neural;\\
+\qquad \qquad executa ação $A_{m}$;\\
+\qquad \qquad recebe a recompensa $R_{m}$, estado seguinte $X_{m+1}$ e variável $done$;\\
+\qquad \qquad \textbf{se} for estado terminal \textbf{então}\\
+\qquad \qquad \qquad $S_{m+1} \leftarrow$ vetor do formato de $S_{m}$ preenchido com zeros;\\
+\qquad \qquad \qquad adiciona tupla ($S_{m}$, $A_{m}$, $R_{m}$, $S_{m+1}$, $done$) a \textit{B};\\
+\qquad \qquad \qquad reinicia o ambiente e recebe estado inicial em $X_{m+1}$;\\
+*\qquad \qquad \qquad cria $X^{p}_{m+1}$ = $X_{m+1}$ pré-processado;\\
+*\qquad \qquad \qquad cria fila $S_{m+1}$ = $\{X^{p}_{m+1}, X^{p}_{m+1}, X^{p}_{m+1}, X^{p}_{m+1}\}$;\\
+\qquad \qquad \textbf{senão}\\
+*\qquad \qquad \qquad atualiza $S_{m}$, removendo o elemento do começo da fila e inserindo $X_{n+1}$ no final, como $S_{m+1}$;\\
+\qquad \qquad \qquad adiciona tupla ($S_{m}$, $A_{m}$, $R_{m}$, $S_{m+1}$, $done$) a \textit{B};\\
+\qquad \qquad \qquad $S_{m} \leftarrow S_{m+1};$ \\
+
+\qquad \qquad seleciona um \textit{mini-batch} do \textit{buffer} de memória;\\
+\qquad \qquad calcula o \hyperref[eq:q_target]{valor alvo $Q_{T}$};\\
+\qquad \qquad calcula o erro do \textit{mini-batch};\\
+\qquad \qquad otimiza os pesos e atualiza a rede neural;\\
+\qquad \qquad \textbf{se} $\tau$ passos tiverem passados desde a última atualização de \textit{TN} \textbf{então}\\
+\qquad \qquad \qquad atualiza os pesos de \textit{TN};\\
+
+\hline
+\end{tabular}
+%\end{center}
+
+%\begin{algorithm}
+%\caption{teste}
+%\label{test}
+%\begin{algorithmic}[1]
+%\end{algorithmic}
+%\end{algorithm}
