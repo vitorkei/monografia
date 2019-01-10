@@ -17,8 +17,8 @@ Por conta da natureza de cada ambiente e de seus resultados, formas diferentes d
 \label{sec:res_gridworld}
 
 O agente se saiu bem no \textbf{\textit{Gridworld}}, consistentemente encontrando um caminho para o objetivo com diferentes arquiteturas que não fossem drasticamente diferentes.
-A tabela abaixo apresenta a proporção média de vezes que o agente treinado por \textit{deep Q-learning} e que um aleatório chegaram ao objetivo.
-Para o agente treinado, o número foi obtido após ele passar por cinco treinamentos de 2000 episódios no mapa de tamanho 10x10 apresentado anteriormente.
+A tabela abaixo apresenta a proporção média de vezes que o agente treinado por \textit{Deep Q-Learning} e que um aleatório chegaram ao objetivo.
+Para o agente treinado, o número foi obtido após ele passar por cinco treinamentos de 2000 episódios cada no mapa de tamanho 10x10 apresentado anteriormente.
 O modelo final conseguiu fazer o agente chegar ao objetivo quatro vezes e exceder o número máximo de ações uma vez, pois chegou a uma célula da qual não conseguiu sair já que as melhores ações tomadas eram ir em direção às paredes adjacentes.
 Para o agente aleatório, o número foi obtido após 10000 tentativas de se chegar ao objetivo, equivalente ao número de episódios que o agente treinado teve para chegar ao objetivo.
 
@@ -27,7 +27,7 @@ Para o agente aleatório, o número foi obtido após 10000 tentativas de se cheg
 
 %Foram feitos dois mil episódios de treinamento em um mapa de tamanho 10x10 com oito armadilhas, um objetivo no canto inferior direito e a posição inicial do agente no canto superior esquerdo.
 
-\begin{table}
+%\begin{table}
 \begin{center}
 \begin{tabular}{l c}
 \hline
@@ -40,7 +40,7 @@ DQL & 66.15\% \\
 %\caption{Proporção de vezes que o agente conseguiu chegar ao objetivo no mapa de tamanho 10x10 descrito anteriormente (\textbf{COLOCAR LINK}). Foram 10000 tentativas para o agente aleatório e 5 treinamentos de 2000 episódios cada para o agente treinado por \textit{Deep Q-Learning}, de forma que o número total de tentativas fosse igual.}
 \label{table:gridworld_score}
 \end{center}
-\end{table}
+%\end{table}
 
 \section{\textit{Pong}}
 \label{sec:res_pong}
@@ -77,10 +77,9 @@ Mesmo assim, os resultados se mostraram promissores dado tempo suficiente para o
 
 O crescimento lento, mas estável da pontuação total obtida por episódio reflete a capacidade do agente de aprender, ainda que com dificuldade, a se comportar neste ambiente de maneira positiva.
 
-Nos experimentos, foram coletadas a pontuação final média de uma pessoa experiente jogando com o mouse no emulador Stella, de um agente jogando aleatoriamente, e da inteligência artificial treinada, cada um jogando cinco partidas contra o computador pré-programado pelos desenvolvedores do jogo.
-A tabela \ref{table:pong_score} resume os resultados obtidos.
+Nos experimentos, foram coletadas a pontuação final média obtida por uma pessoa experiente jogando com o mouse no emulador Stella, por um agente jogando aleatoriamente, e pela inteligência artificial treinada, cada um jogando cinco partidas contra a inteligência artificial padrão do jogo.
 
-\begin{table}
+%\begin{table}
 \begin{center}
 \begin{tabular}{l c}
 \hline
@@ -94,7 +93,7 @@ DQL & 21 \\
 %\caption{Pontuação média de um jogador humano experiente após cinco partidas jogando com o mouse, o que equivale a aproximadamente uma hora de jogo; de um agente jogando aleatoriamente; e da inteligência artificial utilizando o modelo que construiu após 298 episódios de treinamento, o que equivale a aproximadamente um milhão de \textit{frames}.}
 \label{table:pong_score}
 \end{center}
-\end{table}
+%\end{table}
 
 %O modelo desenvolvido conseguiu atingir pontuação de 21 consistentemente contra a IA criada pelos desenvolvedores, enquanto um agente aleatório conseguiu uma média de -20.27 pontos e uma pessoa experiente em jogos eletrônicos conseguiu uma média de 7 pontos após uma hora de jogo.
 
@@ -125,7 +124,7 @@ Nos experimentos, foram coletadas a pontuação final média de uma pessoa sem e
 %A tabela abaixo resume a pontuação média obtida pelo agente treinado, pelo agente aleatório e por uma pessoa com pouca experiência jogando após aproximadamente uma hora de jogo.
 A pontuação de jogadores experientes não foi considerada por estar muito acima, passando com facilidade dos 30000 pontos, não sendo um bom parâmetro de comparação.
 
-\begin{table}
+%\begin{table}
 \begin{center}
 \begin{tabular}{l c}
 \hline
@@ -139,7 +138,7 @@ DQL & 607.8 \\
 %\caption{Pontuação média obtida ao longo de cinco partidas por uma pessoa sem experiência, um agente aleatório, e o agente treinado por \textit{Deep Q-Learning}.}
 \label{table:asteroids_score}
 \end{center}
-\end{table}
+%\end{table}
 
 %Todavia, essas observações ainda estão próximos das expectativas.
 %O ambiente mais simples, com poucos estados, recompensa e penalidades bem definidos foi o que obteve maior grau de sucesso;

@@ -32,6 +32,6 @@
 \contentsline {section}{\numberline {4.1}\textit {Gridworld}}{21}{section.4.1}
 \contentsline {section}{\numberline {4.2}\textit {Pong}}{21}{section.4.2}
 \contentsline {section}{\numberline {4.3}\textit {Asteroids}}{22}{section.4.3}
-\contentsline {chapter}{\numberline {5}Conclus\IeC {\~a}o}{25}{chapter.5}
-\contentsline {chapter}{Refer\^encias Bibliogr\'aficas}{27}{appendix*.16}
+\contentsline {chapter}{\numberline {5}Conclus\IeC {\~a}o}{23}{chapter.5}
+\contentsline {chapter}{Refer\^encias Bibliogr\'aficas}{25}{appendix*.13}
 \contentsfinish 
