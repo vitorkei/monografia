@@ -139,8 +139,8 @@ Atualmente, não existe uma definição exata de quantas camadas são necessári
 
 Uma rede neural profunda que segue o modelo apresentado na seção anterior é chamada de \textit{feedforward} e é o mais típico de \textit{deep learning}.
 Ele recebe esse nome pois a informação flui da entrada para a saída sem haver conexões de \textit{feedback} para que a previsão seja feita.
-Este tipo de rede neural forma a base para \textbf{redes neurais convolucionais}, técnica muito utilizada em reconhecimento de imagens.
-Como a ideia é treinar uma inteligência artificial que aprende vendo imagens do ambiente, esse foi o tipo escolhido para este trabalho.
+Este tipo de rede neural forma a base para \textbf{redes neurais convolucionais}.%, técnica muito utilizada em visualização e processamento de imagens.
+%Como a ideia é treinar uma inteligência artificial que aprende vendo imagens do ambiente, esse foi o tipo escolhido para este trabalho.
 
 \begin{figure}[h!]
 \includegraphics[scale=.3]{nn}
@@ -154,28 +154,61 @@ Como a ideia é treinar uma inteligência artificial que aprende vendo imagens d
 \label{sec:cnn}
 %https://medium.com/@ageitgey/machine-learning-is-fun-part-3-deep-learning-and-convolutional-neural-networks-f40359318721
 
-Como neste trabalho a IA precisa aprender características do ambiente apenas enxergando imagens dele, utilizar apenas redes neurais profundas sofre de um problema:
-o computador não consegue reconhecer um mesmo objeto em diferentes locais de uma imagem e de diferentes tamanhos como o mesmo.
-Para cada local muito diferente que ele aparecer, como direita e esquerda da tela, a IA teria que re-aprender a identificá-lo.
+Redes neurais convolucionais (\textit{Convolutional Neural Networks}, CNN) são um tipo de rede neural profunda do tipo \textit{feedforward} especializada em visualização e processamento de imagens.
+Sendo uma rede neural clássica, ela possui estrutura dividida em camadas que são formadas por neurônios, com apenas as camadas ocultas funcionando de maneira diferente.
+%as de entrada e saída funcionando do mesmo jeito.
+%As camadas ocultas, por outro lado, operam de maneira diferente.
+Elas podem ser de dois tipos diferentes:
+\textbf{convolucionais} ou \textbf{\textit{fully-connected}}.
+Enquanto as \textit{fully-connected} funcionam conforme descrito na seção \ref{sec:nn}, com todos os neurônios de uma camada conectados a todos da próxima, as convolucionais operam de uma forma diferente, tendo duas partes principais:
+%Elas possuem duas partes principais:
+a \textbf{etapa convolucional}, que dá o nome ao tipo da rede;
+e a \textbf{função de ativação}.
 
-Como a entrada da rede é uma imagem, uma matriz de pixels, foi utilizada convolução 2D para lidar com o problema descrito acima.
-%Para não precisar fornecer à rede neural imagens inteiras para que ela aprenda que um objeto continua sendo o mesmo não importa onde da tela apareça, foi utilizada convolução, mais precisamente a 2D, já que a entrada é uma imagem, uma matriz de pixels.
-Uma CNN continua sendo um tipo de rede neural profunda e, portanto, mantém o formato de três tipos de camadas (entrada, ocultas, e saída). Porém, para facilitar o entendimento de convolução, esta explicação dividirá a rede em duas partes: \textbf{convolução} e \textbf{previsão}.
-Na etapa de \textbf{convolucão}, a imagem de entrada é dividida em várias imagens menores; elas podem ser adjacentes ou parcialmente sobrepostas, sendo o segundo caso mais comum.
-Cada uma dessas imagens menores é chamada de \textbf{filtro convolucional} ou \textbf{filtro de convolução}.
-É possível dizer que se um filtro convolucional for arrastado para o lado, o local onde ele parar será o próximo filtro convolucional, pois o padrão de pixels deverá ser diferente e, portanto, apresentará uma característica diferente que pode ser detectada.
-Esse arrasto é chamado de passo e a distância que o filtro é arrastado é chamada de tamanho do passo.
-Em seguida, cada uma dessas imagens menores é passada por uma rede neural menor, sendo processada normalmente.
-As saídas dessas redes neurais menores são então passadas como entrada para a próxima etapa.
-Na etapa de \textbf{previsão}, a informação passa por uma ou mais redes neurais maiores que farão a previsão. Para diferenciá-la das redes da etapa de convolução, as desta fase são chamadas de \textit{fully-connected}.
+A detecção de características de uma CNN é feita na \textbf{etapa convolucional} pelos filtros convolucionais, também chamados de \textit{kernel}, matrizes muito menores que a de entrada, mas com mesmo número de dimensões, que em geral é 3: altura, largura, e canais de cor.
+Os filtros convolucionais são os elementos básicos no processamento de imagens, pois são responsáveis por aprender e detectar características nas imagens de entrada.
+Eles são deslizados pela matriz de entrada, realizando o produto escalar com a área sobre a qual estão e criando uma nova matriz chamada de \textit{feature map}.
+Essa operação é feita para cada filtro e é chamada de convolução.
+Após os \textit{feature maps} de cada filtro serem feitos, eles são juntados de forma que a saída tem o formato $N$x$M$x$D$, onde $N$ e $M$ são a altura e largura do \textit{feature map} e $D$ é o número de \textit{kernels}.
+A imagem \ref{fig:conv2d} ilustra como convolução ocorre.
 
 \begin{figure}[h!]
-\includegraphics[scale=.4]{cnn}
+\includegraphics[scale=.275]{conv2d}
 \centering
-\caption{Esquema de uma rede neural convolucional. Número de filtros e camadas arbitrários para melhor representação. Diagrama feito em \url{http://alexlenail.me/NN-SVG/LeNet.html}}
+\caption{Exemplo de uma convolução. À esquerda, a matriz de entrada para a camada de convolução; no meio, o filtro; e, à direita, o \textit{feature map} formado. Neste exemplo, a entrada possui apenas um canal de cor, sendo, na prática, uma matriz de duas dimensões.}
+\label{fig:conv2d}
 \end{figure}
 
-% ver http://www.deeplearningbook.org/ para resolver a anotação da Nina
+Todos os filtros de uma camada de convolução têm as mesmas dimensões e deslocam-se a mesma quantidade de pixels quando são deslizados para fazer o produto escalar e gerar um ponto do \textit{feature map} correspondente.
+O número de filtros por camada, seus tamanhos, e a distância que se movem, também chamada de passo, são hiper parâmetros e, portanto, são definidos previamente pelo desenvolvedor da rede.
+Em seguida, aplica-se a \textbf{função de ativação}, em geral a ReLU, em cada elemento de cada \textit{feature map}, resultando na saída da camada convolucional.
+É comum utilizarem \textit{pooling} depois da função de ativação para reduzir o tamanho dos \textit{feature maps} enquanto preserva as informações importantes, mas essa técnica não foi utilizada neste trabalho.
+
+Por fim, a classificação da entrada é feita pela última camada \textit{fully-connected}, que é a de saída, e avaliada como descrito na seção \hyperref[sec:nn]{Redes Neurais}.
+Camadas \textit{fully-connected} entre as convolucionais e a de saída são consideradas ocultas também.
+
+%Como neste trabalho a IA precisa aprender características do ambiente apenas enxergando imagens dele, utilizar apenas redes neurais profundas sofre de um problema:
+%o computador não consegue reconhecer um mesmo objeto em diferentes locais de uma imagem e de diferentes tamanhos como o mesmo.
+%Para cada local muito diferente que ele aparecer, como direita e esquerda da tela, a IA teria que re-aprender a identificá-lo.
+%
+%Como a entrada da rede é uma imagem, uma matriz de pixels, foi utilizada convolução 2D para lidar com o problema descrito acima.
+%%Para não precisar fornecer à rede neural imagens inteiras para que ela aprenda que um objeto continua sendo o mesmo não importa onde da tela apareça, foi utilizada convolução, mais precisamente a 2D, já que a entrada é uma imagem, uma matriz de pixels.
+%Uma CNN continua sendo um tipo de rede neural profunda e, portanto, mantém o formato de três tipos de camadas (entrada, ocultas, e saída). Porém, para facilitar o entendimento de convolução, esta explicação dividirá a rede em duas partes: \textbf{convolução} e \textbf{previsão}.
+%Na etapa de \textbf{convolucão}, a imagem de entrada é dividida em várias imagens menores; elas podem ser adjacentes ou parcialmente sobrepostas, sendo o segundo caso mais comum.
+%Cada uma dessas imagens menores é chamada de \textbf{filtro convolucional} ou \textbf{filtro de convolução}.
+%É possível dizer que se um filtro convolucional for arrastado para o lado, o local onde ele parar será o próximo filtro convolucional, pois o padrão de pixels deverá ser diferente e, portanto, apresentará uma característica diferente que pode ser detectada.
+%Esse arrasto é chamado de passo e a distância que o filtro é arrastado é chamada de tamanho do passo.
+%Em seguida, cada uma dessas imagens menores é passada por uma rede neural menor, sendo processada normalmente.
+%As saídas dessas redes neurais menores são então passadas como entrada para a próxima etapa.
+%Na etapa de \textbf{previsão}, a informação passa por uma ou mais redes neurais maiores que farão a previsão. Para diferenciá-la das redes da etapa de convolução, as desta fase são chamadas de \textit{fully-connected}.
+%
+%\begin{figure}[h!]
+%\includegraphics[scale=.4]{cnn}
+%\centering
+%\caption{Esquema de uma rede neural convolucional. Número de filtros e camadas arbitrários para melhor representação. Diagrama feito em \url{http://alexlenail.me/NN-SVG/LeNet.html}}
+%\end{figure}
+%
+%% ver http://www.deeplearningbook.org/ para resolver a anotação da Nina
 É possível haver mais de uma camada de convolução assim como pode haver mais de uma camada \textit{fully-connected} além da de saída, o que pode ser mais vantajoso, uma vez que aumentar a profundidade da rede, em muitos casos, melhora a predição~\cite{Goodfellow-et-al-2016}.
 %Quanto mais camadas ocultas houver, mais precisa será a predição.
 Entretanto, não só o custo de tempo e de espaço aumentam, como há um limite para o quão melhor será o desempenho da IA.
