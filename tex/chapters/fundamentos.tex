@@ -53,20 +53,20 @@ Este capítulo tem o intuito de familiarizar o leitor com a teoria e técnicas u
 
 Redes neurais artificiais, mais conhecidas como redes neurais, são uma forma de processamento de informação inspirada no funcionamento do cérebro.
 Assim como o órgão no qual foram baseadas, elas possuem uma grande quantidade de elementos de processamento de informação conectados entre si, chamados de neurônios, que trabalham em conjunto para resolver problemas.
-Dado que aprendem com exemplos, similar a pessoas, é considerada uma técnica de aprendizado supervisionado.
+Dado que aprendem com exemplos, é considerada uma técnica de aprendizado supervisionado.
 Elas são muito utilizadas como aproximadoras de funções desconhecidas, que não são facilmente modeláveis matematicamente.
 
-Com os avanços nos estudos dessa técnica nos últimos anos, diversos tipos diferentes de redes neurais foram desenvolvidos, como redes neurais convolucionais, a utilizada neste trabalho, e redes neurais de memória de curto-longo prazo\footnote{Tradução livre feita pelo autor} (\textit{Long/Short Term Memory}, LSTM), que não será abordada.
-Apesar de cada uma ter sua particularidade, redes neurais clássicas possuem duas características principais: a estrutura dividida em \textbf{camadas}, e os \textbf{neurônios}.
+Com os avanços nos estudos dessa técnica nos últimos anos, diversos tipos diferentes de redes neurais foram desenvolvidos, como redes neurais convolucionais, o tipo utilizado neste trabalho, e redes neurais de memória de curto-longo prazo\footnote{Tradução livre feita pelo autor} (\textit{Long/Short Term Memory}, LSTM), que não será abordada.
+Apesar de cada uma ter sua particularidade, redes neurais clássicas possuem duas características principais: a estrutura dividida em \textbf{camadas}, e os \textbf{neurônios} que as compõe.
 Existem redes que não são consideradas clássicas pela falta de estrutura em camadas, como Redes de Hopfield (\textit{Hopfield Network}) e Máquinas de Boltzmann (\textit{Boltzmann Machine}), que também não serão discutidas neste trabalho.
 
 %A estrutura de uma rede neural clássica é dividida em \textbf{camadas} que podem ser classificadas de três formas distintas: \textbf{entrada}, \textbf{oculta}, ou \textbf{saída}.
-As camadas de uma rede neural são compostas por neurônios e podem ser separadas em três categorias: \textbf{entrada}, \textbf{oculta} e \textbf{saída}.
+As camadas de uma rede neural são compostas por neurônios e podem ser separadas em três categorias: \textbf{entrada}, \textbf{oculta}, e \textbf{saída}.
 Quando um dado é suprido à rede, ele vem no formato de um vetor de forma que os neurônios da camada de \textbf{entrada} recebem seus elementos para serem processados ao longo da rede;
-as \textbf{ocultas} realizam o processamento;
+as \textbf{ocultas} realizam o processamento do dado de entrada;
 e a de \textbf{saída} devolve um vetor de números que representa o resultado da rede neural para a entrada dada.
 %Pode-se dizer que uma rede neural é um aproximador de uma função que mapeia entrada e saída.
-Enquanto o formato da entrada e da saída da rede neural determinam o número de neurônios das respectivas camadas, a quantidade de nós nas camadas ocultas são arbitrários, normalmente definidos por meio de tentativa e erro.
+Enquanto o formato da entrada e da saída da rede neural determinam seus respectivos números de neurônios, a quantidade de nós nas camadas ocultas são arbitrários, normalmente definidos por meio de tentativa e erro.
 
 \textbf{Neurônios}, ou nós, são funções que recebem, como entrada, a saída de cada neurônio da camada anterior e devolvem um número
 %, em geral entre 0 e 1 inclusos,
@@ -74,7 +74,7 @@ cujo significado e como são usados variam de acordo com o objetivo da rede.
 %A maneira mais comum de se trabalhar com eles é fazendo a combinação linear dos valores dos neurônios de uma camada e, ao passar por uma função de ativação não-linear, determinar quais neurônios da camada seguinte serão ativados.
 Cada neurônio das camadas ocultas representa uma característica detectada ao longo do treinamento.
 Se essa característica estiver presente na camada de entrada, então o neurônio correspondente será \textbf{ativado}.
-A ativação de um ou mais neurônios pode levar a ativação de outros neurônios na camada seguinte e assim sucessivamente.
+A ativação de um ou mais neurônios pode levar à ativação de outros neurônios na camada seguinte e assim sucessivamente.
 %Esse é um comportamento inspirado na forma como neurônios do cérebro enviam sinais de um para o outro.
 A forma mais comum de se utilizá-los em redes neurais é por meio da \textbf{combinação linear} dos valores dos neurônios de uma camada seguido por uma \textbf{função de ativação}.
 
@@ -86,7 +86,7 @@ A combinação linear dos neurônios é dada por:
 w_{1}a_{1} + w_{2}a_{2} + ... + w_{n}a_{n}
 \end{equation}
 
-Antes de ser passada para a função de ativação, é comum adicionar à somatória \ref{eq:nn01} um viés \footnote{\textit{bias}, em inglês} $b$, uma constante que ajuda a melhor aproximar da função desconhecida.
+Antes de ser passada para a função de ativação, é comum, mas não obrigatório adicionar à somatória \ref{eq:nn01} um viés \footnote{\textit{bias}, em inglês} $b$, uma constante que ajuda a melhor aproximar da função desconhecida.
 A função de ativação realiza uma transformação não-linear no número que recebe como argumento, a soma de \ref{eq:nn01} com o viés neste caso, para mapear seu resultado em um intervalo e determinar se o neurônio $n$ deve ser ativado ou não.
 Tanto a transformação quanto a forma de mapear e o intervalo são determinados pela função utilizada.
 %Em seguida, o resultado da somatória \ref{eq:nn01} é passado para a função de ativação, que realiza uma transformação não-linear para mapear essa entrada em um determinado intervalo, como $[0, 1]$ ou $[-1, 1]$, a depender da função utilizada.
@@ -108,16 +108,16 @@ O próximo passo é entender como os valores dos neurônios e os respectivos pes
 Como rede neural é um tipo de aprendizado supervisionado, os exemplos inseridos nela possuem rótulos, saídas esperadas.
 %(qual valor que cada neurônio de saída deve ter).
 Para que o computador saiba o quão próxima sua resposta estava da correta, é definida uma função de erro, também conhecida como função de custo.
-Naturalmente, quanto maior for o erro, mais incorreta foi a previsão, e isso permite avaliar o desempenho da rede neural.
+Naturalmente, quanto maior for o erro, mais incorreta foi a previsão.%, e isso permite avaliar o desempenho da rede neural.
 %Depois de esse procedimento ser feito com milhares ou até milhões de exemplos, calcula-se a média dos erros obtidos e, com isso, avalia-se o desempenho da inteligência.
 
-Otimizar os pesos de forma a reduzir a os erros obtidos com os exemplos parece ser o melhor caminho para melhorar o modelo, mas isso não é necessariamente verdade.
+Otimizar os pesos de forma a reduzir os erros obtidos com os exemplos parece ser o melhor caminho para melhorar o modelo, mas isso não é necessariamente verdade.
 Os exemplos utilizados nessa etapa compõe o \textbf{conjunto de treinamento}.
 Se o modelo tiver zero de erro em relação a esse conjunto, ele estará sofrendo de \textit{overfitting}, ou seja, a rede neural se adequa tanto ao conjunto de treinamento que saberá o que fazer apenas nele, estando possivelmente muito diferente da função que se deseja aproximar.
 Para determinar o grau de \textit{overfitting}, utiliza-se um \textbf{conjunto de validação}, exemplos diferentes do treinamento que são supridos à rede neural ocasionalmente e que não são utilizados para atualização dos pesos.
 Se o erro do conjunto de treinamento diminuir, mas o do conjunto de validação não, então o modelo estará começando a sofrer de \textit{overfitting} e o treinamento deve ser interrompido.
 Por fim, utiliza-se um \textbf{conjunto de testes}, exemplos escolhidos pela mesma distribuição de probabilidade que o conjunto de treinamento para fazer uma avaliação do modelo obtido após o treinamento.
-Idealmente, um modelo com erro baixo nos três conjuntos não tem problemas de \textit{overfitting} e consegue resolver o problema para o qual foi criada.
+Idealmente, um modelo com erro baixo nos três conjuntos não tem problemas de \textit{overfitting} e consegue resolver o problema para o qual foi criado.
 
 De forma resumida, uma rede neural clássica aprende recebendo uma série de números como entrada (exemplo) e devolve uma saída;
 calcula-se o quão errada essa saída está em relação ao desejado para aquela determinada entrada (rótulo do exemplo), e ajusta os pesos conforme a necessidade para minimizar o erro;
@@ -134,7 +134,7 @@ se a arquitetura da rede tiver sido contruída adequadamente, a IA deverá apren
 
 Como explicado anteriormente, redes neurais podem ser divididas em três tipos distintos de camadas: entrada, ocultas, e saída.
 Enquanto existe apenas uma camada de entrada e uma de saída, é possível haver mais de uma camada oculta.
-Se houver muitas ocultas, a rede neural passa a ser chamada de rede neural profunda.
+Se houver muitas ocultas, a rede neural passa a ser chamada de \textbf{rede neural profunda}.
 Atualmente, não existe uma definição exata de quantas camadas são necessárias para uma rede ser classificada como profunda e, mesmo que houvesse, esse número provavelmente mudaria com o passar do tempo.
 
 Uma rede neural profunda que segue o modelo apresentado na seção anterior é chamada de \textit{feedforward} e é o mais típico de \textit{deep learning}.
@@ -150,7 +150,7 @@ Este tipo de rede neural forma a base para \textbf{redes neurais convolucionais}
 
 % ---------------------------------------------------------------------------- %
 
-\section{Rede neural convolucional}
+\section{Redes neurais convolucionais}
 \label{sec:cnn}
 %https://medium.com/@ageitgey/machine-learning-is-fun-part-3-deep-learning-and-convolutional-neural-networks-f40359318721
 
@@ -160,16 +160,16 @@ Sendo uma rede neural clássica, ela possui estrutura dividida em camadas que s�
 %As camadas ocultas, por outro lado, operam de maneira diferente.
 Elas podem ser de dois tipos diferentes:
 \textbf{convolucionais} ou \textbf{\textit{fully-connected}}.
-Enquanto as \textit{fully-connected} funcionam conforme descrito na seção \ref{sec:nn}, com todos os neurônios de uma camada conectados a todos da próxima, as convolucionais operam de uma forma diferente, tendo duas partes principais:
+Enquanto as \textit{fully-connected} funcionam conforme descrito na seção \ref{sec:nn}, com todos seus neurônios conectados a todos da camada anterior, as convolucionais operam de uma forma diferente, tendo duas partes principais:
 %Elas possuem duas partes principais:
 a \textbf{etapa convolucional}, que dá o nome ao tipo da rede;
 e a \textbf{função de ativação}.
 
-A detecção de características de uma CNN é feita na \textbf{etapa convolucional} pelos filtros convolucionais, também chamados de \textit{kernel}, matrizes muito menores que a de entrada, mas com mesmo número de dimensões, que em geral é 3: altura, largura, e canais de cor.
+A detecção de características de uma CNN é feita na \textbf{etapa convolucional} pelos filtros convolucionais, também chamados de \textit{kernel}, matrizes muito menores que a de entrada, mas com mesmo número de dimensões, que em muitos casos é 3: altura, largura, e canais de cor.
 Os filtros convolucionais são os elementos básicos no processamento de imagens, pois são responsáveis por aprender e detectar características nas imagens de entrada.
 Eles são deslizados pela matriz de entrada, realizando o produto escalar com a área sobre a qual estão e criando uma nova matriz chamada de \textit{feature map}.
 Essa operação é feita para cada filtro e é chamada de convolução.
-Após os \textit{feature maps} de cada filtro serem feitos, eles são juntados de forma que a saída tem o formato $N$x$M$x$D$, onde $N$ e $M$ são a altura e largura do \textit{feature map} e $D$ é o número de \textit{kernels}.
+Após os \textit{feature maps} de cada filtro serem feitos, eles são juntados de forma que a saída da camada tem o formato $N$x$M$x$D$, onde $N$ e $M$ são a altura e largura do \textit{feature map} e $D$ é o número de \textit{kernels}.
 A imagem \ref{fig:conv2d} ilustra como convolução ocorre.
 
 \begin{figure}[h!]
@@ -182,10 +182,10 @@ A imagem \ref{fig:conv2d} ilustra como convolução ocorre.
 Todos os filtros de uma camada de convolução têm as mesmas dimensões e deslocam-se a mesma quantidade de pixels quando são deslizados para fazer o produto escalar e gerar um ponto do \textit{feature map} correspondente.
 O número de filtros por camada, seus tamanhos, e a distância que se movem, também chamada de passo, são hiper parâmetros e, portanto, são definidos previamente pelo desenvolvedor da rede.
 Em seguida, aplica-se a \textbf{função de ativação}, em geral a ReLU, em cada elemento de cada \textit{feature map}, resultando na saída da camada convolucional.
-É comum utilizarem \textit{pooling} depois da função de ativação para reduzir o tamanho dos \textit{feature maps} enquanto preserva as informações importantes, mas essa técnica não foi utilizada neste trabalho.
+É comum, mas não obrigatório utilizar \textit{pooling} depois da função de ativação para reduzir o tamanho dos \textit{feature maps} enquanto preserva as informações importantes, mas essa técnica não foi utilizada neste trabalho.
 
 Por fim, a classificação da entrada é feita pela última camada \textit{fully-connected}, que é a de saída, e avaliada como descrito na seção \hyperref[sec:nn]{Redes Neurais}.
-Camadas \textit{fully-connected} entre as convolucionais e a de saída são consideradas ocultas também.
+%Camadas \textit{fully-connected} entre as convolucionais e a de saída são consideradas ocultas também.
 
 %Como neste trabalho a IA precisa aprender características do ambiente apenas enxergando imagens dele, utilizar apenas redes neurais profundas sofre de um problema:
 %o computador não consegue reconhecer um mesmo objeto em diferentes locais de uma imagem e de diferentes tamanhos como o mesmo.
@@ -273,7 +273,7 @@ Isso é possível em domínios simples, como um Jogo da Velha, mas se torna impr
 No caso do \textit{Pong} e do \textit{Asteroids}, os \textit{frames} do jogo são os estados.
 Um pixel que mude de cor já faz ser um estado completamente diferente do ponto de vista do computador.
 Em uma tela de 210x160 pixels, com cada pixel armazenando três números que vão de 0 à 255 para determinar sua cor, é evidente não ser possível armazenar na memória um mapeamento das ações para cada um desses estados.
-Mesmo que não houvesse esse obstáculo computacional, existem situações em que não é possível determinar qual ação retornará a maior recompensa. A figura \ref{fig:unknown_best_action} exemplifica um momento desse tipo.
+Mesmo que não houvesse esse obstáculo computacional, existem situações em que não é possível determinar qual ação retornará a maior recompensa, como na figura \ref{fig:unknown_best_action}.
 
 \begin{figure}[h!]
 %  \begin{minipage}[b]{.45\textwidth}
@@ -289,15 +289,15 @@ Mesmo que não houvesse esse obstáculo computacional, existem situações em qu
   \label{fig:unknown_best_action}
 \end{figure}
 
-Como dito no final da seção \hyperref[sec:mdp]{anterior}, aprendizado por reforço é um MDP que não utiliza as probabilidades de transição para aproximar a política ótima.
+Como dito no final da seção \hyperref[sec:mdp]{anterior}, aprendizado por reforço é um MDP que não utiliza as probabilidades de transição ou a função de recompensa para aproximar a política ótima.
 No contexto deste trabalho, a política ótima será encontrada utilizando uma variante de \textit{\textbf{Q-Learning}}, uma técnica de aprendizado por reforço.
 
 %% ---------------------------------------------------------------------------- %
 
-\section{\textit{Q-learning}}
+\section{\textit{Q-Learning}}
 \label{sec:ql}
 
-Quando não se conhece as probabilidades de transição, informação necessária para se obter a função valor pela equação de Bellman, é possível estimar $V(S)$ a partir de observações feitas sobre o ambiente.
+Quando não se conhece as probabilidades de transição ou a função de recompensa, informações necessárias para se obter a função valor pela equação de Bellman, é possível estimar $V(S)$ a partir de observações feitas sobre o ambiente.
 Logo, o problema passa a ser como extrair a política do agente de uma função valor estimada.
 
 Seja $Q^{*}(S,A)$ a função Q-valor\footnote{O nome "Q-valor"{} vem do valor da qualidade da ação} que expressa a recompensa esperada de se começar no estado $S$, tomar a ação $A$ e continuar de maneira ótima. $Q^{*}(S,A)$ é uma parte da política gulosa para função valor ótima e é dada por:
@@ -316,8 +316,7 @@ Logo, substituindo \ref{eq:qfunction} em \ref{eq:opt_pol}, temos que a política
 \end{equation}
 
 O próximo passo será entender como atualizar a função Q-valor.
-
-Supondo que o agente se encontra no estado $S$ e toma a ação $A$, que causa uma transição no ambiente para o estado $S'$ e gera uma recompensa $R(S,A,S')$, como computar $Q^{(i+1)}(S,A)$ baseado em $Q^{(i)}(S,A)$ e em $R(S,A,S')$, sendo $i$ o momento atual?
+Supondo que o agente se encontra no estado $S$ e toma a ação $A$, que causa uma transição no ambiente para o estado $S'$ e gera uma recompensa $R(S,A,S')$, como computar $Q^{(i+1)}(S,A)$ baseado em $Q^{(i)}(S,A)$ e em $R(S,A,S')$, sendo $i$ o instante atual?
 Para responder a essa pergunta, duas restrições precisam ser feitas: $Q^{(i+1)}(S,A)$ deve obedecer, pelo menos de forma aproximada, a equação de Bellman, e não deve ser muito diferente de $Q^{(i)}(S,A)$, dado que são médias de recompensas.
 A seguinte equação responde a essa questão.
 
@@ -336,7 +335,9 @@ Entretanto, é interessante analisar os problemas levantados pela segunda e pela
 
 Se a \textbf{taxa de aprendizado} for muito alta (próxima de 1), a atualização do aprendizado se torna instável.
 Por outro lado, se for muito baixa (próxima de 0), a convergência se torna lenta.
-Uma solução possível para essa questão é utilizar valores que mudam de acordo com o estado: utilizar valores mais baixos em estados que já foram visitados muitas vezes, pois o agente já terá uma boa noção da qualidade de cada ação possível, então há pouco que aprender; e utilizar valores mais altos em estados que foram visitados poucas vezes, pois o agente precisa aprender melhor sobre ele.
+Uma solução possível para essa questão é utilizar valores que mudam de acordo com o estado:
+mais baixos em estados que já foram visitados muitas vezes, pois o agente já terá uma boa noção da qualidade de cada ação possível, então há pouco que aprender;
+e mais altos em estados que foram visitados poucas vezes, pois o agente precisa aprender melhor sobre ele.
 
 Uma vez que a política é gulosa em relação ao Q-valor, o agente sempre tomará a ação que retorna a maior recompensa esperada.
 Ou seja, a ação escolhida depende do valor da taxa de desconto $\gamma$: recompensas imediatas serão mais buscadas se for próximo de 0, enquanto recompensas futuras serão mais valorizadas para valores próximos de 1.
@@ -344,7 +345,7 @@ Isso é bom somente se todas as recompensas possíveis para aquele estados são 
 Porém, se houver ações não exploradas, o agente pode perder uma recompensa maior do que as que ele já conhece apenas porque ignorou a ação que leva a ela.
 Essa situação caracteriza o dilema \textbf{\textit{Exploration versus Exploitation}}: é melhor tomar a ação que retorna a maior recompensa ou buscar uma melhor?
 Da mesma forma que na taxa de aprendizado, uma forma de contornar esse problema é mudar a probabilidade de decidir explorar o ambiente (\textit{explore}) de acordo com a situação.
-Conforme o mundo é descoberto, se torna cada vez mais interessante agir de forma gulosa (\textit{exploit}) do que explorar em estados muito visitado, e vice-versa em estados pouco visitados.
+Conforme o mundo é descoberto, se torna cada vez mais interessante agir de forma gulosa (\textit{exploit}) do que explorar em estados muito visitados, e vice-versa em estados pouco visitados.
 Esse comportamento pode ser definido por uma função de exploração.
 
 Seja $P_{ini}$ a probabilidade inicial e $P_{min}$ a probabilidade mínima de o agente decidir explorar (\textit{explore}) o ambiente, $decay$ a taxa de decaimento e $step$ o número de passos dados até o momento.
@@ -370,11 +371,11 @@ Portanto, se não é possível aprender os Q-valores, o melhor que se pode fazer
 
 %% ---------------------------------------------------------------------------- %
 
-\section{\textit{Approximate Q-learning}}
+\section{\textit{Approximate Q-Learning}}
 \label{sec:aql}
 
 \textit{Approximate Q-Learning} é o nome dado a um conjunto de métodos de aprendizado por reforço que busca aproximar o Q-valor das ações.
-Uma técnica comum desse conjunto é o uso de \textbf{funções lineares} que avaliam características dos estados.
+Uma técnica comum desse conjunto consiste no uso de \textbf{funções lineares} que avaliam características dos estados.
 
 Para lidar com o enorme espaço de estados que alguns ambientes possuem, o agente armazena e aprende apenas algumas propriedades determinadas pelo desenvolvedor, que são funções de valor real, para tomar as decisões.
 Tais informações são armazenadas em um vetor e cada elemento desse vetor recebe um peso que determina a respectiva importância para que escolhas sejam feitas. Ou seja, a função Q-valor é representada por uma combinação linear das propriedades e é dada da seguinte forma.
@@ -411,9 +412,9 @@ Dado que o agente deve aprender enxergando a tela e tudo que ele vê são matriz
 Ou seja, o primeiro passo é passar as imagens da tela por uma \textbf{rede neural convolucional}.
 Essa etapa funciona conforme descrito na seção sobre \hyperref[sec:cnn]{redes neurais convolucionais}: as imagens são a entrada, ocorre o processamento nas camadas ocultas e, na camada de saída, cada neurônio tem um valor que determinam a ação tomada.
 Contudo, calcular o erro é diferente.
-Como as imagens passadas não são rotuladas e não é possível fazer isso manualmente, a IA precisa calcular o erro da saída da rede de outra forma, utilizando \textbf{aprendizado por reforço}.
+Como as imagens passadas não são rotuladas, a IA precisa calcular o erro da saída da rede de outra forma, que será utilizando \textbf{aprendizado por reforço}.
 Conforme explicado \hyperref[sec:rl]{anteriormente}, aprendizado por reforço aprende sem o uso de exemplos rotulados, mas precisa que as características que a IA deve aprender estejam bem definidas.
-Enquanto tais características são definidas pela rede, o cálculo do erro para a otimização dos pesos é feita pela parte de aprendizado por reforço.
+Enquanto tais características são definidas pela rede, o cálculo do erro para a otimização dos pesos é feito pela parte de aprendizado por reforço.
 
 O \textbf{cálculo do erro} é feito por funções que retornam valores altos quando o modelo devolve respostas muito distantes da correta, e próximos de zero caso contrário, como o erro quadrático médio, \textit{cross-entropy} e \textit{Huber loss}~\cite{huber_loss}.
 Para minimizar o erro, normalmente utiliza-se o módulo do número retornado pela função de erro, para garantir que será positivo, com alguma variação do \textbf{método do maior declive}, também conhecido como \textbf{método do gradiente}~\cite{cauchy1847} \footnote{\textit{Gradient descent}, em inglês}, como o RMSProp~\cite{rmsprop} e o Adam~\cite{DBLP:journals/corr/KingmaB14}.
@@ -456,7 +457,7 @@ A figura \ref{fig:gradientDescent} ilustra essas situações.
   \label{fig:gradientDescent}
 \end{figure}
 
-Existem diversos algoritmos de redução do erro e otimização dos pesos, como o RMSProp, Adam, Adadelta, dentre outros.
+%Existem diversos algoritmos de redução do erro e otimização dos pesos, como o RMSProp, Adam, Adadelta, dentre outros.
 
 %% ---------------------------------------------------------------------------- %
 
@@ -470,18 +471,18 @@ Nesta seção, serão apresentadas duas técnicas que ajudam a estabilizar e ace
 
 %***********%
 
-\subsection{\textit{Experience Replay}}
+\subsection{\textit{Experience replay}}
 \label{sec:er}
 
 Estudado inicialmente como um método para acelerar a convergência em aprendizado por reforço, \textit{experience replay} mostrou-se útil para \textit{Deep Q-Learning} por ser uma técnica desse tipo de aprendizagem.
-Por conta da forma como \textit{Deep Q-Learning} funciona, se a rede aprendesse com os \textit{frames} conforme o agente os vê, a entrada seria composta de estados sequenciais altamente correlacionados.
-Isso significa que ela se atualizaria apenas com as experiências passadas mais recentes, esquecendo as mais antigas, sobrescrevedo os pesos obtidos no passado.
+Por conta da forma como \textit{Deep Q-Learning} funciona, se a rede aprendesse com os \textit{frames} conforme o agente os vê, a entrada seria composta por estados sequenciais altamente correlacionados.
+Isso significa que ela se atualizaria apenas com as experiências passadas mais recentes, esquecendo as mais antigas e sobrescrevedo os pesos obtidos no passado.
 Para contornar esse problema, utiliza-se um \textit{buffer} de memória que armazena uma quantidade pré-determinada de experiências passadas.
 
 Primeiro, o \textit{buffer} de memória é preenchido com $M$ tuplas $t$ de formato $(S, A, R, S', done)$ antes do treinamento, onde $S$ é o estado atual, $A$ é a ação tomada no estado $S$, $S'$ é o estado resultante por se tomar a ação $A$ no estado $S$, $R$ é a recompensa obtida pela transição do estado $S$ para o estado $S'$ como resultado da ação $A$, e $done$ é uma variável que sinaliza se o agente chegou a um estado terminal.
-Depois, no treinamento, uma tupla é armazenada no \textit{buffer} a cada passo, enquanto um conjunto de tuplas desse mesmo formato é escolhido aleatoriamente e suprido à CNN para a atualização dos pesos.
+Depois, no treinamento, uma tupla é armazenada na memória a cada passo, enquanto um conjunto de tuplas desse mesmo formato é escolhido aleatoriamente do \textit{buffer} e suprido à CNN para a atualização dos pesos.
 %Essas tuplas tem o formato $t = (S, A, R, S', done)$ onde $S$ é o estado atual, $A$ é a ação tomada no estado $S$, $S'$ é o estado resultante por se tomar a ação $A$ no estado $S$, $R$ é a recompensa obtida pela transição do estado $S$ para o estado $S'$ como resultado da ação $A$, e $done$ é uma variável que sinaliza se o agente chegou a um estado terminal.
-Dessa forma, o aprendizado ocorre sem o esquecimento de experiências passadas, pois elas também são utilizadas para atualização dos pesos.
+Dessa forma, o aprendizado ocorre sem o esquecimento de experiências passadas, pois elas são utilizadas para atualização dos pesos a todo momento.
 %\textit{Experience replay} também ajuda o agente a tomar ações diferentes ao invés de se prender a algumas que tiveram sucesso no passado próximo e que, possivelmente, não serão tão úteis no futuro.
 
 %***********%
@@ -498,7 +499,7 @@ Q_{T}(S,A) = R(S,A,S') + \gamma max_{A'}Q(S',A')
 
 Como os mesmos parâmetros da rede são utilizados para gerar sua saída e para calcular o $Q_{T}(S,A)$, quando os ajustes são feitos para reduzir o erro, os dois valores são alterados.
 Ou seja, a alteração dos pesos tenta aproximar a saída da rede de um alvo que está em movimento, o que gera uma grande oscilação no treinamento, desestabilizando-o.
-A solução proposta por \hyperlink{Mni+15}{Mnih et al.(2015)} para amenizar esse problema foi utilizar uma segunda rede neural, inicialmente com os mesmos pesos da rede principal, que é atualizada periodicamente para o cálculo de $Q_{T}(S,A)$ ao invés de a cada passo.
+A solução proposta por \hyperlink{Mni+15}{Mnih et al.(2015)} para amenizar esse problema foi utilizar uma segunda rede neural, inicialmente com os mesmos pesos da rede principal, que é atualizada periodicamente ao invés de a cada passo.
 Com um alvo que se move pouco, os ajustes dos parâmetros se tornam mais estáveis, melhorando o aprendizado.
 %Uma vez que o $Q_{T}(S,A)$ é calculado com os mesmos parâmetros que a rede utilizou para gerar sua saída, quando ela faz os ajustes para aproximar
 %Quando os parâmetros da rede são atualizados para que sua saída se aproxime do valor alvo $Q_{T}(S,A)$, por utilizar os mesmos parâmetros para ser calculado, ele também muda

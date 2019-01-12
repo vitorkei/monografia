@@ -6,8 +6,8 @@
 \backcite {cauchy1847}{{13}{2.8}{section.2.8}}
 \backcite {rmsprop}{{13}{2.8}{section.2.8}}
 \backcite {DBLP:journals/corr/KingmaB14}{{13}{2.8}{section.2.8}}
-\backcite {Lin1992}{{14}{2.9}{section.2.9}}
-\backcite {humanLevelControlDRL}{{14}{2.9}{section.2.9}}
+\backcite {Lin1992}{{13}{2.9}{section.2.9}}
+\backcite {humanLevelControlDRL}{{13}{2.9}{section.2.9}}
 \backcite {pmlr-v9-glorot10a}{{16}{3.1.1}{subsection.3.1.1}}
 \backcite {huber_loss}{{16}{3.1.1}{subsection.3.1.1}}
 \backcite {rmsprop}{{16}{3.1.1}{subsection.3.1.1}}

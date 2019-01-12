@@ -20,30 +20,31 @@ Diversas ciências mostraram-se importantes ao longo de sua história, como filo
 
 %Um tipo muito conhecido de inteligência artificial dos dias atuais é a que controla oponentes em jogos eletrônicos.
 %Porém, nesses casos, os adversários apenas seguem um conjunto pré-determinado de regras escritas pelo desenvolvedor, não possuindo a capacidade de se adaptar como seres humanos fazem.
-%Por mais que isso seja um tipo de IA e que possa ser mais eficiente em determinadas tarefas, não se assemelha à forma que as pessoas pensam e jogam.
-É interessante a forma como, em particular, seres humanos aprendem.
-Crianças pequenas e bebês principalmente aprendem interagindo com o ambiente, tocando em objetos, tentando entender aquilo que os rodeia e qual o resultado de suas ações, mesmo que inconscientemente.
+%Por mais que isso seja um tipo de IA e que possa ser mais eficiente em determinadas tarefas, não se assemelha à forma que as pessoas pensam e jogam
+%Estudos em IA nas últimas décadas mostraram que computadores não apenas conseguem automatizar certas tarefas, executando-as com maior eficiência e velocidade que seres humanos, como também são capazes de aprender.
+É interessante a forma como seres humanos aprendem, em particular crianças pequenas e bebês.
+Eles fazem isso principalmente interagindo com o ambiente, tocando em objetos, tentando entender aquilo que os rodeia e qual o resultado de suas ações, mesmo que inconscientemente.
 %Em um jogo, se não passar por um tutorial ou ler um manual, não será muito diferente: o jogador precisará descobrir o que é hostíl, o que cada comando faz e qual o objetivo.
 Avanços em inteligência artificial nas últimas décadas permitiram que máquinas simulassem esse tipo de aprendizado por meio de \textbf{aprendizado por reforço}.
 
 Entretanto, para muitos casos, somente esse tipo de técnica não é o suficiente.
 Utilizando jogos eletrônicos como exemplo, uma pessoa consegue inferir o que é inimigo e o que é terreno quando aparece na tela em poucos movimentos ou a partir de experiências passadas com jogos diferentes.
 %Utilizando jogos como exemplo, uma pessoa consegue inferir o que é inimigo e o que é terreno quando aparece na tela do jogo em poucos movimentos ou até já supor a partir de experiências passadas com jogos diferentes.
-Para um computador, um pixel que mude de posição já faz ele não conseguir mais distinguir o que está vendo, tendo que re-aprender a cada nova combinação de pixels detectada.
-Em outras palavras, seres humanos conseguem abstrair as informações que enxergam com facilidade, enquanto os computadores não.
-Se computadores não conseguem mais identificar um objeto na tela por causa de um pixel que esteja diferente, como sistemas de detecção de imagem funcionam?
+Para um computador, um pixel que mude de posição já faz ele não conseguir mais distinguir o que está vendo, tendo que reaprender a cada nova combinação de pixels detectada.
+Em outras palavras, seres humanos conseguem abstrair as informações que enxergam com facilidade, enquanto computadores não.
+Se IAs não conseguem mais identificar um objeto na tela por causa de um pixel que esteja diferente, como sistemas de detecção de imagem funcionam?
 %Essa é uma questão que avanços recentes em visão computacional, campo interdisciplinar que estuda a capacidade dos computadores de enxergarem imagens e vídeos, ajudou a resolver.
-Utilizando uma variante de rede neural profunda chamada \textbf{rede neural convolucional} (\textit{convolutional neural network} (CNN)), é possível fazer uma inteligência artificial abstrair essas informações e inferir que um objeto em diferentes lugares da tela, assumindo diferentes tamanhos, são o mesmo.
+Utilizando uma variante de rede neural profunda chamada de \textbf{rede neural convolucional} (\textit{convolutional neural network} (CNN)), é possível fazer uma máquina abstrair essas informações e inferir que um objeto em diferentes lugares da tela, assumindo diferentes tamanhos, são o mesmo.
 
 %% ---------------------------------------------------------------------------- %
 \section{Proposta e Motivação}
 \label{sec:motivacao_proposta}
 
 \textbf{\textit{Deep Q-Learning}}~\cite{DBLP:journals/corr/MnihKSGAWR13} é uma técnica de aprendizado de máquina que combina a visualização de imagens de redes neurais convolucionais com aprendizado profundo.
-Esse método permite que uma inteligência artificial aprenda a se comportar em certos ambientes, como jogos digitais, recebendo como entrada apenas a tela do jogo, assim como uma pessoa faria.
+Esse método permite que uma inteligência artificial aprenda a se comportar em certos ambientes, como jogos digitais, recebendo como entrada apenas imagens, a tela como uma pessoa veria em um monitor.
 
-A proposta deste trabalho surgiu do interesse nessa técnica e consiste em fazer um estudo de caso quando uma \textit{Deep Q-Network} (DQN) é utilizada por uma inteligência artificial em três ambientes com características e graus de dificuldade distintos: \textit{Gridworld}, \textit{Pong} do Atari 2600, e \textit{Asteroids} do Atari 2600.
-O estudo busca analisar a capacidade de um agente obter bons resultados utilizando este método, e as dificuldades enfrentadas no processo, além de aprofundar o conhecimento em aprendizado de máquina.
+A proposta deste trabalho surgiu do interesse nessa técnica e consiste em fazer um estudo de caso quando uma \textit{Deep Q-Network} (DQN) é utilizada por uma inteligência artificial em três ambientes com características e graus de complexidade distintos: \textit{Gridworld}, \textit{Pong} do Atari 2600, e \textit{Asteroids} do Atari 2600.
+O estudo busca analisar a capacidade de um agente obter bons resultados utilizando este método, e as dificuldades enfrentadas no processo, além de aprofundar o conhecimento em aprendizado de máquina, redes neurais e aprendizado profundo.
 
 %A proposta deste trabalho é fazer um estudo de caso da técnica de aprendizado de máquina \textbf{\textit{deep Q-learning}} em três ambientes digitais com características e graus de dificuldade diferentes.
 %O estudo busca estudar a capacidade do método de um agente obter bons resultados quando utiliza esse método em ambientes distintos, e as dificuldades enfrentadas no processo.
@@ -121,7 +122,7 @@ A principal diferença entre as versões do jogo é o número de pontos necessá
   \includegraphics[scale=.25]{pong_example02}
   %\caption{Exemplo de tela do jogo. A nave acaba de destruir um asteroide de menor tamanho e está recebendo uma recompensa de 100 pontos por isso. Asteroides podem ter diversas cores.}
   \end{minipage}
-  \caption{Exemplos de tela do jogo no emulador de Atari 2600, Stella~\cite{stella}. Nestas imagens, o jogador controla a barra verde, do lado direito da tela, enquanto a IA criada pelos desenvolvedores do jogo controla a barra laranja, do lado esquerdo da tela. O ponto branco entre elas é a bola, as barras brancas horizontais que vão do lado equerdo até o lado direito representam os limites superior e inferior do campo e os números no topo indicam a pontuação de cada jogador.}
+  \caption{Exemplos de tela do jogo no emulador de Atari 2600, Stella~\cite{stella}. Nestas imagens, o jogador controla a barra verde, do lado direito da tela, enquanto a IA criada pelos desenvolvedores do jogo controla a barra laranja, do lado esquerdo da tela. O ponto branco entre elas é a bola, as barras brancas horizontais que estendem desde o lado equerdo até o lado direito da tela representam os limites superior e inferior do campo, e os números no topo indicam a pontuação de cada jogador.}
 \end{figure}
 
 Os estados são definidos pela tela do jogo, que é uma matriz de 210x160 pixels, cada um sendo representado por 3 canais cujos valores variam de 0 a 255 para determinar a cor do pixel dentre 128 cores disponíveis, o que significa que muitas das combinações resultam nas mesmas cores.
@@ -141,11 +142,11 @@ lançado em novembro de 1979 pela
 Atari.
 O jogador controla uma nave espacial em um campo de asteroides e seu objetivo é destruir todos os presentes na tela enquanto desvia deles.
 Quando um asteroide é destruído, outros menores aparecem no lugar.
-O jogador possui cinco ações disponíveis: mover-se para frente, girar a nave no sentido horário, girar a nave no sentido anti-horário, mover-se no hiper-espaço, e atirar para frente.
+O jogador possui cinco ações disponíveis: mover-se para frente, girar a nave no sentido horário, girar a nave no sentido anti-horário, mover-se no hiperespaço, e atirar para frente.
 Mover-se para frente e girar são as principais formas de movimento no jogo, enquanto atirar é a de destruir asteroides e ganhar pontos.
-Mover-se no hiper-espaço consiste em fazer a nave desaparecer por alguns instantes e reaparecer em um local aleatório da tela.
+Mover-se no hiperespaço consiste em fazer a nave desaparecer por alguns instantes e reaparecer em um local aleatório da tela.
 As principais diferenças entre as iterações de \textit{Asteroids} incluem a presença de naves espaciais inimigas que atiram contra o jogador, formatos e tamanhos diferentes dos asteroides, e direção em que se movem.
-A versão de \textit{Asteroids} utilizada neste trabalho é a do Atari 2600, com 4 vidas inicialmente, sem naves espaciais inimigas e três tamanhos distintos de asteroides, com o maior gerando uma recompensa de 20 pontos ao ser destruído, o médio gerando 50, e o menor 100.
+A versão de \textit{Asteroids} utilizada neste trabalho é a do Atari 2600, com 4 vidas inicialmente, sem naves espaciais inimigas e três tamanhos distintos de asteroides, com o maior gerando uma recompensa de 20 pontos ao ser destruído, o médio gerando 50, e o menor 100, todos com movimento principalmente vertical.
 
 \begin{figure}[h!]
   \begin{minipage}[b]{.5\textwidth}
@@ -158,7 +159,7 @@ A versão de \textit{Asteroids} utilizada neste trabalho é a do Atari 2600, com
   \includegraphics[scale=1.41]{asteroids_example02}
   %\caption{Exemplo de tela do jogo. A nave acaba de destruir um asteroide de menor tamanho e está recebendo uma recompensa de 100 pontos por isso. Asteroides podem ter diversas cores.}
   \end{minipage}
-  \caption{Exemplos de tela do jogo no emulador de Atari 2600, Stella. O número no canto superior esquerdo é a pontuação e o do canto superior direito é a quantidade de vida restante que o jogador tem. A nave é o triângulo no meio da tela, o ponto azul próximo dela na imagem da esquerda é um tiro e o restante é asteroide. Na imagem da direita, os quatro pequenos pontos rosas próximos da nave são um asteroide que acaba de ser destruído.}
+  \caption{Exemplos de tela do jogo no emulador de Atari 2600, Stella. O número no canto superior esquerdo é a pontuação e o no canto superior direito é a quantidade de vidas restante que o jogador tem. A nave é o triângulo no meio da tela, o ponto azul próximo dela na imagem da esquerda é um tiro e o restante é asteroide. Na imagem da direita, os quatro pequenos pontos rosas próximos da nave são um asteroide que acaba de ser destruído.}
 \end{figure}
 
 Assim como no \textit{Pong}, os estados são compostos por uma matriz de 210x160 pixels, cada um sendo representado por 3 canais que determinam a cor, o que significa que possui a mesma quantidade de estados, com apenas uma parcela sendo utilizada.
