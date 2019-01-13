@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.14159265-2.6-1.40.19 (TeX Live 2018/Arch Linux) (preloaded format=pdflatex 2018.12.31)  12 JAN 2019 19:17
+This is pdfTeX, Version 3.14159265-2.6-1.40.19 (TeX Live 2018/Arch Linux) (preloaded format=pdflatex 2018.12.31)  13 JAN 2019 00:55
 entering extended mode
  restricted \write18 enabled.
  %&-line parsing enabled.
@@ -1567,25 +1567,29 @@ LaTeX Font Info:    Font shape `OMS/cmr/m/n' in size <10> not available
 [15
 
 ]
-LaTeX Font Info:    Try loading font information for T1+pcr on input line 79.
+LaTeX Font Info:    Try loading font information for T1+pcr on input line 81.
  (/usr/share/texmf-dist/tex/latex/psnfss/t1pcr.fd
 File: t1pcr.fd 2001/06/04 font definitions for T1/pcr.
 ) [16] [17] [18]
 
-LaTeX Warning: Hyper reference `sec:ep' on page 19 undefined on input line 220.
+LaTeX Warning: Hyper reference `sec:ep' on page 19 undefined on input line 228.
 
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 219--224
+Underfull \hbox (badness 10000) in paragraph at lines 227--233
 
  []
 
 
-Overfull \hbox (43.75658pt too wide) in paragraph at lines 226--282
+Overfull \hbox (62.91063pt too wide) in paragraph at lines 235--296
 [][] 
  []
 
-) (./chapters/resultados.tex [19] [20]
+) (./chapters/resultados.tex [19]
+Overfull \vbox (35.53009pt too high) has occurred while \output is active []
+
+
+[20]
 Cap\'{\i }tulo 4.
 <./images/pong_ai_score.png, id=440, 722.7pt x 433.62pt>
 File: ./images/pong_ai_score.png Graphic file (type png)
@@ -1700,10 +1704,10 @@ Package atveryend Info: Empty hook `AtVeryVeryEnd' on input line 86.
 ### semi simple group (level 1) entered at line 1 (\begingroup)
 ### bottom level 
 Here is how much of TeX's memory you used:
- 25100 strings out of 492639
- 418133 string characters out of 6135496
- 694957 words of memory out of 5000000
- 28517 multiletter control sequences out of 15000+600000
+ 25102 strings out of 492639
+ 418172 string characters out of 6135496
+ 697957 words of memory out of 5000000
+ 28519 multiletter control sequences out of 15000+600000
  556023 words of font info for 75 fonts, out of 8000000 for 9000
  1141 hyphenation exceptions out of 8191
  47i,12n,65p,947b,591s stack positions out of 5000i,500n,10000p,200000b,80000s
@@ -1733,7 +1737,7 @@ m1200.pfb></usr/share/texmf-dist/fonts/type1/public/cm-super/sfrm1440.pfb></usr
 st/fonts/type1/public/cm-super/sfti0900.pfb></usr/share/texmf-dist/fonts/type1/
 public/cm-super/sfti1000.pfb></usr/share/texmf-dist/fonts/type1/public/cm-super
 /sfti1200.pfb></usr/share/texmf-dist/fonts/type1/urw/courier/ucrr8a.pfb>
-Output written on texto.pdf (34 pages, 1218190 bytes).
+Output written on texto.pdf (34 pages, 1218760 bytes).
 PDF statistics:
  642 PDF objects out of 1000 (max. 8388607)
  546 compressed objects within 6 object streams
