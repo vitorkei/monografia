@@ -10,47 +10,117 @@
 \label{cap:implementacao}
 %% ---------------------------------------------------------------------------- %
 
+\section{Ambientes}
+\label{sec:envs}
+
 %[1]https://papers.nips.cc/paper/3964-double-q-learning
 %[2]https://arxiv.org/pdf/1511.06581.pdf
 
-%É conveniente formalizar o \hyperref[sec:mdp]{MDP} que modela o problema antes de apresentar as arquiteturas utilizadas.
-Antes de apresentar as arquiteturas das redes utilizadas e como os treinamentos foram feitos, serão formalizados os \hyperref[sec:mdp]{MDPs} que modelam cada ambiente.
+Antes de apresentar as arquiteturas das redes utilizadas e como os treinamentos foram feitos, serão formalizados os ambientes e os \hyperref[sec:mdp]{MDPs} que os modelam.
 
-\begin{itemize}
-\item \textbf{Gridworld}:
+\subsection{\textit{Gridworld}}
+\label{sec:env_gw}
+
 Os estados $S$ são o mapa em que o agente está inserido com o agente em uma das posições possíveis.
 Portanto, o número de estados existentes é igual ao número de espaços válidos.
-As ações possíveis $A$ são mover-se para o espaço acima, abaixo, a direita ou a esquerda.
-As recompensas $R(S,A)$ são definidas pelo desenvolvedor do ambiente.
-No caso deste trabalho, chegar ao objetivo (estado terminal de recompensa positiva) gera uma recompensa de 1000 pontos, chegar a uma armadilha (estado terminal de recompensa negativa) gera uma recompensa de -200 pontos, e estados não-terminais geram recompensas de -1 ponto.
+As ações possíveis $A$ são mover-se para o espaço acima, abaixo, a direita ou a esquerda contanto que seja válido.
+É possível o agente decidir mover-se para um espaço inválido, mas isso faz apenas com que ele não saia do lugar.
+Os valores das recompensas $R(S,A)$ são definidas pelo desenvolvedor do ambiente.
+O objetivo é um estado terminal de recompensa positiva, a armadilha é um estado terminal de recompensa negativa, e estados não-terminais podem gerar recompensas não-nulas se o desenvolvedor quiser.
 As probabilidades de transição $P(S,A,S')$ são as probabilidades de o agente estar em um determinado espaço do mapa (estado $S$) e, a partir do movimento para algum dos espaços adjacentes (ação $A$), chegar a algum outro espaço do mapa (estado futuro $S'$).
 Não existe aleatoriedade no movimento do agente, pois ele sempre se desloca para a direção que escolheu, não sendo possível, por exemplo, mover-se para a direita quando a ação de mover-se para cima for escolhida.
 
-\item \textbf{Pong}:
-Os estados $S$ são a tela do jogo, uma matriz de 210x160x3 pixels.
-A parte "x3"{} representa o número de canais que conferem cor ao pixel.
+Os experimentos foram feitos no \textit{Frozen Lake} do Gym, pois ele funciona da mesma forma que o \textit{Gridworld} conforme descrito acima, com a exceção de os movimentos não serem determinísticos, ou seja, é possível o agente escolher mover-se para um lado mas deslocar-se para outro.
+Para que ele funcionasse como o desejado, essa aleatoriedade foi removida.
+No caso deste trabalho, o mapa é de tamanho 10x10 com 8 armadilhas, 1 objetivo e nenhum espaço inválido, ou seja, há 100 espaços possíveis.
+O objetivo gera recompensa de valor 1000, as armadilhas de valor -200, e estados não terminais de -1.
+O mapa em que os experimentos foram feitos está representado pela imagem \ref{fig:env_grid}.
+
+\begin{figure}[h!]
+  \centering
+  \includegraphics[scale=.2]{env_gridworld}
+  \caption{Mapa utilizado para os experimentos. A estrela azul indica a posição inicial do agente, o verde com +1000 representa o objetivo, e os vermelhos com -200 as armadilhas. Não há espaços inválidos.}
+  \label{fig:env_grid}
+\end{figure}
+
+\textit{Gridworld} é o ambiente mais simples estudado neste trabalho, pois possui poucas regras, estados possíveis, e ações válidas em cada um deles.
+
+\subsection{\textit{Pong}}
+\label{sec:env_pong}
+
+Os estados $S$ são a tela do jogo, representada por matrizes de pixels de três dimensões: altura, largura, e canais de cor.
 As ações possíveis $A$ são mover a barra que o jogador controla para cima ou para baixo.
-As recompensas $R(S,A)$ são de +1 ponto se fizer a bola chegar ao fim da tela do lado do oponente e de -1 ponto se a bola chegar ao fim da tela do lado do jogador.
+As recompensas $R(S,A)$ são recebidas quando a bola chega ao fim da tela do lado esquerdo ou direito, gerando uma positiva se chegar do lado do adversário, e negativa se chegar do lado do jogador.
+%As recompensas $R(S,A)$ são de +1 ponto se fizer a bola chegar ao fim da tela do lado do oponente e de -1 ponto se a bola chegar ao fim da tela do lado do jogador.
 As probabilidades de transição $P(S,A,S')$ são as probabilidades de o jogo estar em um estado $S$, por exemplo com a bola sendo rebatida pelo jogador, e transitar para algum outro estado futuro $S'$, como marcar um ponto, após tomar uma ação $A$, como mover a barra para cima.
 \textit{Pong} é um jogo determinístico no sentido que não existe aleatoriedade na consequência das ações do jogador: se a bola colidir com a barra sempre no mesmo lugar, ela sempre será retornada na mesma direção com a mesma velocidade; marcar ponto sempre aumenta a pontuação do jogador em um.
 Por outro lado, existe um oponente contra o qual se está jogando e cujo comportamento configura um elemento de aleatoriedade no ambiente.
 Além disso, o jogador não conseguir rebater a bola como gostaria por falta de precisão também se aproxima de um elemento desse tipo.
 
-\item \textbf{Asteroids}:
-Os estados $S$ são os \textit{frames} do jogo que tem 210x160x3 pixels, cada um com três canais que determinam sua cor e intensidade, assim como no \textit{Pong}.
+Neste trabalho, o \textit{Pong} foi emulado pelo Gym, que utiliza o emulador de Atari 2600, Stella.
+Nessa versão, os estados são compostos por 210x160 pixels, com cada um podendo assumir 128 cores diferentes por combinações dos valores dos 3 canais de cor.
+Isso equivale a 33600 pixels e, portanto, $128^{33600}$ estados, com apenas uma parcela sendo realmente possível.
+A recompensa por marcar ponto é de +1 e a de o oponente marcar ponto é de -1.
+Como o jogo termina quando um dos lados alcança 21 pontos, a pontuação final varia de -21 até +21 inclusos.
+
+\begin{figure}[h!]
+  \begin{minipage}[b]{.5\textwidth}
+  \centering
+  \includegraphics[scale=.25]{pong_example01}
+  %\caption{Exemplo de tela do jogo. O números no topo da tela são pontuação e quantidade de vidas respectivamente. A nave, no centro, está atirando. Asteroides espalhados pela tela.}
+  \end{minipage}
+  \hfill
+  \begin{minipage}[b]{.5\textwidth}
+  \includegraphics[scale=.25]{pong_example02}
+  %\caption{Exemplo de tela do jogo. A nave acaba de destruir um asteroide de menor tamanho e está recebendo uma recompensa de 100 pontos por isso. Asteroides podem ter diversas cores.}
+  \end{minipage}
+  \caption{Exemplos de tela do jogo no emulador de Atari 2600, Stella. Nestas imagens, o jogador controla a barra verde, do lado direito da tela, enquanto a IA criada pelos desenvolvedores do jogo controla a barra laranja, do lado esquerdo da tela. O ponto branco entre elas é a bola, as barras brancas horizontais que estendem desde o lado equerdo até o lado direito da tela representam os limites superior e inferior do campo, e os números no topo indicam a pontuação de cada jogador.}
+\end{figure}
+
+\textit{Pong} é o ambiente de complexidade intermediária estudada neste trabalho, pois possui poucas regras, grande espaço de estados, e poucas ações possíveis em cada um deles.
+
+\subsection{\textit{Asteroids}}
+\label{sec:env_asteroids}
+
+Os estados $S$ são a tela do jogo, representada por matrizes de pixels de três dimensões: altura, largura, e canais de cor.
 As ações possíveis $A$ são mover-se para frente, girar no sentido horário, girar no sentido anti-horário, mover-se no hiper-espaço (se teletransportar para algum lugar aleatório da tela), e atirar para frente.
-As recompensas $R(S,A)$ são de 20 pontos por destruir um asteróide grande, 50 pontos por destruir um médio e 100 pontos por destruir um pequeno, podendo ser obtidas tanto atirando neles quanto colidindo, não havendo recompensa negativa (penalidade) por perda de vidas.
+As recompensas $R(S,A)$ são recebidas por destruir os asteróides, com o maior valendo menos pontos e o menor valendo mais pontos, podendo ser obtidas tanto atirando neles quanto colidindo, não havendo recompensa negativa pela perda de vida.
+%As recompensas $R(S,A)$ são de 20 pontos por destruir um asteróide grande, 50 pontos por destruir um médio e 100 pontos por destruir um pequeno, podendo ser obtidas tanto atirando neles quanto colidindo, não havendo recompensa negativa (penalidade) por perda de vidas.
 As probabilidades de transição $P(S,A,S')$ são as probabilidades de o jogo estar em um estado $S$, por exemplo o inicial em que o jogador tem zero pontos e todas as vidas, e transitar para algum outro estado futuro $S'$, como destruir algum asteroide e receber pontos por isso, após tomar uma ação $A$, como atirar para frente.
 Assim como em \textit{Pong}, \textit{Asteroids} é um jogo determinístico no sentido que não existe aleatoriedade na consequência das ações do jogador: se ele fizer um disparo, o tiro seguirá reto durante um certo tempo até desaparecer ou atingir um asteroide; cada tamanho de asteroide sempre aumenta a pontuação do jogador pela mesma quantidade quando destruído.
 Os fatores mais próximos de aleatoriedade existentes no jogo são o jogador ignorar, desconhecer, abstrair e/ou não perceber partes do jogo, como a posição dos asteróides.
-\end{itemize}
+
+Neste trabalho, o \textit{Asteroids} foi emulado pelo Gym-Retro, que utiliza o emulador de Atari 2600, Stella.
+Como esta versão também é a do Atari 2600, o número de estados possíveis é uma parcela de $128^{33600}$ assim como no \textit{Pong}.
+A recompensa por destruir um asteróide grande é de 20 pontos, de um médio é de 50 pontos, e de um pequeno é de 100 pontos.
+O jogador começa com 4 vidas e recebe uma nova a cada 5000 pontos obtidos.
+O único estado terminal nativo do jogo ocorre quando todas as vidas são perdidas.
+
+\begin{figure}[h!]
+  \begin{minipage}[b]{.5\textwidth}
+  \centering
+  \includegraphics[scale=1.41]{asteroids_example01}
+  %\caption{Exemplo de tela do jogo. O números no topo da tela são pontuação e quantidade de vidas respectivamente. A nave, no centro, está atirando. Asteroides espalhados pela tela.}
+  \end{minipage}
+  \hfill
+  \begin{minipage}[b]{.5\textwidth}
+  \includegraphics[scale=1.41]{asteroids_example02}
+  %\caption{Exemplo de tela do jogo. A nave acaba de destruir um asteroide de menor tamanho e está recebendo uma recompensa de 100 pontos por isso. Asteroides podem ter diversas cores.}
+  \end{minipage}
+  \caption{Exemplos de tela do jogo no emulador de Atari 2600, Stella. O número no canto superior esquerdo é a pontuação e o no canto superior direito é a quantidade de vidas restante que o jogador tem. A nave é o triângulo no meio da tela, o ponto azul próximo dela na imagem da esquerda é um tiro e o restante é asteroide. Na imagem da direita, os quatro pequenos pontos rosas próximos da nave são um asteroide que acaba de ser destruído.}
+\end{figure}
+
+\textit{Asteroids} é o mais complexo dos ambientes estudados neste trabalho, pois possui mais regras que são mais complexas, o maior espaço de estados dentre os três ambientes, e mais ações possíveis. 
+
+%% ---------------------------------------------------------------------------- %
 
 %Agora, será descrito como foi feita a implementação da inteligência artificial.
 
 \section{Arquiteturas das redes}
 \label{sec:arq}
 
-Com o MDP de cada ambiente formalizado, serão descritas as arquiteturas utilizadas nos três ambientes abordados neste trabalho e, em seguida, os respectivos treinamentos feitos.
+Com os ambientes e MDPs formalizado, nesta seção serão descritas as arquiteturas utilizadas nos três ambientes abordados neste trabalho e, em seguida, os respectivos treinamentos feitos.
+Todo o código foi escrito em Python3, com as redes neurais sendo construídas utilizando o arcabouço TensorFlow.
 
 \subsection{\textit{Gridworld}}
 \label{sec:arq_gw}
@@ -224,8 +294,8 @@ Não existe um ambiente de \textit{Asteroids} com esse comportamento no Gym-Retr
 \subsection{Pseudocódigo}
 \label{sec:pseudocodigo}
 
-Apesar de cada ambiente ter suas particularidades nos treinamentos, como número de episódio e tamanho dos \textit{mini-batches}, todos os treinamentos seguiram o mesmo formato.
-Seja \textit{DQN} o nome da classe que possui a rede neural DQN e as operações de cálculo de erro e de otimização de pesos, \textit{TN} o nome da rede alvo (\textit{Target Network}) para a técnica \hyperref[sec:ft]{alvo fixo}, $N$ o número de tuplas ($S$,$A$,$R$,$S'$,$done$) inseridas no \hyperref[sec:ep]{\textit{buffer} de memória} antes do treinamento começar, $M$ o número de episódios de treinamento, e $\tau$ o número de passos entre atualizações dos pesos da \textit{TN}.
+Apesar de cada ambiente ter suas particularidades nos treinamentos, como número de episódio e tamanho dos \textit{mini-batches}, todos foram treinados seguindo o mesmo formato.
+%Seja \textit{DQN} o nome da classe que possui a rede neural DQN e as operações de cálculo de erro e de otimização de pesos, \textit{TN} o nome da rede alvo (\textit{Target Network}) para a técnica \hyperref[sec:ft]{alvo fixo}, $N$ o número de tuplas ($S$,$A$,$R$,$S'$,$done$) inseridas no \hyperref[sec:ep]{\textit{buffer} de memória} antes do treinamento começar, $M$ o número de episódios de treinamento, e $\tau$ o número de passos entre atualizações dos pesos da \textit{TN}.
 As linhas marcadas com um asterisco não são executadas no \textit{Gridworld}, uma vez que as entradas para a rede neste ambiente não necessitam de pré-processamento.
 As linhas marcadas com dois asteriscos, são executadas apenas pelo \textit{Asteroids}, que compõe a técnica de pular \textit{frames} descrita anteriormente.
 O pseudocódigo do treinamento encontra-se a seguir.
@@ -240,48 +310,58 @@ O pseudocódigo do treinamento encontra-se a seguir.
 
  & inicializa \textit{DQN} e \textit{TN} com pesos inicializados pelo inicializador de He;\\
  & inicializa o \textit{buffer} de memória \textit{B};\\
- & inicia o ambiente e recebe estado inicial $X_{0}$;\\
-* & cria $X^{p}_{0}$ = $X_{0}$ pré-processado;\\
-* & cria fila $S_{0}$ = $\{X^{p}_{0}, X^{p}_{0}, X^{p}_{0}, X^{p}_{0}\}$;\\
+ & inicia o ambiente e recebe estado inicial $S_{0}$;\\
+% & inicia o ambiente e recebe estado inicial $X_{0}$;\\
+%* & cria $X^{p}_{0}$ = $X_{0}$ pré-processado;\\
+%* & cria fila $S_{0}$ = $\{X^{p}_{0}, X^{p}_{0}, X^{p}_{0}, X^{p}_{0}\}$;\\
+\\
  & \textbf{para} \textit{n} = 0 até $N$ \textbf{faça}\\
 %\qquad cria $f_{n}$ como pré-processamento de $S_{0}$\\
  & \qquad executa uma ação aleatória $A_{n}$;\\
- & \qquad recebe a recompensa $R_{n}$, estado seguinte $X_{n+1}$ e variável $done$;\\
+ & \qquad recebe a recompensa $R_{n}$, estado seguinte $S_{n+1}$ e variável $done$;\\
+ & \qquad adiciona tupla ($S_{n}$, $A_{n}$, $R_{n}$, $S_{n+1}$, $done$) a \textit{B};\\
+% & \qquad recebe a recompensa $R_{n}$, estado seguinte $X_{n+1}$ e variável $done$;\\
  & \qquad \textbf{se} for estado terminal \textbf{então}\\
- & \qquad \qquad $S_{n+1} \leftarrow$ vetor do formato de $S_{n}$ preenchido com zeros;\\
- & \qquad \qquad adiciona tupla ($S_{n}$, $A_{n}$, $R_{n}$, $S_{n+1}$, $done$) a \textit{B};\\
- & \qquad \qquad reinicia o ambiente e recebe estado inicial em $X_{n+1}$;\\
-$*$ & \qquad \qquad cria $X^{p}_{n+1}$ = $X_{n+1}$ pré-processado;\\
-$*$ & \qquad \qquad cria fila $S_{n+1}$ = $\{X^{p}_{n+1}, X^{p}_{n+1}, X^{p}_{n+1}, X^{p}_{n+1}\}$;\\
+% & \qquad \qquad $S_{n+1} \leftarrow$ vetor do formato de $S_{n}$ preenchido com zeros;\\
+% & \qquad \qquad adiciona tupla ($S_{n}$, $A_{n}$, $R_{n}$, $S_{n+1}$, $done$) a \textit{B};\\
+ & \qquad \qquad reinicia o ambiente e recebe estado inicial em $S_{n+1}$;\\
+%$*$ & \qquad \qquad cria $X^{p}_{n+1}$ = $X_{n+1}$ pré-processado;\\
+%$*$ & \qquad \qquad cria fila $S_{n+1}$ = $\{X^{p}_{n+1}, X^{p}_{n+1}, X^{p}_{n+1}, X^{p}_{n+1}\}$;\\
  & \qquad \textbf{senão}\\
-$*$ & \qquad \qquad cria $X^{p}_{n+1}$ = $X_{n+1}$ pré-processado;\\
-$*$ & \qquad \qquad atualiza $S_{n}$, removendo o elemento do começo da fila e inserindo $X^{p}_{n+1}$ no final, como $S_{n+1}$;\\
- & \qquad \qquad adiciona tupla ($S_{n}$, $A_{n}$, $R_{n}$, $S_{n+1}$, $done$) a \textit{B};\\
+%$*$ & \qquad \qquad cria $X^{p}_{n+1}$ = $X_{n+1}$ pré-processado;\\
+%$*$ & \qquad \qquad atualiza $S_{n}$, removendo o elemento do começo da fila e inserindo $X^{p}_{n+1}$ no final, como $S_{n+1}$;\\
+% & \qquad \qquad adiciona tupla ($S_{n}$, $A_{n}$, $R_{n}$, $S_{n+1}$, $done$) a \textit{B};\\
  & \qquad \qquad $S_{n} \leftarrow S_{n+1};$ \\
+\\
 
  & \textbf{para} m = 0 até $M$ \textbf{faça}\\
- & \qquad reinicia o ambiente e recebe estado inicial $X_{0}$\\
-$*$ & \qquad cria $X^{p}_{0}$ = $X_{0}$ pré-processado;\\
-$*$ & \qquad cria fila $S_{0}$ = $\{X^{p}_{0}, X^{p}_{0}, X^{p}_{0}, X^{p}_{0}\}$;\\
- & \qquad passo $\leftarrow 0$;\\
+ & \qquad reinicia o ambiente e recebe estado inicial $S_{0}$\\
+% & \qquad reinicia o ambiente e recebe estado inicial $X_{0}$\\
+%$*$ & \qquad cria $X^{p}_{0}$ = $X_{0}$ pré-processado;\\
+%$*$ & \qquad cria fila $S_{0}$ = $\{X^{p}_{0}, X^{p}_{0}, X^{p}_{0}, X^{p}_{0}\}$;\\
+% & \qquad passo $\leftarrow 0$;\\
  & \qquad \textbf{enquanto} número máximo de passos não for excedido \textbf{faça}\\
- & \qquad \qquad escolhe uma ação $A_{m}$ aleatoriamente com probabilidade $\epsilon$;\\
-$**$ & \qquad \qquad \textbf{se} passo \% 3 $\neq$ 1 \textbf{então}\\
-$**$ & \qquad \qquad \qquad repete última ação tomada e passa para a próxima iteração do "\textbf{enquanto}"\\
- & \qquad \qquad caso contrário, seleciona a melhor ação $A_{m}$ segundo a rede neural;\\
- & \qquad \qquad executa ação $A_{m}$;\\
- & \qquad \qquad recebe a recompensa $R_{m}$, estado seguinte $X_{m+1}$ e variável $done$;\\
+% & \qquad \qquad passo $\leftarrow$ passo + 1 ; \\
+%$**$ & \qquad \qquad \textbf{se} passo \% 3 $\neq$ 1 \textbf{então}\\
+%$**$ & \qquad \qquad \qquad repete última ação tomada e passa para a próxima iteração do "\textbf{enquanto}";\\
+ & \qquad \qquad executa uma ação $A_{passo}$ aleatoriamente com probabilidade $\epsilon$;\\
+ & \qquad \qquad caso contrário, executa a melhor ação $A_{passo}$ segundo a rede neural;\\
+% & \qquad \qquad executa ação $A_{m}$;\\
+ & \qquad \qquad recebe a recompensa $R_{passo}$, estado seguinte $S_{passo+1}$ e variável $done$;\\
+% & \qquad \qquad recebe a recompensa $R_{m}$, estado seguinte $X_{m+1}$ e variável $done$;\\
+ & \qquad \qquad adiciona tupla ($S_{passo}$, $A_{passo}$, $R_{passo}$, $S_{passo+1}$, $done$) a \textit{B};\\
  & \qquad \qquad \textbf{se} for estado terminal \textbf{então}\\
- & \qquad \qquad \qquad $S_{m+1} \leftarrow$ vetor do formato de $S_{m}$ preenchido com zeros;\\
- & \qquad \qquad \qquad adiciona tupla ($S_{m}$, $A_{m}$, $R_{m}$, $S_{m+1}$, $done$) a \textit{B};\\
- & \qquad \qquad \qquad reinicia o ambiente e recebe estado inicial em $X_{m+1}$;\\
-$*$ & \qquad \qquad \qquad cria $X^{p}_{m+1}$ = $X_{m+1}$ pré-processado;\\
-$*$ & \qquad \qquad \qquad cria fila $S_{m+1}$ = $\{X^{p}_{m+1}, X^{p}_{m+1}, X^{p}_{m+1}, X^{p}_{m+1}\}$;\\
+% & \qquad \qquad \qquad $S_{m+1} \leftarrow$ vetor do formato de $S_{m}$ preenchido com zeros;\\
+% & \qquad \qquad \qquad adiciona tupla ($S_{m}$, $A_{m}$, $R_{m}$, $S_{m+1}$, $done$) a \textit{B};\\
+ & \qquad \qquad \qquad reinicia o ambiente e recebe estado inicial em $S_{passo+1}$;\\
+% & \qquad \qquad \qquad reinicia o ambiente e recebe estado inicial em $X_{m+1}$;\\
+%$*$ & \qquad \qquad \qquad cria $X^{p}_{m+1}$ = $X_{m+1}$ pré-processado;\\
+%$*$ & \qquad \qquad \qquad cria fila $S_{m+1}$ = $\{X^{p}_{m+1}, X^{p}_{m+1}, X^{p}_{m+1}, X^{p}_{m+1}\}$;\\
  & \qquad \qquad \textbf{senão}\\
-$*$ & \qquad \qquad \qquad cria $X^{p}_{m+1}$ = $X_{m+1}$ pré-processado;\\
-$*$ & \qquad \qquad \qquad atualiza $S_{m}$, removendo o elemento do começo da fila e inserindo $X^{p}_{m+1}$ no final, como $S_{m+1}$;\\
- & \qquad \qquad \qquad adiciona tupla ($S_{m}$, $A_{m}$, $R_{m}$, $S_{m+1}$, $done$) a \textit{B};\\
- & \qquad \qquad \qquad $S_{m} \leftarrow S_{m+1};$ \\
+%$*$ & \qquad \qquad \qquad cria $X^{p}_{m+1}$ = $X_{m+1}$ pré-processado;\\
+%$*$ & \qquad \qquad \qquad atualiza $S_{m}$, removendo o elemento do começo da fila e inserindo $X^{p}_{m+1}$ no final, como $S_{m+1}$;\\
+% & \qquad \qquad \qquad adiciona tupla ($S_{m}$, $A_{m}$, $R_{m}$, $S_{m+1}$, $done$) a \textit{B};\\
+ & \qquad \qquad \qquad $S_{passo} \leftarrow S_{passo+1};$ \\
 
  & \qquad \qquad seleciona um \textit{mini-batch} do \textit{buffer} de memória;\\
  & \qquad \qquad calcula o \hyperref[eq:q_target]{valor alvo $Q_{T}$};\\

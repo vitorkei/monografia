@@ -16,11 +16,12 @@ Por conta da natureza de cada ambiente e de seus resultados, formas diferentes d
 \section{\textit{Gridworld}}
 \label{sec:res_gridworld}
 
-O agente se saiu bem no \textbf{\textit{Gridworld}}, consistentemente encontrando um caminho para o objetivo com diferentes arquiteturas que não fossem drasticamente diferentes.
+O agente se saiu bem no \textbf{\textit{Gridworld}} conforme as expectativas, consistentemente encontrando um caminho para o objetivo com diferentes arquiteturas que não fossem drasticamente diferentes, mesmo que elas não tenham sido ótimas.
 A tabela abaixo apresenta a proporção média de vezes que o agente treinado por \textit{Deep Q-Learning} e que um aleatório chegaram ao objetivo.
 Para o agente treinado, o número foi obtido após ele passar por cinco treinamentos de 2000 episódios cada no mapa de tamanho 10x10 apresentado anteriormente.
 O modelo final conseguiu fazer o agente chegar ao objetivo quatro vezes e exceder o número máximo de ações uma vez, pois chegou a uma célula da qual não conseguiu sair já que as melhores ações tomadas eram ir em direção às paredes adjacentes.
 Para o agente aleatório, o número foi obtido após 10000 tentativas de se chegar ao objetivo, equivalente ao número de episódios que o agente treinado teve para chegar ao objetivo.
+\\
 
 %Os gráficos não se mostraram informativos por conta da alta probabilidade, de 40\%, de se tomar uma ação aleatória a cada passo, então os resultados serão apresentados por uma tabela.
 %A comparação foi feita apenas entre um agente aleatório e o treinado por \textit{deep Q-learning}, uma vez que um agente humano conseguiria chegar no objetivo facilmente por ter visão completa do mapa.
@@ -41,6 +42,12 @@ DQL & 66.15\% \\
 \label{table:gridworld_score}
 \end{center}
 %\end{table}
+\\
+
+Alguns experimentos diferentes, mas menos aprofundados, com menos treinamentos indicaram que número e posicionamento de armadilhas, e tamanho da \textit{grid} têm considerável influência no modelo construído.
+Por um lado, o agente encontrou caminhos até o objetivo com mais velocidade e consistência, uma vez que há menos estados a serem explorados e calculados.
+Por outro, a quantidade de armadilhas e locais em que são colocadas tiveram maior impacto no aprendizado; quando há muitas armadilhas ou ficam muito próximas do objetivo, tornou-se mais comum o agente não conseguir alcançá-lo, pois ele tenta evitar as recompensas negativas a ponto de ficar preso em \textit{loops} entre alguns estados ou tentar mover-se contra uma parede.
+Esses problemas poderiam ser resolvidos com a escolha de hiper-parâmetros melhores.
 
 \section{\textit{Pong}}
 \label{sec:res_pong}
