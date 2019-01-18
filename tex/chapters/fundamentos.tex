@@ -491,16 +491,25 @@ Dessa forma, o aprendizado ocorre sem o esquecimento de experiências passadas, 
 \label{sec:ft}
 %https://arxiv.org/pdf/1509.02971.pdf
 
-Para fazer o cálculo do erro da ação tomada, compara-se a saída da rede com um valor alvo dado por
+Seja $max_{A'}Q(S',A')$ o maior Q-valor do estado S', o cálculo do erro da ação tomada é feito comparando o Q-valor de saída da rede neural $Q$ com o Q-valor alvo $Q_{T}$, que é dado pela recompensa de se tomar a ação $A$ no estado $S$ e transitar para o estado $S'$ somada ao maior Q-valor de $S'$ multiplicado por uma taxa de desconto $\gamma$.
 
 \begin{equation} \label{eq:q_target}
 Q_{T}(S,A) = R(S,A,S') + \gamma max_{A'}Q(S',A')
 \end{equation}
 
-Como os mesmos parâmetros da rede são utilizados para gerar sua saída e para calcular o $Q_{T}(S,A)$, quando os ajustes são feitos para reduzir o erro, os dois valores são alterados.
-Ou seja, a alteração dos pesos tenta aproximar a saída da rede de um alvo que está em movimento, o que gera uma grande oscilação no treinamento, desestabilizando-o.
-A solução proposta por \hyperlink{Mni+15}{Mnih et al.(2015)} para amenizar esse problema foi utilizar uma segunda rede neural, inicialmente com os mesmos pesos da rede principal, que é atualizada periodicamente ao invés de a cada passo.
-Com um alvo que se move pouco, os ajustes dos parâmetros se tornam mais estáveis, melhorando o aprendizado.
+%Quando os pesos da rede são otimizados, os Q-valores obtidos por ela aumentam.
+%Entretanto, como o $Q_{T}$ também é um Q-valor, a alteração dos parâmetros faz ele aumentar também.
+%Consequentemente, se a mesma rede neural for utilizada para calcular o seu Q-valor de saída e o $Q_{T}$ para o cálculo de erro, a comparação será feita entre dois valores que est
+
+Como os mesmos parâmetros da rede são utilizados para calcular o Q-valor de saída e o Q-valor alvo, tanto o $Q$ quanto o $Q_{T}$ mudam.
+Ou seja, a modificação dos pesos tenta aproximar a saída da rede de um alvo que está movimento, causanda uma grande oscilação no treinamento, desestabilizando-o.
+A solução proposta por \hyperlink{Mni+15}{Mnih et al.(2015)} para amenizar esse problema foi utilizar uma segunda rede neural, inicialmente com os mesmos pesos da rede principal, que é atualizada periodicamente, copiando os parâmetros da principal, ao invés de a cada passo.
+
+Sejam $\theta$ e $\theta_{T}$ os parâmetros da rede principal e da rede alvo respectivamente.
+No início, elas são inicializadas de forma que $\theta = \theta_{T}$.
+A cada passo, apenas $\theta$ é atualizado, enquanto $\theta_{T}$ é atualizado a cada $N$ passos, copiando $\theta$ em $\theta_{T}$.
+
+Com um alvo que se move pouco, a otimização se torna mais estável, melhorando o aprendizado.
 %Uma vez que o $Q_{T}(S,A)$ é calculado com os mesmos parâmetros que a rede utilizou para gerar sua saída, quando ela faz os ajustes para aproximar
 %Quando os parâmetros da rede são atualizados para que sua saída se aproxime do valor alvo $Q_{T}(S,A)$, por utilizar os mesmos parâmetros para ser calculado, ele também muda
 
