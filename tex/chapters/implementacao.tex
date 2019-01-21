@@ -57,7 +57,7 @@ As probabilidades de transição $P(S,A,S')$ são as probabilidades de o jogo es
 Por outro lado, existe um oponente contra o qual se está jogando e cujo comportamento configura um elemento de aleatoriedade no ambiente.
 Além disso, o jogador não conseguir rebater a bola como gostaria por falta de precisão também se aproxima de um elemento desse tipo.
 
-Neste trabalho, o \textit{Pong} foi emulado pelo Gym, que utiliza o emulador de Atari 2600, Stella.
+Neste trabalho, o \textit{Pong} foi emulado pelo Gym, que utiliza o emulador de Atari 2600, Stella \footnote{\url{https://stella-emu.github.io/}}.
 Nessa versão, os estados são compostos por 210x160 pixels, com cada um podendo assumir 128 cores diferentes por combinações dos valores dos 3 canais de cor.
 Isso equivale a 33600 pixels e, portanto, $128^{33600}$ estados, com apenas uma parcela sendo realmente possível.
 A recompensa por marcar ponto é de +1 e a de o oponente marcar ponto é de -1.

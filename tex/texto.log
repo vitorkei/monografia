@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.14159265-2.6-1.40.19 (TeX Live 2018/Arch Linux) (preloaded format=pdflatex 2018.12.31)  18 JAN 2019 00:00
+This is pdfTeX, Version 3.14159265-2.6-1.40.19 (TeX Live 2018/Arch Linux) (preloaded format=pdflatex 2018.12.31)  20 JAN 2019 23:23
 entering extended mode
  restricted \write18 enabled.
  %&-line parsing enabled.
@@ -1442,33 +1442,33 @@ l.42 ... e graus de complexidade distintos: \texit
                                                   {Gridworld}, \textit{Pong}...
 
 ? 
-) (./chapters/fundamentos.tex [1
+[1
 
-] [2
-
-]
+]) (./chapters/fundamentos.tex [2]
 Cap\'{\i }tulo 2.
-[3] [4]
-<./images/nn.png, id=248, 1445.4pt x 554.07pt>
+[3
+
+] [4]
+<./images/nn.png, id=260, 1445.4pt x 554.07pt>
 File: ./images/nn.png Graphic file (type png)
 <use ./images/nn.png>
 Package pdftex.def Info: ./images/nn.png  used on input line 146.
 (pdftex.def)             Requested size: 433.62335pt x 166.22227pt.
  [5 <./images/nn.png>]
-<./images/conv2d.png, id=264, 1571.8725pt x 766.865pt>
+<./images/conv2d.png, id=276, 1571.8725pt x 766.865pt>
 File: ./images/conv2d.png Graphic file (type png)
 <use ./images/conv2d.png>
 Package pdftex.def Info: ./images/conv2d.png  used on input line 176.
 (pdftex.def)             Requested size: 432.25429pt x 210.88268pt.
  [6 <./images/conv2d.png>]
-<./images/reinforcement_learning.png, id=274, 856.70062pt x 298.11375pt>
+<./images/reinforcement_learning.png, id=286, 856.70062pt x 298.11375pt>
 File: ./images/reinforcement_learning.png Graphic file (type png)
 <use ./images/reinforcement_learning.png>
 Package pdftex.def Info: ./images/reinforcement_learning.png  used on input lin
 e 230.
 (pdftex.def)             Requested size: 385.51172pt x 134.14995pt.
  [7 <./images/reinforcement_learning.png>]
-<./images/pong_unknown_best_action.png, id=290, 876.27374pt x 638.385pt>
+<./images/pong_unknown_best_action.png, id=302, 876.27374pt x 638.385pt>
 File: ./images/pong_unknown_best_action.png Graphic file (type png)
 <use ./images/pong_unknown_best_action.png>
 Package pdftex.def Info: ./images/pong_unknown_best_action.png  used on input l
@@ -1498,13 +1498,13 @@ l.329 \end{align*}
                   
 ? 
 [9] [10]
-<./images/gradientDescentHighLR.png, id=325, 761.84625pt x 558.085pt>
+<./images/gradientDescentHighLR.png, id=338, 761.84625pt x 558.085pt>
 File: ./images/gradientDescentHighLR.png Graphic file (type png)
 <use ./images/gradientDescentHighLR.png>
 Package pdftex.def Info: ./images/gradientDescentHighLR.png  used on input line
  445.
 (pdftex.def)             Requested size: 114.272pt x 83.70914pt.
-<./images/gradientDescentLowLR.png, id=326, 759.83875pt x 559.08875pt>
+<./images/gradientDescentLowLR.png, id=339, 759.83875pt x 559.08875pt>
 File: ./images/gradientDescentLowLR.png Graphic file (type png)
 <use ./images/gradientDescentLowLR.png>
 Package pdftex.def Info: ./images/gradientDescentLowLR.png  used on input line 
@@ -1523,7 +1523,7 @@ LABELS NOT IMPORTED.
 
 [12 <./images/gradientDescentHighLR.png> <./images/gradientDescentLowLR.png>]
 Cap\'{\i }tulo 3.
-<./images/env_gridworld.png, id=360, 1062.21844pt x 1062.21844pt>
+<./images/env_gridworld.png, id=372, 1062.21844pt x 1062.21844pt>
 File: ./images/env_gridworld.png Graphic file (type png)
 <use ./images/env_gridworld.png>
 Package pdftex.def Info: ./images/env_gridworld.png  used on input line 41.
@@ -1534,12 +1534,12 @@ LaTeX Warning: `!h' float specifier changed to `!ht'.
 [13
 
 ]
-<./images/pong_example01.png, id=366, 876.27374pt x 638.385pt>
+<./images/pong_example01.png, id=380, 876.27374pt x 638.385pt>
 File: ./images/pong_example01.png Graphic file (type png)
 <use ./images/pong_example01.png>
 Package pdftex.def Info: ./images/pong_example01.png  used on input line 69.
 (pdftex.def)             Requested size: 219.06789pt x 159.59586pt.
-<./images/pong_example02.png, id=367, 876.27374pt x 638.385pt>
+<./images/pong_example02.png, id=381, 876.27374pt x 638.385pt>
 File: ./images/pong_example02.png Graphic file (type png)
 <use ./images/pong_example02.png>
 Package pdftex.def Info: ./images/pong_example02.png  used on input line 74.
@@ -1553,13 +1553,13 @@ Overfull \hbox (2.22168pt too wide) in paragraph at lines 67--77
 LaTeX Warning: `!h' float specifier changed to `!ht'.
 
 [14 <./images/env_gridworld.png>]
-<./images/asteroids_example01.png, id=372, 160.1985pt x 153.2124pt>
+<./images/asteroids_example01.png, id=387, 160.1985pt x 153.2124pt>
 File: ./images/asteroids_example01.png Graphic file (type png)
 <use ./images/asteroids_example01.png>
 Package pdftex.def Info: ./images/asteroids_example01.png  used on input line 1
 02.
 (pdftex.def)             Requested size: 225.87991pt x 216.02948pt.
-<./images/asteroids_example02.png, id=373, 160.1985pt x 153.2124pt>
+<./images/asteroids_example02.png, id=388, 160.1985pt x 153.2124pt>
 File: ./images/asteroids_example02.png Graphic file (type png)
 <use ./images/asteroids_example02.png>
 Package pdftex.def Info: ./images/asteroids_example02.png  used on input line 1
@@ -1570,13 +1570,16 @@ Overfull \hbox (2.22168pt too wide) in paragraph at lines 100--110
 [][]  [] 
  []
 
+
+LaTeX Warning: `!h' float specifier changed to `!ht'.
+
 [15 <./images/pong_example01.png (PNG copy)> <./images/pong_example02.png (PNG 
-copy)> <./images/asteroids_example01.png (PNG copy)> <./images/asteroids_exampl
-e02.png (PNG copy)>]
+copy)>]
 LaTeX Font Info:    Try loading font information for T1+pcr on input line 151.
  (/usr/share/texmf-dist/tex/latex/psnfss/t1pcr.fd
 File: t1pcr.fd 2001/06/04 font definitions for T1/pcr.
-) [16]
+) [16 <./images/asteroids_example01.png (PNG copy)> <./images/asteroids_example
+02.png (PNG copy)>]
 [17]
 Underfull \hbox (badness 10000) in paragraph at lines 297--303
 
@@ -1602,12 +1605,12 @@ l.46
      
 ? 
 [21]
-<./images/pong_ai_score.png, id=423, 722.7pt x 433.62pt>
+<./images/pong_ai_score.png, id=439, 722.7pt x 433.62pt>
 File: ./images/pong_ai_score.png Graphic file (type png)
 <use ./images/pong_ai_score.png>
 Package pdftex.def Info: ./images/pong_ai_score.png  used on input line 68.
 (pdftex.def)             Requested size: 216.81166pt x 130.087pt.
-<./images/pong_random_score.png, id=424, 722.7pt x 433.62pt>
+<./images/pong_random_score.png, id=440, 722.7pt x 433.62pt>
 File: ./images/pong_random_score.png Graphic file (type png)
 <use ./images/pong_random_score.png>
 Package pdftex.def Info: ./images/pong_random_score.png  used on input line 73.
@@ -1618,7 +1621,7 @@ Overfull \hbox (2.22168pt too wide) in paragraph at lines 66--75
 [][]  [] 
  []
 
-<./images/asteroids_ai_score.png, id=426, 794.97pt x 433.62pt>
+<./images/asteroids_ai_score.png, id=442, 794.97pt x 433.62pt>
 File: ./images/asteroids_ai_score.png Graphic file (type png)
 <use ./images/asteroids_ai_score.png>
 Package pdftex.def Info: ./images/asteroids_ai_score.png  used on input line 11
@@ -1629,7 +1632,7 @@ Overfull \hbox (10.87079pt too wide) in paragraph at lines 118--119
  [][] 
  []
 
-<./images/asteroids_random_score.png, id=427, 794.97pt x 433.62pt>
+<./images/asteroids_random_score.png, id=443, 794.97pt x 433.62pt>
 File: ./images/asteroids_random_score.png Graphic file (type png)
 <use ./images/asteroids_random_score.png>
 Package pdftex.def Info: ./images/asteroids_random_score.png  used on input lin
@@ -1700,7 +1703,7 @@ Package atveryend Info: Executing hook `AtEndAfterFileList' on input line 86.
 Package rerunfilecheck Info: File `texto.out' has not changed.
 (rerunfilecheck)             Checksum: 909FC21BE65B8EDBC16F64ADFBFFCD97;1993.
 Package rerunfilecheck Info: File `texto.brf' has not changed.
-(rerunfilecheck)             Checksum: E8FF5B3384FC0CCF445AF60904A89125;994.
+(rerunfilecheck)             Checksum: ED75E3F35B81494EF3CDE756A2532EA7;994.
 Package atveryend Info: Empty hook `AtVeryVeryEnd' on input line 86.
  )
 (\end occurred inside a group at level 1)
@@ -1708,8 +1711,8 @@ Package atveryend Info: Empty hook `AtVeryVeryEnd' on input line 86.
 ### semi simple group (level 1) entered at line 1 (\begingroup)
 ### bottom level 
 Here is how much of TeX's memory you used:
- 25087 strings out of 492639
- 417920 string characters out of 6135496
+ 25092 strings out of 492639
+ 417977 string characters out of 6135496
  693957 words of memory out of 5000000
  28506 multiletter control sequences out of 15000+600000
  556023 words of font info for 75 fonts, out of 8000000 for 9000
@@ -1741,10 +1744,10 @@ m1200.pfb></usr/share/texmf-dist/fonts/type1/public/cm-super/sfrm1440.pfb></usr
 st/fonts/type1/public/cm-super/sfti0900.pfb></usr/share/texmf-dist/fonts/type1/
 public/cm-super/sfti1000.pfb></usr/share/texmf-dist/fonts/type1/public/cm-super
 /sfti1200.pfb></usr/share/texmf-dist/fonts/type1/urw/courier/ucrr8a.pfb>
-Output written on texto.pdf (36 pages, 1206197 bytes).
+Output written on texto.pdf (36 pages, 1209952 bytes).
 PDF statistics:
- 628 PDF objects out of 1000 (max. 8388607)
- 531 compressed objects within 6 object streams
- 114 named destinations out of 1000 (max. 500000)
+ 644 PDF objects out of 1000 (max. 8388607)
+ 547 compressed objects within 6 object streams
+ 119 named destinations out of 1000 (max. 500000)
  340 words of extra memory for PDF output out of 10000 (max. 10000000)
 

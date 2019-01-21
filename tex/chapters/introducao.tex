@@ -41,7 +41,16 @@ Essa forma de aprendizado permite que uma inteligência artificial aprenda a ter
 
 Motivado pelo interesse nessa técnica de aprendizado de máquina, o objetivo deste trabalho foi fazer um estudo de caso quando uma \textit{Deep Q-Network} (DQN) é utilizada por uma inteligência artificial em três ambientes com características e graus de complexidade distintos: \texit{Gridworld}, \textit{Pong}, e \textit{Asteroids}.
 O estudo buscou analisar a capacidade de um agente obter bons resultados utilizando este método, e as dificuldades enfrentadas no processo, assim como aprofundar o conhecimento em aprendizado de máquina, redes neurais e aprendizado profundo.
-Os ambientes foram emulados utilizando as ferramentas Gym e Gym-Retro, o código foi escrito em Python3, e a rede neural foi construída com o arcabouço TensorFlow.
+
+Os ambientes foram emulados utilizando as ferramentas Gym \footnote{\url{https://gym.openai.com/}} e Gym-Retro \footnote{\url{https://blog.openai.com/gym-retro/}}, o código foi escrito em Python3 \footnote{\url{https://www.python.org/}}, e a rede neural foi construída com o arcabouço TensorFlow \footnote{\url{https://www.tensorflow.org/}}.
+Os resultados obtidos pelo agente treinado foram comparados com um aleatório e, no caso do \textit{Pong} e do \textit{Asteroids}, com um ser humano jogando.
+No \textit{Gridworld}, o agente consegui obter resultados positivos de maneira consistente, mesmo com algumas pequenas alterações nos hiper-parâmetros.
+No \textit{Pong}, a pontuação final que a inteligência artificial conseguiu ao final de cada partida cresceu lentamente ao longo do treinamento, mostrando ser capaz, ainda que com dificuldade, de ter sucesso.
+No \textit{Asteroids}, por outro lado, não houve indícios de melhorias ao longo dos treinamentos realizados, com desempenho inferiores a um agente aleatório.
+
+Inicialmente, no capítulo 2, serão explicados os fundamentos teóricos utilizados neste trabalho, como rede neural convolucional, aprendizado profundo e \textit{Deep Q-Learning}, para a construção da inteligência artificial.
+Em seguida, no capítulo 3, serão detalhados os três ambientes de treinamento, a arquitetura das redes neurais, e, por último, como foram os experimentos.
+Por fim, no capítulo 4, são apresentados e analisados os resultados obtidos pelos agentes.
 
 %%% ---------------------------------------------------------------------------- %
 %\section{Proposta e Motivação}
