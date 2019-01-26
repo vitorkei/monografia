@@ -1,0 +1,96 @@
+\newcommand{\etalchar}[1]{$^{#1}$}
+\begin{thebibliography}{HMvH{\etalchar{+}}17}
+
+\bibitem[BNVB12]{DBLP:journals/corr/abs-1207-4708}
+Marc G. Bellemare, Yavar Naddaf, Joel Veness e Michael Bowling.
+\newblock The arcade learning environment: An evaluation platform for general
+  agents.
+\newblock {\em CoRR}, abs/1207.4708, 2012.
+
+\bibitem[Cau47]{cauchy1847}
+Augustin Cauchy.
+\newblock Méthode générale pour la résolution de systèmes d'équations
+  simultanées.
+\newblock {\em Compte rendu des séances de l'académie des sciences}, 1847.
+
+\bibitem[GB10]{pmlr-v9-glorot10a}
+Xavier Glorot e Yoshua Bengio.
+\newblock Understanding the difficulty of training deep feedforward neural
+  networks.
+\newblock Em Yee~Whye Teh e Mike Titterington, editors, {\em Proceedings of the
+  Thirteenth International Conference on Artificial Intelligence and
+  Statistics}, volume~9 of {\em Proceedings of Machine Learning Research},
+  p\'{a}ginas 249--256, Chia Laguna Resort, Sardinia, Italy, 13--15 May 2010.
+  PMLR.
+
+\bibitem[GBC16]{Goodfellow-et-al-2016}
+Ian Goodfellow, Yoshua Bengio e Aaron Courville.
+\newblock {\em Deep Learning}.
+\newblock MIT Press, 2016.
+\newblock \url{http://www.deeplearningbook.org}.
+
+\bibitem[GH14]{rmsprop}
+Kevin~Swersky Geoffrey~Hinton, Nitish~Srivastava.
+\newblock Overview of mini-batch gradient descent, 2014.
+\newblock
+  https://www.cs.toronto.edu/~tijmen/csc321/slides/lecture\_slides\_lec6.pdf.
+
+\bibitem[HMvH{\etalchar{+}}17]{DBLP:journals/corr/abs-1710-02298}
+Matteo Hessel, Joseph Modayil, Hado van Hasselt, Tom Schaul, Georg Ostrovski,
+  Will Dabney, Daniel Horgan, Bilal Piot, Mohammad~Gheshlaghi Azar e David
+  Silver.
+\newblock Rainbow: Combining improvements in deep reinforcement learning.
+\newblock {\em CoRR}, abs/1710.02298, 2017.
+
+\bibitem[Hub64]{huber_loss}
+Peter~J. Huber.
+\newblock Robust estimation of a location parameter.
+\newblock {\em The Annals of Mathematical Statistics}, 35, 1964.
+
+\bibitem[HZRS15]{DBLP:journals/corr/HeZR015}
+Kaiming He, Xiangyu Zhang, Shaoqing Ren e Jian Sun.
+\newblock Delving deep into rectifiers: Surpassing human-level performance on
+  imagenet classification.
+\newblock {\em CoRR}, abs/1502.01852, 2015.
+
+\bibitem[KB14]{DBLP:journals/corr/KingmaB14}
+Diederik~P. Kingma e Jimmy Ba.
+\newblock Adam: {A} method for stochastic optimization.
+\newblock {\em CoRR}, abs/1412.6980, 2014.
+
+\bibitem[Lin92]{Lin1992}
+Long-Ji Lin.
+\newblock Self-improving reactive agents based on reinforcement learning,
+  planning and teaching.
+\newblock {\em Machine Learning}, 8(3):293--321, May 1992.
+
+\bibitem[MKS{\etalchar{+}}13]{DBLP:journals/corr/MnihKSGAWR13}
+Volodymyr Mnih, Koray Kavukcuoglu, David Silver, Alex Graves, Ioannis
+  Antonoglou, Daan Wierstra e Martin~A. Riedmiller.
+\newblock Playing atari with deep reinforcement learning.
+\newblock {\em CoRR}, abs/1312.5602, 2013.
+
+\bibitem[SB18]{sutton2018reinforcement}
+Richard~S. Sutton e Andrew~G. Barto.
+\newblock {\em Reinforcement learning: an introduction}.
+\newblock MIT Press, 2018.
+
+\bibitem[vHGS15]{DBLP:journals/corr/HasseltGS15}
+Hado van Hasselt, Arthur Guez e David Silver.
+\newblock Deep reinforcement learning with double q-learning.
+\newblock {\em CoRR}, abs/1509.06461, 2015.
+
+\bibitem[VM15]{humanLevelControlDRL}
+David Silver Andrei A. Rusu Joel Veness Marc G. Bellemare Alex Graves Martin
+  Riedmiller Andreas K. Fidjeland Georg Ostrovski Stig Petersen Charles Beattie
+  Amir Sadik Ioannis Antonoglou Helen King Dharshan Kumaran Daan Wierstra Shane
+  Legg Demis~Hassabis Volodymyr~Mnih, Koray~Kavukcuoglu.
+\newblock Human-level control through deep reinforcement learning.
+\newblock {\em Nature}, 518:529--533, 02 2015.
+
+\bibitem[WdFL15]{DBLP:journals/corr/WangFL15}
+Ziyu Wang, Nando de~Freitas e Marc Lanctot.
+\newblock Dueling network architectures for deep reinforcement learning.
+\newblock {\em CoRR}, abs/1511.06581, 2015.
+
+\end{thebibliography}

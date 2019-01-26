@@ -12,34 +12,23 @@
 \label{cap:introducao}
 %% ---------------------------------------------------------------------------- %
 
-%Inteligência artificial, ou IA, é uma área de estudos que pode ser definida de diversas formas, como construir uma máquina que realize com sucesso tarefas tradicionalmente feitas por humanos, ou que aja como um humano.
-%Diversas ciências mostraram-se importantes ao longo de sua história, como filosofia, matemática, computação e linguística, permitindo que profissionais de formações distintas pudessem contribuir para seus avanços.
-
 Um tipo muito conhecido de inteligência artificial, ou IA, dos dias atuais é o que controla oponentes em jogos eletrônicos.
 Na maior parte dos casos, elas seguem um conjunto pré-determinado de regras escritas pelo desenvolvedor com o intuito de criar um desafio para o jogador.
-Entretanto, por mais que seja possível fazer a IA ter capacidades muito acima de seres humanos para jogar, elas não possuem a capacidade de se adaptar ao como seres humanos fazem para melhorar seu desempenho.
+Entretanto, por mais que seja possível fazer a IA ter capacidades muito acima de seres humanos para jogar, elas não conseguem se adaptar como seres humanos fazem para melhorar seu desempenho.
 Quando pessoas não recebem ajuda externa ou leem um manual, normalmente elas aprendem e se adaptam explorando o jogo, descobrindo o que as ações fazem e suas respectivas consequências.
 Ao invés de explicitar as regras que a máquina deve seguir, é possível deixá-la aprender as que considerar melhor, similar a pessoas, por meio de \textbf{aprendizado por reforço}.
 
-%É interessante a forma como seres humanos aprendem, em particular crianças pequenas e bebês.
-%Eles fazem isso principalmente interagindo com o ambiente, tocando em objetos, tentando entender aquilo que os rodeia e qual o resultado de suas ações, mesmo que inconscientemente.
-%Avanços em inteligência artificial nas últimas décadas permitiram que máquinas simulassem esse tipo de aprendizado por meio de \textbf{aprendizado por reforço}.
-
-%Entretanto, para muitos casos, somente esse tipo de técnica não é o suficiente.
 Entretanto, por mais que um computador consiga aprender como um ser humano, ele normalmente não consegue enxergar como um.
 Uma pessoa consegue inferir o que é inimigo e o que é terreno quando aparece na tela em poucos movimentos ou a partir de experiências passadas com jogos diferentes.
-%Utilizando jogos como exemplo, uma pessoa consegue inferir o que é inimigo e o que é terreno quando aparece na tela do jogo em poucos movimentos ou até já supor a partir de experiências passadas com jogos diferentes.
 Para um computador, um pixel que mude de posição já faz ele não conseguir mais distinguir o que está vendo, tendo que reaprender a cada nova combinação de pixels detectada.
 Em outras palavras, seres humanos conseguem abstrair as informações que enxergam com facilidade, enquanto computadores não.
 Se IAs não conseguem mais identificar um objeto na tela por causa de um pixel que esteja diferente, como sistemas de detecção de imagem funcionam?
-%Essa é uma questão que avanços recentes em visão computacional, campo interdisciplinar que estuda a capacidade dos computadores de enxergarem imagens e vídeos, ajudou a resolver.
 Utilizando uma variante de rede neural profunda chamada de \textbf{rede neural convolucional} (\textit{convolutional neural network} (CNN)), é possível fazer uma máquina abstrair essas informações e inferir que um objeto em diferentes lugares da tela, assumindo diferentes tamanhos, são o mesmo - ou seja, visualizar e compreender imagens semelhante a uma pessoa.
 
 Unindo a forma de se aprender de aprendizado por reforço com a capacidade de análise de imagens de redes neurais convolucionais, obtem-se uma técnica chamada \textit{\textbf{Deep Q-Learning}}~\cite{DBLP:journals/corr/MnihKSGAWR13}.
 Essa forma de aprendizado permite que uma inteligência artificial aprenda a ter sucesso em um ambiente apenas recebendo imagens como entrada, assim como uma pessoa faria para aprender um jogo novo quando sua única fonte de informações é a tela de um monitor.
-%Unindo essas duas técnicas, é possível desenvolver uma inteligência artificial, um jogador artificial que consegue aprender quase da mesma forma como uma pessoa a jogar um jogo simples: recebendo apenas imagens como entrada, ou seja, enxergando a tela do jogo, e entendendo como ele funciona por meio de tentativa e erro.
 
-Motivado pelo interesse nessa técnica de aprendizado de máquina, o objetivo deste trabalho foi fazer um estudo de caso quando uma \textit{Deep Q-Network} (DQN) é utilizada por uma inteligência artificial em três ambientes com características e graus de complexidade distintos: \texit{Gridworld}, \textit{Pong}, e \textit{Asteroids}.
+Motivado pelo interesse nessa técnica de aprendizado de máquina, o objetivo deste trabalho foi fazer um estudo de caso quando uma \textit{Deep Q-Network} (DQN) é utilizada por uma inteligência artificial em três ambientes com características e graus de complexidade distintos: \textit{Gridworld}, \textit{Pong}, e \textit{Asteroids}.
 O estudo buscou analisar a capacidade de um agente obter bons resultados utilizando este método, e as dificuldades enfrentadas no processo, assim como aprofundar o conhecimento em aprendizado de máquina, redes neurais e aprendizado profundo.
 
 Os ambientes foram emulados utilizando as ferramentas Gym \footnote{\url{https://gym.openai.com/}} e Gym-Retro \footnote{\url{https://blog.openai.com/gym-retro/}}, o código foi escrito em Python3 \footnote{\url{https://www.python.org/}}, e a rede neural foi construída com o arcabouço TensorFlow \footnote{\url{https://www.tensorflow.org/}}.
@@ -51,39 +40,3 @@ No \textit{Asteroids}, por outro lado, não houve indícios de melhorias ao long
 Inicialmente, no capítulo 2, serão explicados os fundamentos teóricos utilizados neste trabalho, como rede neural convolucional, aprendizado profundo e \textit{Deep Q-Learning}, para a construção da inteligência artificial.
 Em seguida, no capítulo 3, serão detalhados os três ambientes de treinamento, a arquitetura das redes neurais, e, por último, como foram os experimentos.
 Por fim, no capítulo 4, são apresentados e analisados os resultados obtidos pelos agentes.
-
-%%% ---------------------------------------------------------------------------- %
-%\section{Proposta e Motivação}
-%\label{sec:motivacao_proposta}
-%
-%\textbf{\textit{Deep Q-Learning}}~\cite{DBLP:journals/corr/MnihKSGAWR13} é uma técnica de aprendizado de máquina que combina a visualização de imagens de redes neurais convolucionais com  aprendizado profundo.
-%Esse método permite que uma inteligência artificial aprenda a se comportar em certos ambientes, como jogos digitais, recebendo como entrada apenas imagens, a tela como uma pessoa veria em um monitor.
-%
-%A proposta deste trabalho surgiu do interesse nessa técnica e consiste em fazer um estudo de caso quando uma \textit{Deep Q-Network} (DQN), implementada em TensorFlow, é utilizada por uma inteligência artificial em três ambientes com características e graus de complexidade distintos: \textit{Gridworld}, \textit{Pong} do Atari 2600, e \textit{Asteroids} do Atari 2600.
-%O estudo busca analisar a capacidade de um agente obter bons resultados utilizando este método, e as dificuldades enfrentadas no processo, além de aprofundar o conhecimento em aprendizado de máquina, redes neurais e aprendizado profundo.
-%
-%\section{Ferramentas}
-%\label{sec:tools}
-%Nesta seção, serão apresentadas as principais ferramentas utilizadas no desenvolvimento deste trabalho.
-%
-%\subsection{Gym \& Gym-Retro}
-%\label{sec:gymretro}
-%
-%Gym é uma plataforma para pesquisa de aprendizado por reforço desenvolvida e mantida pela empresa de pesquisas em inteligência artificial OpenAI.
-%Esta ferramenta auxilia na emulação de diversos ambientes diferentes, incluindo alguns jogos de Atari 2600, e ambientes 3D.
-%
-%Gym-Retro é uma variante da Gym com ênfase em jogos eletrônicos antigos, como dos consoles Sega Genesis, Nintendo Entertainment System e Atari 2600.
-%Para qualquer jogo que o usuário deseje emular, é necessário que ele tenha a ROM \footnote{\textit{Read Only Memory}: Memória Somente de Leitura, no contexto de emulação de jogos eletrônicos, é um tipo de arquivo copiado do chip de memória somente de leitura de cartuchos de jogos digitais. Eles são utilizados por emuladores para serem jogados em plataformas diferentes.} do jogo.
-%
-%Foram utilizados dois ambientes do Gym neste trabalho, o \textit{Frozen Lake} e o \textit{Pong}, e um do Gym-Retro, o \textit{Asteroids}.
-%O \textit{Frozen Lake} é quase igual ao \textit{Gridworld}, com a diferença de haver aleatoriedade nos movimentos, ou seja, é possível o agente escolher mover-se para um lado, mas deslocar-se para outro, e haver apenas duas configurações de mapa pré-existentes: um de quatro linhas por quatro colunas (4x4) e um de oito linhas por oito colunas de espaços (8x8).
-%Para que ele pudesse ser utilizado como um \textit{Gridworld}, a aleatoriedade dos movimentos foi removida e mapas personalizados foram criados.
-%O ambiente do \textit{Pong} e do \textit{Asteroids} foram utilizados conforme disponibilizados pelas respectivas ferramentas, que utilizam o emulador de Atari 2600, Stella~\cite{stella}.
-%Os três ambientes são descritos com mais detalhes na seção \hyperref[sec:envs]{Ambientes} do capítulo 3, \hyperref[cap:implementacao]{Implementação}.
-%
-%\subsection{TensorFlow}
-%\label{sec:tensorflow}
-%
-%TensorFlow é um arcabouço de código aberto para computações numéricas de alta performance sobre tensores, desenvolvido e mantido pela Google.
-%Seu núcleo de computação numérica flexível permite o uso da biblioteca em diversos campos científicos, oferecendo, em particular, grande suporte a aprendizado de máquina e aprendizado profundo.
-%Esta ferramenta foi escolhida por oferecer uma API em Python estável, ter grande suporte, comunidade ativa, e ser de código aberto, sendo uma escolha sólida para a construção da rede neural.
