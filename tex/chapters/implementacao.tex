@@ -299,7 +299,6 @@ Apesar de cada ambiente ter suas particularidades nos treinamentos, como número
 As linhas marcadas com um asterisco não são executadas no \textit{Gridworld}, uma vez que as entradas para a rede neste ambiente não necessitam de pré-processamento.
 As linhas marcadas com dois asteriscos, são executadas apenas pelo \textit{Asteroids}, que compõe a técnica de pular \textit{frames} descrita anteriormente.
 O pseudocódigo do treinamento encontra-se a seguir.
-\\
 
 %\begin{left}
 \begin{tabular}{l l}
@@ -333,7 +332,6 @@ O pseudocódigo do treinamento encontra-se a seguir.
 % & \qquad \qquad adiciona tupla ($S_{n}$, $A_{n}$, $R_{n}$, $S_{n+1}$, $done$) a \textit{B};\\
  & \qquad \qquad $S_{n} \leftarrow S_{n+1};$ \\
 \\
-
  & \textbf{para} m = 0 até $M$ \textbf{faça}\\
  & \qquad reinicia o ambiente e recebe estado inicial $S_{0}$\\
 % & \qquad reinicia o ambiente e recebe estado inicial $X_{0}$\\
@@ -362,14 +360,12 @@ O pseudocódigo do treinamento encontra-se a seguir.
 %$*$ & \qquad \qquad \qquad atualiza $S_{m}$, removendo o elemento do começo da fila e inserindo $X^{p}_{m+1}$ no final, como $S_{m+1}$;\\
 % & \qquad \qquad \qquad adiciona tupla ($S_{m}$, $A_{m}$, $R_{m}$, $S_{m+1}$, $done$) a \textit{B};\\
  & \qquad \qquad \qquad $S_{passo} \leftarrow S_{passo+1};$ \\
-
  & \qquad \qquad seleciona um \textit{mini-batch} do \textit{buffer} de memória;\\
  & \qquad \qquad calcula o \hyperref[eq:q_target]{valor alvo $Q_{T}$};\\
  & \qquad \qquad calcula o erro do \textit{mini-batch};\\
  & \qquad \qquad otimiza os pesos e atualiza a rede neural;\\
  & \qquad \qquad \textbf{se} $\tau$ passos tiverem passados desde a última atualização de \textit{TN} \textbf{então}\\
  & \qquad \qquad \qquad atualiza os pesos de \textit{TN};\\
-
 \hline
 \end{tabular}
 %\end{center}

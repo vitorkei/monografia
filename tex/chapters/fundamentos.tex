@@ -302,12 +302,15 @@ Logo, o problema passa a ser como extrair a política do agente de uma função 
 
 Seja $Q^{*}(S,A)$ a função Q-valor\footnote{O nome "Q-valor"{} vem do valor da qualidade da ação} que expressa a recompensa esperada de se começar no estado $S$, tomar a ação $A$ e continuar de maneira ótima. $Q^{*}(S,A)$ é uma parte da política gulosa para função valor ótima e é dada por:
 
-\begin{equation} \label{eq:qfunction}
-\begin{align*}
+%\begin{equation} \label{eq:qfunction}
+\begin{align}
+\begin{split}
 Q^{*}(S,A) &= \sum_{S'}P(S'|S,A)[R(S,A,S') + \gamma V^{*}(S')] \\
         &= \sum_{S'}P(S'|S,A)[R(S,A,S') + \gamma \max_{A'}Q^{*}(S',A')]
-\end{align*}
-\end{equation}
+\end{split}
+\label{eq:qfunction}
+\end{align}
+%end{equation}
 
 Logo, substituindo \ref{eq:qfunction} em \ref{eq:opt_pol}, temos que a política gulosa ótima para a função Q-valor ótima é dada por:
 
@@ -322,12 +325,15 @@ A seguinte equação responde a essa questão.
 
 Seja $\alpha$ a taxa de aprendizado (valor entre 0 e 1 que determina o quão importantes informações novas são em relação ao conhecimento que o agente possui),
 
-\begin{equation} \label{eq:q_update}
-\begin{align*}
+%\begin{equation} \label{eq:q_update}
+\begin{align}
+\begin{split}
 Q^{(i+1)}(S,A) &= (1-\alpha)Q^{(i)}(S,A) + \alpha[R(S,A,S') + \gamma \max_{A'}Q^{(i)}(S',A')] \\
             &= Q^{(i)}(S,A) + \alpha[R(S,A,S') + \gamma \max_{A'}Q^{(i)}(S',A') - Q^{(i)}(S,A)]
-\end{align*}
-\end{equation}
+\end{split}
+\label{eq:q_update}
+\end{align}
+%\end{equation}
 
 A convergência de $Q^{(i)}(S,A)$ em $Q^{*}(S,A)$ é garantida mesmo que o agente aja de forma subótima contanto que o ambiente seja um MDP, a taxa de aprendizado seja manipulada corretamente, e se a exploração não ignorar alguns estados e ações por completo - ou seja, raramente.
 Mesmo que as condições sejam satisfeitas, a convergência provavelmente será demasiadamente lenta.
