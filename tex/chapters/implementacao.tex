@@ -21,43 +21,43 @@ Antes de apresentar as arquiteturas das redes utilizadas e como os treinamentos 
 \subsection{\textit{Gridworld}}
 \label{sec:env_gw}
 
-Os estados $S$ são o mapa em que o agente está inserido com o agente em uma das posições possíveis.
+Os estados $S$ são o mapa com o agente em uma das posições possíveis.
 Portanto, o número de estados existentes é igual ao número de espaços válidos.
-As ações possíveis $A$ são mover-se para o espaço acima, abaixo, a direita ou a esquerda contanto que seja válido.
-É possível o agente decidir mover-se para um espaço inválido, mas isso faz apenas com que ele não saia do lugar.
-Os valores das recompensas $R(S,A)$ são definidas pelo desenvolvedor do ambiente.
-O objetivo é um estado terminal de recompensa positiva, a armadilha é um estado terminal de recompensa negativa, e estados não-terminais podem gerar recompensas não-nulas se o desenvolvedor quiser.
+As ações possíveis $A$ são mover-se para o espaço acima, abaixo, à direita ou à esquerda contanto que seja válido.
+É possível o agente decidir mover-se para um espaço inválido, mas isso faz com que ele não saia do lugar.
+Os valores das recompensas $R(S,A,S')$ são definidas pelo desenvolvedor do ambiente.
+O objetivo é um estado terminal de recompensa positiva, a armadilha é um estado terminal de recompensa negativa e estados não-terminais podem gerar recompensas não-nulas se o desenvolvedor quiser.
 As probabilidades de transição $P(S,A,S')$ são as probabilidades de o agente estar em um determinado espaço do mapa (estado $S$) e, a partir do movimento para algum dos espaços adjacentes (ação $A$), chegar a algum outro espaço do mapa (estado futuro $S'$).
-Não existe aleatoriedade no movimento do agente, pois ele sempre se desloca para a direção que escolheu, não sendo possível, por exemplo, mover-se para a direita quando a ação de mover-se para cima for escolhida.
+Não existe aleatoriedade no movimento do agente, pois ele sempre se desloca para a direção que escolheu.
 
 Os experimentos foram feitos no \textit{Frozen Lake} do Gym, pois ele funciona da mesma forma que o \textit{Gridworld} conforme descrito acima, com a exceção de os movimentos não serem determinísticos, ou seja, é possível o agente escolher mover-se para um lado mas deslocar-se para outro.
 Para que ele funcionasse como o desejado, essa aleatoriedade foi removida.
-No caso deste trabalho, o mapa é de tamanho 10x10 com 8 armadilhas, 1 objetivo e nenhum espaço inválido, ou seja, há 100 espaços possíveis.
-O objetivo gera recompensa de valor 1000, as armadilhas de valor -200, e estados não terminais de -1.
+No caso deste trabalho, o mapa é de tamanho 10x10 com 8 armadilhas, 1 objetivo e nenhum espaço inválido, totalizando 100 espaços possíveis.
+O objetivo gera recompensa de valor 1000, as armadilhas de valor -200 e estados não terminais de -1.
 O mapa em que os experimentos foram feitos está representado pela imagem \ref{fig:env_grid}.
 
 \begin{figure}[h!]
   \centering
   \includegraphics[scale=.2]{env_gridworld}
-  \caption{Mapa utilizado para os experimentos. A estrela azul indica a posição inicial do agente, o verde com +1000 representa o objetivo, e os vermelhos com -200 as armadilhas. Não há espaços inválidos.}
+  \caption{Mapa utilizado para os experimentos. A estrela azul indica a posição inicial do agente, o verde com +1000 representa o objetivo e os vermelhos com -200 as armadilhas. Não há espaços inválidos.}
   \label{fig:env_grid}
 \end{figure}
 
-\textit{Gridworld} é o ambiente mais simples estudado neste trabalho, pois possui poucas regras, estados possíveis, e ações válidas em cada um deles.
+\textit{Gridworld} é o ambiente mais simples estudado neste trabalho, pois possui poucas regras, estados possíveis e ações válidas em cada um deles.
 
 \subsection{\textit{Pong}}
 \label{sec:env_pong}
 
-Os estados $S$ são a tela do jogo, representada por matrizes de pixels de três dimensões: altura, largura, e canais de cor.
+Os estados $S$ são a tela do jogo, representada por vetores de três dimensões: altura, largura e canais de cor.
 As ações possíveis $A$ são mover a barra que o jogador controla para cima ou para baixo.
-As recompensas $R(S,A)$ são recebidas quando a bola chega ao fim da tela do lado esquerdo ou direito, gerando uma positiva se chegar do lado do adversário, e negativa se chegar do lado do jogador.
+As recompensas $R(S,A,S')$ são recebidas quando a bola chega ao fim da tela do lado esquerdo ou direito, gerando uma positiva se chegar do lado do adversário e negativa se chegar do lado do jogador.
 As probabilidades de transição $P(S,A,S')$ são as probabilidades de o jogo estar em um estado $S$, por exemplo com a bola sendo rebatida pelo jogador, e transitar para algum outro estado futuro $S'$, como marcar um ponto, após tomar uma ação $A$, como mover a barra para cima.
 \textit{Pong} é um jogo determinístico no sentido que não existe aleatoriedade na consequência das ações do jogador: se a bola colidir com a barra sempre no mesmo lugar, ela sempre será retornada na mesma direção com a mesma velocidade; marcar ponto sempre aumenta a pontuação do jogador em um.
 Por outro lado, existe um oponente contra o qual se está jogando e cujo comportamento configura um elemento de aleatoriedade no ambiente.
 Além disso, o jogador não conseguir rebater a bola como gostaria por falta de precisão também se aproxima de um elemento desse tipo.
 
 Neste trabalho, o \textit{Pong} foi emulado pelo Gym, que utiliza o emulador de Atari 2600, Stella \footnote{\url{https://stella-emu.github.io/}}.
-Nessa versão, os estados são compostos por 210x160 pixels, com cada um podendo assumir 128 cores diferentes por combinações dos valores dos 3 canais de cor.
+Nesta versão, os estados são compostos por 210x160 pixels, com cada um podendo assumir 128 cores diferentes por combinações dos valores dos 3 canais de cor.
 Isso equivale a 33600 pixels e, portanto, $128^{33600}$ estados, com apenas uma parcela sendo realmente possível.
 A recompensa por marcar ponto é de +1 e a de o oponente marcar ponto é de -1.
 Como o jogo termina quando um dos lados alcança 21 pontos, a pontuação final varia de -21 até +21 inclusos.
@@ -71,24 +71,24 @@ Como o jogo termina quando um dos lados alcança 21 pontos, a pontuação final 
   \begin{minipage}[b]{.5\textwidth}
   \includegraphics[scale=.25]{pong_example02}
   \end{minipage}
-  \caption{Exemplos de tela do jogo no emulador de Atari 2600, Stella. Nestas imagens, o jogador controla a barra verde, do lado direito da tela, enquanto a IA criada pelos desenvolvedores do jogo controla a barra laranja, do lado esquerdo da tela. O ponto branco entre elas é a bola, as barras brancas horizontais que estendem desde o lado equerdo até o lado direito da tela representam os limites superior e inferior do campo, e os números no topo indicam a pontuação de cada jogador.}
+  \caption{Exemplos de tela do jogo no emulador de Atari 2600, Stella. Nestas imagens, o jogador controla a barra verde, do lado direito da tela, enquanto a IA criada pelos desenvolvedores do jogo controla a barra laranja, do lado esquerdo da tela. O ponto branco entre elas é a bola, as barras brancas horizontais que estendem desde o lado esquerdo até o lado direito da tela representam os limites superior e inferior do campo e os números no topo indicam a pontuação de cada jogador.}
 \end{figure}
 
-\textit{Pong} é o ambiente de complexidade intermediária estudada neste trabalho, pois possui poucas regras, grande espaço de estados, e poucas ações possíveis em cada um deles.
+\textit{Pong} é o ambiente de complexidade intermediária estudada neste trabalho, pois possui poucas regras, grande espaço de estados e poucas ações possíveis em cada um deles.
 
 \subsection{\textit{Asteroids}}
 \label{sec:env_asteroids}
 
-Os estados $S$ são a tela do jogo, representada por matrizes de pixels de três dimensões: altura, largura, e canais de cor.
-As ações possíveis $A$ são mover-se para frente, girar no sentido horário, girar no sentido anti-horário, mover-se no hiper-espaço (se teletransportar para algum lugar aleatório da tela), e atirar para frente.
-As recompensas $R(S,A)$ são recebidas por destruir os asteróides, com o maior valendo menos pontos e o menor valendo mais pontos, podendo ser obtidas tanto atirando neles quanto colidindo, não havendo recompensa negativa pela perda de vida.
-As probabilidades de transição $P(S,A,S')$ são as probabilidades de o jogo estar em um estado $S$, por exemplo o inicial em que o jogador tem zero pontos e todas as vidas, e transitar para algum outro estado futuro $S'$, como destruir algum asteroide e receber pontos por isso, após tomar uma ação $A$, como atirar para frente.
-Assim como em \textit{Pong}, \textit{Asteroids} é um jogo determinístico no sentido que não existe aleatoriedade na consequência das ações do jogador: se ele fizer um disparo, o tiro seguirá reto durante um certo tempo até desaparecer ou atingir um asteroide; cada tamanho de asteroide sempre aumenta a pontuação do jogador pela mesma quantidade quando destruído.
+Os estados $S$ são a tela do jogo, representada por vetores de pixels de três dimensões: altura, largura e canais de cor.
+As ações possíveis $A$ são mover-se para frente, girar no sentido horário, girar no sentido anti-horário, mover-se no hiper-espaço (se teletransportar para algum lugar aleatório da tela) e atirar para frente.
+As recompensas $R(S,A,S')$ são recebidas por destruir os asteróides, com o maior valendo menos pontos e o menor valendo mais pontos, podendo ser obtidas tanto atirando neles quanto colidindo, não havendo recompensa negativa pela perda de vida.
+As probabilidades de transição $P(S,A,S')$ são as probabilidades de o jogo estar em um estado $S$, por exemplo o inicial em que o jogador tem zero pontos e todas as vidas, e transitar para algum outro estado futuro $S'$, como destruir algum asteróide e receber pontos por isso, após tomar uma ação $A$, como atirar para frente.
+Assim como o \textit{Pong}, \textit{Asteroids} é um jogo determinístico no sentido que não existe aleatoriedade na consequência das ações do jogador: se ele fizer um disparo, o tiro seguirá reto durante um certo tempo até desaparecer ou atingir um asteróide; cada tamanho de asteróide sempre aumenta a pontuação do jogador pela mesma quantidade quando destruído.
 Os fatores mais próximos de aleatoriedade existentes no jogo são o jogador ignorar, desconhecer, abstrair e/ou não perceber partes do jogo, como a posição dos asteróides.
 
 Neste trabalho, o \textit{Asteroids} foi emulado pelo Gym-Retro, que utiliza o emulador de Atari 2600, Stella.
 Como esta versão também é a do Atari 2600, o número de estados possíveis é uma parcela de $128^{33600}$ assim como no \textit{Pong}.
-A recompensa por destruir um asteróide grande é de 20 pontos, de um médio é de 50 pontos, e de um pequeno é de 100 pontos.
+A recompensa por destruir um asteróide grande é de 20 pontos, de um médio é de 50 pontos e de um pequeno é de 100 pontos.
 O jogador começa com 4 vidas e recebe uma nova a cada 5000 pontos obtidos.
 O único estado terminal nativo do jogo ocorre quando todas as vidas são perdidas.
 
@@ -101,17 +101,17 @@ O único estado terminal nativo do jogo ocorre quando todas as vidas são perdid
   \begin{minipage}[b]{.5\textwidth}
   \includegraphics[scale=1.41]{asteroids_example02}
   \end{minipage}
-  \caption{Exemplos de tela do jogo no emulador de Atari 2600, Stella. O número no canto superior esquerdo é a pontuação e o no canto superior direito é a quantidade de vidas restante que o jogador tem. A nave é o triângulo no meio da tela, o ponto azul próximo dela na imagem da esquerda é um tiro e o restante é asteroide. Na imagem da direita, os quatro pequenos pontos rosas próximos da nave são um asteroide que acaba de ser destruído.}
+  \caption{Exemplos de tela do jogo no emulador de Atari 2600, Stella. O número no canto superior esquerdo é a pontuação e o no canto superior direito é a quantidade de vidas restante que o jogador tem. A nave é o triângulo no meio da tela, o ponto azul próximo dela na imagem da esquerda é um tiro e o restante é asteróide. Na imagem da direita, os quatro pequenos pontos rosas próximos da nave são um asteróide que acaba de ser destruído.}
 \end{figure}
 
-\textit{Asteroids} é o mais complexo dos ambientes estudados neste trabalho, pois possui mais regras que são mais complexas, o maior espaço de estados dentre os três ambientes, e mais ações possíveis. 
+\textit{Asteroids} é o mais complexo dos ambientes estudados neste trabalho, pois possui mais regras que são mais complexas, o maior espaço de estados dentre os três ambientes e mais ações possíveis. 
 
 %% ---------------------------------------------------------------------------- %
 
 \section{Arquiteturas das redes}
 \label{sec:arq}
 
-Com os ambientes e MDPs formalizado, nesta seção serão descritas as arquiteturas utilizadas nos três ambientes abordados neste trabalho e, em seguida, os respectivos treinamentos feitos.
+Com os ambientes e MDPs formalizados, nesta seção serão descritas as arquiteturas utilizadas nos três ambientes abordados neste trabalho e, na próxima, os respectivos treinamentos feitos.
 Todo o código foi escrito em Python3, com as redes neurais sendo construídas utilizando o arcabouço TensorFlow.
 
 \subsection{\textit{Gridworld}}
@@ -140,18 +140,22 @@ e $\epsilon$, variável que impede a divisão por zero no cálculo feito pelo RM
 \subsection{\textit{Asteroids}}
 \label{sec:arq_asteroids}
 
-O \textit{Asteroids} foi testado com diversas arquiteturas diferentes, mas sem sucessos.
+O \textit{Asteroids} foi testado com diversas arquiteturas diferentes, mas sem sucesso.
 Tentou-se utilizar diferentes números de camadas ocultas, número de filtros, tamanhos e passos, funções inicializadoras e ativadoras, unidades de saída nas camadas \textit{fully-connected}, funções de erro, de otimização e de exploração, taxas de aprendizado, de desconto e de atualização da rede alvo, assim como outras configurações externas à rede neural, como tamanho dos \textit{mini-batches}, do \textit{buffer} de memória e número de episódios de treinamento.
-Por conta da grande gama de hiper-parâmetros a serem ajustados e o tempo consumido para treinar, os testes com este ambiente foram os mais longos.
+Por conta da grande gama de hiperparâmetros a serem ajustados e o tempo consumido para treinar, os testes com este ambiente foram os mais longos.
 
 Para poder demonstrar um exemplo de resultados de treinamento para o capítulo \hyperref[cap:resultados]{Resultados}, foram registrados os resultados de um treinamento cuja rede neural tinha três camadas de convolução e duas \textit{fully-connected}, sendo a segunda delas a de saída.
 A primeira convolucional tinha 48 filtros de tamanho 8x8 e passo 4; a segunda tinha 96 filtros de tamanho 4x4 e passo 2; e a terceira tinha 96 filtros de tamanho 3x3 e passo 1.
-A primeira \textit{fully-connected} tinha vetor de saída de tamaho 512; e a segunda tinha um nó de saída para cada ação possível, ou seja, um vetor de tamanho 5.
-Assim como na rede do \textit{Pong}, foi utilizada função de ativação ReLU em todas as camadas com exceção da segunda \textit{fully-connected}, e inicializador de He para os pesos.
+A primeira \textit{fully-connected} tinha vetor de saída de tamanho 512; e a segunda tinha um nó de saída para cada ação possível, ou seja, um vetor de tamanho 5.
+Assim como na rede do \textit{Pong}, foi utilizada função de ativação ReLU em todas as camadas com exceção da segunda \textit{fully-connected} e inicializador de He para os pesos.
 O cálculo de erro foi feito pela função \textit{Huber loss} e a otimização dos pesos pelo RMSProp.
 A taxa de aprendizado $\alpha$ foi igual a $0.00025$;
 o \textit{momentum} foi igual a $0.95$;
 e $\epsilon$ igual a $0.1$.
+
+%-----------------------------------------------------------------------------------------------%
+%-----------------------------------------------------------------------------------------------%
+%-----------------------------------------------------------------------------------------------%
 
 \section{Experimentos}
 \label{sec:exp}
@@ -165,9 +169,9 @@ Por ser um ambiente com um número baixo de estados e ações possíveis, a arqu
 Como resultado dessa baixa complexidade, foi possível realizar milhares de episódios de treinamento em poucas horas.
 Além disso, foi mais fácil analisar o aprendizado por ter poucos estados bem definido e por haver soluções evidentes de como chegar ao objetivo.
 A análise do sucesso do agente foi feita pela sua capacidade de conseguir chegar à recompensa positiva do mapa.
-O número de vezes que ele conseguiu chegar ao objetivo ao longo dos episódios de treinamento foi considerado como menos importante para avaliar o desempenho do aprendizado, pois há uma alta probabilidade de se tomar uma ação aleatória, de 40\%.
+O número de vezes que ele conseguiu chegar ao objetivo ao longo dos episódios de treinamento foi considerado como menos importante para avaliar o desempenho do aprendizado, pois foi utilizada uma alta probabilidade mínima de se tomar uma ação aleatória, de 40\%.
 
-O \hyperref[fig:env_grid]{mapa} utilizado para os experimentos tinha tamanho de 10x10, oito armadilhas espalhadas, o agente começava no canto superior esquerdo e o objetivo encontrava-se no canto inferior direito.
+%O \hyperref[fig:env_grid]{mapa} utilizado para os experimentos tinha tamanho de 10x10, oito armadilhas espalhadas, o agente começava no canto superior esquerdo e o objetivo encontrava-se no canto inferior direito.
 
 Foram 2000 episódios de treinamento, cada um com limite de 200 ações tomadas antes de o episódio ser terminado automaticamente;
 \textit{mini-batches} de tamanho 200;
@@ -203,14 +207,14 @@ Esse comportamento é próprio do ambiente \footnote{PongDeterministic-v4 do Gym
 \subsection{\textit{Asteroids}}
 \label{sec:exp_asteroids}
 
-Por fim, \textit{Asteroids} foi o ambiente em que mais experimentos foram feitos por conta do maior número de alterações feitas nos hiper-parâmetros e nas etapas do aprendizado.
+Por fim, \textit{Asteroids} foi o ambiente em que mais experimentos foram feitos por conta do maior número de alterações feitas nos hiperparâmetros e nas etapas do aprendizado.
 Assim como no \textit{Pong}, os treinamentos levaram várias horas, chegando a passar de um dia para o outro em algumas ocasiões.
 O espaço de estados é mais complexo também, com mais informações na tela em cada instante e mais ações disponíveis.
 A análise de sucesso foi feita de forma semelhante ao \textit{Pong}: pela pontuação obtida ao longo do treinamento e pelo modelo construído no final.
 Neste ambiente, a pontuação poderia assumir qualquer valor maior ou igual a zero dentro das restrições de tempo que cada episódio tinha.
-Uma vez que perder vida não gera recompensa negativa e colisão com asteróides gera pontos por sua destruição, a pontuação mínima que o agente poderia obter, sem exceder o número de passos definido, é de 80 pontos, que corresponde a destruição de quatro asteróides grandes por colisão com a nave.
+Uma vez que perder vida não gera recompensa negativa e colisões com asteróides geram pontos por suas destruições, a pontuação mínima que o agente poderia obter, sem exceder o número de passos definido, é de 80 pontos, que corresponde a destruição de quatro asteróides grandes por colisão com a nave.
 
-Assim como no \textit{Pong}, houve uma etapa de pré-processamento dos \textit{frames} da tela do jogo que consistiu em convertê-los para escalas de cinza, remover partes sem informações relevantes da tela, redimensionar para um tamanho menor, e enfileirair para que o agente percebesse movimento, resultando em uma entrada de formato 84x84x4 para a rede neural.
+Assim como no \textit{Pong}, houve uma etapa de pré-processamento dos \textit{frames} da tela do jogo que consistia em convertê-los para escalas de cinza, remover partes sem informações relevantes da tela, redimensionar para um tamanho menor e enfileirar para que o agente percebesse movimento, resultando em uma entrada de formato 84x84x4 para a rede neural.
 
 O agente foi treinado por 100 episódios, o que corresponde a aproximadamente um milhão de \textit{frames}, assim como no \textit{Pong}, cada um com limite de 100000 ações tomadas por episódio antes de ser terminado automaticamente;
 \textit{mini-batches} de tamanho 64;
@@ -219,17 +223,21 @@ taxa de desconto $\gamma$ igual a 0.99;
 e atualização da rede alvo feita a cada 10000 ações.
 O dilema \textit{exploration versus exploitation} utilizou $P_{ini} = 1.0$, $P_{min} = 0.1$ e $decay = 20000$.
 
-Assim como no \textit{Pong}, a técnica de pular \textit{frames} foi utilizada, mas a escolha de ação foi feita a cada 3 \textit{frames} ao invés de 4, pois a nave e os tiros aparecem em \textit{frames} intercalados com os dos asteroides.
-Fazer a decisão de qual ação tomar a cada 3 \textit{frames} permite que tanto a nave e os tiros quanto os asteroides sejam vistos pelo agente.
+Assim como no \textit{Pong}, a técnica de pular \textit{frames} foi utilizada, mas a escolha de ação foi feita a cada 3 \textit{frames} ao invés de 4, pois a nave e os tiros aparecem em \textit{frames} intercalados com os dos asteróides.
+Fazer a decisão de qual ação tomar a cada 3 \textit{frames} permite que tanto a nave e os tiros quanto os asteróides sejam vistos pelo agente.
 Não existe um ambiente de \textit{Asteroids} com esse comportamento no Gym-Retro, então essa técnica foi implementado no código.
+
+%-----------------------------------------------------------------------------------------------%
+%-----------------------------------------------------------------------------------------------%
+%-----------------------------------------------------------------------------------------------%
 
 \subsection{Pseudocódigo}
 \label{sec:pseudocodigo}
 
-Apesar de cada ambiente ter suas particularidades nos treinamentos, como número de episódio e tamanho dos \textit{mini-batches}, todos foram treinados seguindo o mesmo formato.
-As linhas marcadas com um asterisco não são executadas no \textit{Gridworld}, uma vez que as entradas para a rede neste ambiente não necessitam de pré-processamento.
-As linhas marcadas com dois asteriscos, são executadas apenas pelo \textit{Asteroids}, que compõe a técnica de pular \textit{frames} descrita anteriormente.
-O pseudocódigo do treinamento encontra-se a seguir.
+Apesar de cada ambiente ter suas particularidades nos treinamentos, como número de episódios e tamanho dos \textit{mini-batches}, todos foram treinados seguindo o mesmo formato.
+%As linhas marcadas com um asterisco não são executadas no \textit{Gridworld}, uma vez que as entradas para a rede neste ambiente não necessitam de pré-processamento.
+%As linhas marcadas com dois asteriscos, são executadas apenas pelo \textit{Asteroids}, que compõe a técnica de pular \textit{frames} descrita anteriormente.
+O pseudocódigo dos treinamentos encontra-se a seguir.
 
 %\begin{left}
 \begin{tabular}{l l}
@@ -240,7 +248,7 @@ O pseudocódigo do treinamento encontra-se a seguir.
 
  & inicializa \textit{DQN} e \textit{TN} com pesos inicializados pelo inicializador de He;\\
  & inicializa o \textit{buffer} de memória \textit{B};\\
- & inicia o ambiente e recebe estado inicial $S_{0}$;\\
+ & inicializa o ambiente e recebe estado inicial $S_{0}$;\\
 \\
  & \textbf{para} \textit{n} = 0 até $N$ \textbf{faça}\\
  & \qquad executa uma ação aleatória $A_{n}$;\\
@@ -253,7 +261,8 @@ O pseudocódigo do treinamento encontra-se a seguir.
 \\
  & \textbf{para} m = 0 até $M$ \textbf{faça}\\
  & \qquad reinicia o ambiente e recebe estado inicial $S_{0}$\\
- & \qquad \textbf{enquanto} número máximo de passos não for excedido \textbf{faça}\\
+ & \qquad $passo \leftarrow 0$\\
+ & \qquad \textbf{enquanto} $passo$ não exceder o limite \textbf{faça}\\
  & \qquad \qquad executa uma ação $A_{passo}$ aleatoriamente com probabilidade $\epsilon$;\\
  & \qquad \qquad caso contrário, executa a melhor ação $A_{passo}$ segundo a rede neural;\\
  & \qquad \qquad recebe a recompensa $R_{passo}$, estado seguinte $S_{passo+1}$ e variável $done$;\\
@@ -263,10 +272,11 @@ O pseudocódigo do treinamento encontra-se a seguir.
  & \qquad \qquad \textbf{senão}\\
  & \qquad \qquad \qquad $S_{passo} \leftarrow S_{passo+1};$ \\
  & \qquad \qquad seleciona um \textit{mini-batch} do \textit{buffer} de memória;\\
- & \qquad \qquad calcula o \hyperref[eq:q_target]{valor alvo $Q_{T}$};\\
+ & \qquad \qquad calcula o \hyperref[eq:q_target]{valor alvo $\overline{Q}_{\overline{\theta}}$};\\
  & \qquad \qquad calcula o erro do \textit{mini-batch};\\
  & \qquad \qquad otimiza os pesos e atualiza a rede neural;\\
  & \qquad \qquad \textbf{se} $\tau$ passos tiverem passados desde a última atualização de \textit{TN} \textbf{então}\\
  & \qquad \qquad \qquad atualiza os pesos de \textit{TN};\\
+ & \qquad \qquad $passo \leftarrow passo + 1$;\\
 \hline
 \end{tabular}

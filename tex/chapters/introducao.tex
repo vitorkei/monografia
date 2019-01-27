@@ -14,29 +14,29 @@
 
 Um tipo muito conhecido de inteligência artificial, ou IA, dos dias atuais é o que controla oponentes em jogos eletrônicos.
 Na maior parte dos casos, elas seguem um conjunto pré-determinado de regras escritas pelo desenvolvedor com o intuito de criar um desafio para o jogador.
-Entretanto, por mais que seja possível fazer a IA ter capacidades muito acima de seres humanos para jogar, elas não conseguem se adaptar como seres humanos fazem para melhorar seu desempenho.
-Quando pessoas não recebem ajuda externa ou leem um manual, normalmente elas aprendem e se adaptam explorando o jogo, descobrindo o que as ações fazem e suas respectivas consequências.
+Contudo, por mais que seja possível fazer a IA ter capacidades muito acima de seres humanos para jogar, elas não conseguem se adaptar como eles fazem para melhorar seu desempenho.
+Quando pessoas não recebem ajuda externa ou leem um manual, normalmente elas aprendem e se adaptam explorando o jogo, descobrindo o que os comandos fazem e suas respectivas consequências.
 Ao invés de explicitar as regras que a máquina deve seguir, é possível deixá-la aprender as que considerar melhor, similar a pessoas, por meio de \textbf{aprendizado por reforço}.
 
-Entretanto, por mais que um computador consiga aprender como um ser humano, ele normalmente não consegue enxergar como um.
+Entretanto, por mais que uma IA consiga aprender como um ser humano, ela normalmente não consegue enxergar como um.
 Uma pessoa consegue inferir o que é inimigo e o que é terreno quando aparece na tela em poucos movimentos ou a partir de experiências passadas com jogos diferentes.
 Para um computador, um pixel que mude de posição já faz ele não conseguir mais distinguir o que está vendo, tendo que reaprender a cada nova combinação de pixels detectada.
-Em outras palavras, seres humanos conseguem abstrair as informações que enxergam com facilidade, enquanto computadores não.
+Ou seja, seres humanos são capazes de abstrair as informações que enxergam com facilidade, enquanto computadores não.
 Se IAs não conseguem mais identificar um objeto na tela por causa de um pixel que esteja diferente, como sistemas de detecção de imagem funcionam?
-Utilizando uma variante de rede neural profunda chamada de \textbf{rede neural convolucional} (\textit{convolutional neural network} (CNN)), é possível fazer uma máquina abstrair essas informações e inferir que um objeto em diferentes lugares da tela, assumindo diferentes tamanhos, são o mesmo - ou seja, visualizar e compreender imagens semelhante a uma pessoa.
+Utilizando uma variante de rede neural profunda chamada de \textbf{rede neural convolucional} (\textit{convolutional neural network} (CNN)), é possível fazer uma máquina abstrair essas informações e inferir que um objeto em diferentes lugares da tela, assumindo diferentes tamanhos, são o mesmo - ou seja, visualizar e compreender imagens, semelhante a como pessoas fazem.
 
-Unindo a forma de se aprender de aprendizado por reforço com a capacidade de análise de imagens de redes neurais convolucionais, obtem-se uma técnica chamada \textit{\textbf{Deep Q-Learning}}~\cite{DBLP:journals/corr/MnihKSGAWR13}.
-Essa forma de aprendizado permite que uma inteligência artificial aprenda a ter sucesso em um ambiente apenas recebendo imagens como entrada, assim como uma pessoa faria para aprender um jogo novo quando sua única fonte de informações é a tela de um monitor.
+Unindo a forma de se aprender de aprendizado por reforço com a capacidade de análise de imagens de redes neurais convolucionais, obtém-se uma técnica chamada \textit{\textbf{Deep Q-Learning}}~\cite{DBLP:journals/corr/MnihKSGAWR13}.
+Essa forma de aprendizado permite que uma inteligência artificial aprenda a ter sucesso em um ambiente apenas recebendo imagens como entrada, assim como uma pessoa faria, para aprender um jogo novo quando sua única fonte de informações é a tela de um monitor.
 
-Motivado pelo interesse nessa técnica de aprendizado de máquina, o objetivo deste trabalho foi fazer um estudo de caso quando uma \textit{Deep Q-Network} (DQN) é utilizada por uma inteligência artificial em três ambientes com características e graus de complexidade distintos: \textit{Gridworld}, \textit{Pong}, e \textit{Asteroids}.
-O estudo buscou analisar a capacidade de um agente obter bons resultados utilizando este método, e as dificuldades enfrentadas no processo, assim como aprofundar o conhecimento em aprendizado de máquina, redes neurais e aprendizado profundo.
+Motivado pelo interesse nesta técnica de aprendizado de máquina, o objetivo deste trabalho foi fazer um estudo de caso quando uma \textit{Deep Q-Network} (DQN) é utilizada por uma inteligência artificial em três ambientes com características e graus de complexidade distintos: \textit{Gridworld}, \textit{Pong} do Atari 2600 e \textit{Asteroids} do Atari 2600.
+O estudo buscou analisar a capacidade de um agente obter bons resultados utilizando este método e as dificuldades enfrentadas no processo, assim como aprofundar o conhecimento em aprendizado de máquina, redes neurais e aprendizado profundo.
 
-Os ambientes foram emulados utilizando as ferramentas Gym \footnote{\url{https://gym.openai.com/}} e Gym-Retro \footnote{\url{https://blog.openai.com/gym-retro/}}, o código foi escrito em Python3 \footnote{\url{https://www.python.org/}}, e a rede neural foi construída com o arcabouço TensorFlow \footnote{\url{https://www.tensorflow.org/}}.
+Os ambientes foram emulados utilizando as ferramentas gratuitas e de código aberto Gym \footnote{\url{https://gym.openai.com/}} e Gym-Retro \footnote{\url{https://blog.openai.com/gym-retro/}}, o código foi escrito em Python3 \footnote{\url{https://www.python.org/}} e a rede neural foi construída com o arcabouço TensorFlow \footnote{\url{https://www.tensorflow.org/}}.
 Os resultados obtidos pelo agente treinado foram comparados com um aleatório e, no caso do \textit{Pong} e do \textit{Asteroids}, com um ser humano jogando.
-No \textit{Gridworld}, o agente consegui obter resultados positivos de maneira consistente, mesmo com algumas pequenas alterações nos hiper-parâmetros.
-No \textit{Pong}, a pontuação final que a inteligência artificial conseguiu ao final de cada partida cresceu lentamente ao longo do treinamento, mostrando ser capaz, ainda que com dificuldade, de ter sucesso.
-No \textit{Asteroids}, por outro lado, não houve indícios de melhorias ao longo dos treinamentos realizados, com desempenho inferiores a um agente aleatório.
+No \textit{Gridworld}, o agente conseguiu obter resultados positivos de maneira consistente, mesmo com algumas pequenas alterações nos hiperparâmetros.
+No \textit{Pong}, a pontuação final que a inteligência artificial conseguiu no fim de cada partida cresceu lentamente ao longo do treinamento, mostrando ser capaz de ter sucesso ainda que com dificuldade.
+No \textit{Asteroids}, por outro lado, não houve indícios de melhorias nos treinamentos realizados, com desempenhos inferiores aos de um agente aleatório.
 
 Inicialmente, no capítulo 2, serão explicados os fundamentos teóricos utilizados neste trabalho, como rede neural convolucional, aprendizado profundo e \textit{Deep Q-Learning}, para a construção da inteligência artificial.
-Em seguida, no capítulo 3, serão detalhados os três ambientes de treinamento, a arquitetura das redes neurais, e, por último, como foram os experimentos.
+Em seguida, no capítulo 3, serão detalhados os três ambientes de treinamento, a arquitetura das redes neurais e, por último, como foram os experimentos.
 Por fim, no capítulo 4, são apresentados e analisados os resultados obtidos pelos agentes.

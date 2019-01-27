@@ -19,7 +19,7 @@ Por conta da natureza de cada ambiente e de seus resultados, formas diferentes d
 O agente se saiu bem no \textbf{\textit{Gridworld}} conforme as expectativas, consistentemente encontrando um caminho para o objetivo com diferentes arquiteturas que não fossem drasticamente diferentes, mesmo que elas não tenham sido ótimas.
 A tabela abaixo apresenta a proporção média de vezes que o agente treinado por \textit{Deep Q-Learning} e que um aleatório chegaram ao objetivo.
 Para o agente treinado, o número foi obtido após ele passar por cinco treinamentos de 2000 episódios cada no mapa de tamanho 10x10 apresentado anteriormente.
-O modelo final conseguiu fazer o agente chegar ao objetivo quatro vezes e exceder o número máximo de ações uma vez, pois chegou a uma célula da qual não conseguiu sair já que as melhores ações tomadas eram ir em direção às paredes adjacentes.
+O modelo final conseguiu fazer o agente chegar ao objetivo quatro vezes e exceder o número máximo de ações uma vez, pois chegou a um espaço do qual não conseguiu sair já que as melhores ações tomadas eram ir em direção às paredes adjacentes.
 Para o agente aleatório, o número foi obtido após 10000 tentativas de se chegar ao objetivo, equivalente ao número de episódios que o agente treinado teve para chegar ao objetivo.
 
 \begin{center}
@@ -37,12 +37,12 @@ DQL & 66.15\% \\
 Alguns experimentos diferentes, mas menos aprofundados, com menos treinamentos indicaram que número e posicionamento de armadilhas, e tamanho da \textit{grid} têm considerável influência no modelo construído.
 Por um lado, o agente encontrou caminhos até o objetivo com mais velocidade e consistência, uma vez que há menos estados a serem explorados e calculados.
 Por outro, a quantidade de armadilhas e locais em que são colocadas tiveram maior impacto no aprendizado; quando há muitas armadilhas ou ficam muito próximas do objetivo, tornou-se mais comum o agente não conseguir alcançá-lo, pois ele tenta evitar as recompensas negativas a ponto de ficar preso em \textit{loops} entre alguns estados ou tentar mover-se contra uma parede.
-Esses problemas poderiam ser resolvidos com a escolha de hiper-parâmetros melhores.
+Esses problemas poderiam ser resolvidos com a escolha de hiperparâmetros melhores.
 
 \section{\textit{Pong}}
 \label{sec:res_pong}
 
-\textbf{\textit{Pong}} mostrou uma arquitetura bem mais sensível, com pequenas alterações nos hiper-parâmetros fazendo o aprendizado se tornar muito mais lento ou sequer acontecer.
+\textbf{\textit{Pong}} mostrou uma arquitetura bem mais sensível, com pequenas alterações nos hiperparâmetros fazendo o aprendizado se tornar muito mais lento ou sequer acontecer.
 Mesmo assim, os resultados se mostraram promissores dado tempo suficiente para o agente treinar e aprender.
 
 \begin{figure}[h!]
@@ -59,7 +59,7 @@ Mesmo assim, os resultados se mostraram promissores dado tempo suficiente para o
   \label{fig:pong_score}
 \end{figure}
 
-O crescimento lento, mas estável da pontuação total obtida por episódio reflete a capacidade do agente de aprender, ainda que com dificuldade, a se comportar neste ambiente de maneira positiva.
+O crescimento lento, mas estável da pontuação total obtida por episódio reflete a capacidade do agente de aprender, ainda que com dificuldade, a se comportar nesse ambiente de maneira positiva.
 
 Nos experimentos, foram coletadas a pontuação final média obtida por uma pessoa experiente jogando com o mouse no emulador Stella, por um agente jogando aleatoriamente, e pela inteligência artificial treinada, cada um jogando cinco partidas contra a inteligência artificial padrão do jogo.
 
@@ -82,19 +82,20 @@ O agente não obteve resultados positivos em \textbf{\textit{Asteroids}} ao long
 Apesar de ser um ambiente propício para o aprendizado por \textit{Deep Q-Learning}, tendo todas as informações claras na tela, ações bem definidas e recebimento de recompensas simples e consistente, o agente teve grande dificuldade em conseguir aprender.
 Por conta dessas características, esperava-se que ele conseguisse aprender a se comportar nesse domínio, ainda que com dificuldade.
 
-O gráfico abaixo foi obtido ao utilizar a arquitetura de rede e treinamento descritos no capítulo \hyperref[cap:implementacao]{Implementação} e exemplifica a pontuação obtida pelo agente nos treinamentos pelos quais passou, comparando com a pontuação obtida por um agente aleatório.
+Os gráficos da figura \ref{fig:asteroids_score} foram obtidos pelo agente treinado com a arquitetura de rede e treinamento descritos no capítulo \hyperref[cap:implementacao]{Implementação}, exemplificando as pontuações obtidas nos treinamentos pelos quais passou, e por um agente aleatório.
 
-\begin{figure}[h!]
-  \begin{minipage}[b]{.5\textwidth}
+\begin{figure}[t]
+  \begin{minipage}[t]{.5\textwidth}
   \centering
   \includegraphics[scale=.3]{asteroids_ai_score}
   \end{minipage}
   \hfill
-  \begin{minipage}[b]{.5\textwidth}
+  \begin{minipage}[t]{.5\textwidth}
   \centering
   \includegraphics[scale=.3]{asteroids_random_score}
   \end{minipage}
   \caption{A imagem da esquerda mostra a pontuação ao longo do aprendizado e a da direita de um agente aleatório. A linha azul indica a pontuação final do agente nos episódios enquanto a vermelha indica a média da pontuação final dos 10 episódios anteriores.}
+  \vspace*{8in}
   \label{fig:asteroids_score}
 \end{figure}
 
