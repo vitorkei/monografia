@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.14159265-2.6-1.40.19 (TeX Live 2018/Arch Linux) (preloaded format=pdflatex 2019.1.25)  27 JAN 2019 19:11
+This is pdfTeX, Version 3.14159265-2.6-1.40.19 (TeX Live 2018/Arch Linux) (preloaded format=pdflatex 2019.1.25)  27 JAN 2019 22:42
 entering extended mode
  restricted \write18 enabled.
  %&-line parsing enabled.
@@ -1582,10 +1582,10 @@ Package rerunfilecheck Info: File `texto.brf' has not changed.
 Package atveryend Info: Empty hook `AtVeryVeryEnd' on input line 86.
  ) 
 Here is how much of TeX's memory you used:
- 25062 strings out of 492639
- 417452 string characters out of 6135497
+ 25058 strings out of 492639
+ 417411 string characters out of 6135497
  697957 words of memory out of 5000000
- 28479 multiletter control sequences out of 15000+600000
+ 28476 multiletter control sequences out of 15000+600000
  556023 words of font info for 75 fonts, out of 8000000 for 9000
  1141 hyphenation exceptions out of 8191
  47i,15n,65p,947b,592s stack positions out of 5000i,500n,10000p,200000b,80000s
@@ -1615,10 +1615,10 @@ ist/fonts/type1/public/cm-super/sfti0800.pfb></usr/share/texmf-dist/fonts/type1
 /public/cm-super/sfti0900.pfb></usr/share/texmf-dist/fonts/type1/public/cm-supe
 r/sfti1000.pfb></usr/share/texmf-dist/fonts/type1/public/cm-super/sfti1200.pfb>
 </usr/share/texmf-dist/fonts/type1/urw/courier/ucrr8a.pfb>
-Output written on texto.pdf (36 pages, 1208285 bytes).
+Output written on texto.pdf (36 pages, 1206994 bytes).
 PDF statistics:
- 642 PDF objects out of 1000 (max. 8388607)
- 545 compressed objects within 6 object streams
- 119 named destinations out of 1000 (max. 500000)
+ 640 PDF objects out of 1000 (max. 8388607)
+ 543 compressed objects within 6 object streams
+ 118 named destinations out of 1000 (max. 500000)
  340 words of extra memory for PDF output out of 10000 (max. 10000000)
 

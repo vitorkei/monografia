@@ -65,10 +65,10 @@ Hessel, M., Modayil, J., van Hasselt, H., Schaul, T., Ostrovski, G., Dabney, W.,
 Goodfellow, I., Bengio, Y., Courville, A.
 \newblock {\em Deep Learning}. The MIT Press, 2016. Seção 6.4.1, página 197. URL: \url{http://www.deeplearningbook.org/}. Último acesso em 06 de janeiro de 2019.
 
-\bibitem[Mot+95]{stella}
-Mott, B. W., Anthony, S., The Stella Team.
-\newblock {\em Stella: A Multi-Platform Atari 2600 VCS Emulator}.
-URL: \url{https://stella-emu.github.io/}. Último acesso em 05 de janeiro de 2019.
+%\bibitem[Mot+95]{stella}
+%Mott, B. W., Anthony, S., The Stella Team.
+%\newblock {\em Stella: A Multi-Platform Atari 2600 VCS Emulator}.
+%URL: \url{https://stella-emu.github.io/}. Último acesso em 05 de janeiro de 2019.
 
 \bibitem[C1847]{cauchy1847}
 Cauchy, A.
