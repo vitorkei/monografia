@@ -4,12 +4,12 @@
 \contentsline {section}{\numberline {2.1}Redes neurais}{3}{section.2.1}
 \contentsline {section}{\numberline {2.2}Aprendizado profundo}{5}{section.2.2}
 \contentsline {section}{\numberline {2.3}Redes neurais convolucionais}{5}{section.2.3}
-\contentsline {section}{\numberline {2.4}Processo de Decis\IeC {\~a}o de Markov}{7}{section.2.4}
-\contentsline {section}{\numberline {2.5}Aprendizado por refor\IeC {\c c}o}{8}{section.2.5}
+\contentsline {section}{\numberline {2.4}Processo de Decis\IeC {\~a}o de Markov}{6}{section.2.4}
+\contentsline {section}{\numberline {2.5}Aprendizado por refor\IeC {\c c}o}{7}{section.2.5}
 \contentsline {section}{\numberline {2.6}\textit {Q-Learning}}{8}{section.2.6}
 \contentsline {section}{\numberline {2.7}\textit {Approximate Q-Learning}}{10}{section.2.7}
-\contentsline {section}{\numberline {2.8}\textit {Deep Q-Learning}}{11}{section.2.8}
-\contentsline {section}{\numberline {2.9}Aprimorando o aprendizado}{12}{section.2.9}
+\contentsline {section}{\numberline {2.8}\textit {Deep Q-Learning}}{10}{section.2.8}
+\contentsline {section}{\numberline {2.9}Aprimorando o aprendizado}{11}{section.2.9}
 \contentsline {subsection}{\numberline {2.9.1}\textit {Experience replay}}{12}{subsection.2.9.1}
 \contentsline {subsection}{\numberline {2.9.2}Alvo fixo}{12}{subsection.2.9.2}
 \contentsline {chapter}{\numberline {3}Implementa\IeC {\c c}\IeC {\~a}o}{13}{chapter.3}

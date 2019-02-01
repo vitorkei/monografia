@@ -71,7 +71,7 @@ Como o jogo termina quando um dos lados alcança 21 pontos, a pontuação final 
   \begin{minipage}[b]{.5\textwidth}
   \includegraphics[scale=.25]{pong_example02}
   \end{minipage}
-  \caption{Exemplos de tela do jogo no emulador de Atari 2600, Stella. Nestas imagens, o jogador controla a barra verde, do lado direito da tela, enquanto a IA criada pelos desenvolvedores do jogo controla a barra laranja, do lado esquerdo da tela. O ponto branco entre elas é a bola, as barras brancas horizontais que estendem desde o lado esquerdo até o lado direito da tela representam os limites superior e inferior do campo e os números no topo indicam a pontuação de cada jogador.}
+  \caption{Exemplos de tela do jogo no emulador de Atari 2600, Stella. Nestas imagens, o jogador controla a barra verde, do lado direito da tela, enquanto a IA criada pelos desenvolvedores do jogo controla a barra laranja, do lado esquerdo da tela. O ponto branco entre elas é a bola, as barras brancas horizontais que se estendem desde o lado esquerdo até o lado direito da tela representam os limites superior e inferior do campo e os números no topo indicam a pontuação de cada jogador.}
 \end{figure}
 
 \textit{Pong} é o ambiente de complexidade intermediária estudada neste trabalho, pois possui poucas regras, grande espaço de estados e poucas ações possíveis em cada um deles.
@@ -80,7 +80,7 @@ Como o jogo termina quando um dos lados alcança 21 pontos, a pontuação final 
 \label{sec:env_asteroids}
 
 Os estados $S$ são a tela do jogo, representada por vetores de pixels de três dimensões: altura, largura e canais de cor.
-As ações possíveis $A$ são mover-se para frente, girar no sentido horário, girar no sentido anti-horário, mover-se no hiper-espaço (se teletransportar para algum lugar aleatório da tela) e atirar para frente.
+As ações possíveis $A$ são mover-se para frente, girar no sentido horário, girar no sentido anti-horário, mover-se no hiperespaço (se teletransportar para algum lugar aleatório da tela) e atirar para frente.
 As recompensas $R(S,A,S')$ são recebidas por destruir os asteróides, com o maior valendo menos pontos e o menor valendo mais pontos, podendo ser obtidas tanto atirando neles quanto colidindo, não havendo recompensa negativa pela perda de vida.
 As probabilidades de transição $P(S,A,S')$ são as probabilidades de o jogo estar em um estado $S$, por exemplo o inicial em que o jogador tem zero pontos e todas as vidas, e transitar para algum outro estado futuro $S'$, como destruir algum asteróide e receber pontos por isso, após tomar uma ação $A$, como atirar para frente.
 Assim como o \textit{Pong}, \textit{Asteroids} é um jogo determinístico no sentido que não existe aleatoriedade na consequência das ações do jogador: se ele fizer um disparo, o tiro seguirá reto durante um certo tempo até desaparecer ou atingir um asteróide; cada tamanho de asteróide sempre aumenta a pontuação do jogador pela mesma quantidade quando destruído.
@@ -112,7 +112,6 @@ O único estado terminal nativo do jogo ocorre quando todas as vidas são perdid
 \label{sec:arq}
 
 Com os ambientes e MDPs formalizados, nesta seção serão descritas as arquiteturas utilizadas nos três ambientes abordados neste trabalho e, na próxima, os respectivos treinamentos feitos.
-Todo o código foi escrito em Python3, com as redes neurais sendo construídas utilizando o arcabouço TensorFlow.
 
 \subsection{\textit{Gridworld}}
 \label{sec:arq_gw}
@@ -166,7 +165,7 @@ Os experimentos compõe a maior parte do trabalho por poderem levar alguns minut
 \label{sec:exp_gridworld}
 
 Por ser um ambiente com um número baixo de estados e ações possíveis, a arquitetura da rede neural pôde ser simples, com poucas camadas convolucionais e \textit{fully-connected}, com poucos nós cada uma.
-Como resultado dessa baixa complexidade, foi possível realizar milhares de episódios de treinamento em poucas horas.
+Como consequência dessa baixa complexidade, foi possível realizar milhares de episódios de treinamento em poucas horas.
 Além disso, foi mais fácil analisar o aprendizado por ter poucos estados bem definido e por haver soluções evidentes de como chegar ao objetivo.
 A análise do sucesso do agente foi feita pela sua capacidade de conseguir chegar à recompensa positiva do mapa.
 O número de vezes que ele conseguiu chegar ao objetivo ao longo dos episódios de treinamento foi considerado como menos importante para avaliar o desempenho do aprendizado, pois foi utilizada uma alta probabilidade mínima de se tomar uma ação aleatória, de 40\%.
@@ -185,8 +184,8 @@ O dilema \hyperref[eq:exp_exp_prob]{\textit{exploration versus exploitation}} ut
 
 No caso do \textit{Pong}, os treinamentos foram mais demorados, com episódios levando alguns minutos e passando várias horas para se perceber alguma melhoria no aprendizado uma vez que o espaço de estados é muito maior.
 Além disso, existem diversos momentos em que não há uma ação ótima bem definida a se tomar, como nos momentos em que a bola está se deslocando na direção do lado do adversário ou quando ela sai da tela, marcando ponto para um dos jogadores.
-Como os episódios só terminam quando um dos lados consegue 21 pontos (ou o número máximo de passos é excedido, o que não aconteceu neste trabalho), a avaliação foi feita pela pontuação obtida pelo agente ao final de cada episódio e da partida realizada após o treinamento, em que foram tomadas apenas ações ótimas segundo o modelo construído:
-o mínimo possível é de -21 pontos, com o adversário marcando 21 pontos e o agente nenhum, e o máximo é de 21 pontos, sendo a situação oposta.
+Como os episódios só terminam quando um dos lados consegue 21 pontos (ou o número máximo de passos é excedido, o que não aconteceu neste trabalho), a avaliação foi feita pela pontuação obtida pelo agente ao final de cada episódio e da partida realizada após o treinamento, em que foram tomadas apenas ações ótimas segundo o modelo construído.
+%o mínimo possível é de -21 pontos, com o adversário marcando 21 pontos e o agente nenhum, e o máximo é de 21 pontos, sendo a situação oposta.
 
 Como este ambiente é muito mais complexo que o \textit{Gridworld}, os \textit{frames} da tela do jogo passam por uma etapa de pré-processamento para reduzir o tempo de processamento pela rede neural.
 Primeiro, eles são convertidos para escalas de cinza.
@@ -202,7 +201,7 @@ O dilema \textit{exploration versus exploitation} utilizou $P_{ini} = 1.0$, $P_{
 
 Para acelerar o treinamento, foi utilizada uma técnica de pular \textit{frames}~\cite{DBLP:journals/corr/abs-1207-4708} para economizar tempo.
 Ela consiste em o agente escolher uma ação a cada 4 \textit{frames} e repeti-la nos três seguintes, ao invés de calcular qual a melhor em cada um deles, uma vez que é mais rápido avançar o emulador em um \textit{frame} do que o agente selecionar uma ação.
-Esse comportamento é próprio do ambiente \footnote{PongDeterministic-v4 do Gym} utilizado, não havendo partes do código destinada a isso.
+Esse comportamento é próprio do ambiente \footnote{PongDeterministic-v4 do Gym} utilizado, não havendo partes do código destinadas a isso.
 
 \subsection{\textit{Asteroids}}
 \label{sec:exp_asteroids}
@@ -260,8 +259,8 @@ O pseudocódigo dos treinamentos encontra-se a seguir.
  & \qquad \qquad $S_{n} \leftarrow S_{n+1};$ \\
 \\
  & \textbf{para} m = 0 até $M$ \textbf{faça}\\
- & \qquad reinicia o ambiente e recebe estado inicial $S_{0}$\\
- & \qquad $passo \leftarrow 0$\\
+ & \qquad reinicia o ambiente e recebe estado inicial $S_{0}$;\\
+ & \qquad $passo \leftarrow 0$;\\
  & \qquad \textbf{enquanto} $passo$ não exceder o limite \textbf{faça}\\
  & \qquad \qquad executa uma ação $A_{passo}$ aleatoriamente com probabilidade $\epsilon$;\\
  & \qquad \qquad caso contrário, executa a melhor ação $A_{passo}$ segundo a rede neural;\\

@@ -38,7 +38,7 @@ Assim como o órgão no qual foram baseadas, elas possuem uma grande quantidade 
 Dado que aprendem com exemplos, é considerada uma técnica de aprendizado supervisionado.
 Elas são muito utilizadas como aproximadoras de funções desconhecidas, que não são facilmente modeláveis matematicamente.
 
-Com os avanços nos estudos dessa técnica nos últimos anos, diversos tipos diferentes de redes neurais foram desenvolvidos, como redes neurais convolucionais, o tipo utilizado neste trabalho, e redes neurais de memória de curto-longo prazo\footnote{Tradução livre feita pelo autor} (\textit{Long/Short Term Memory}, LSTM), que não será abordada.
+Com os avanços nos estudos dessa técnica nos últimos anos, diversos tipos diferentes de redes neurais foram desenvolvidos, como redes neurais convolucionais, o tipo utilizado neste trabalho, e redes neurais de memória de curto-longo prazo\footnote{Tradução livre feita pelo autor} (\textit{Long/Short Term Memory} (LSTM)), que não será abordada.
 Apesar de cada uma ter sua particularidade, redes neurais clássicas possuem duas características principais: a estrutura dividida em \textbf{camadas} e os \textbf{neurônios} que as compõe.
 Existem redes que não são consideradas clássicas pela falta de estrutura em camadas, como Redes de Hopfield (\textit{Hopfield Network}) e Máquinas de Boltzmann (\textit{Boltzmann Machine}), que também não serão discutidas neste trabalho.
 
@@ -46,7 +46,7 @@ As camadas de uma rede neural são compostas por neurônios e podem ser separada
 Quando um dado é suprido à rede, ele vem no formato de um vetor de forma que os neurônios da camada de \textbf{entrada} recebem seus elementos para serem processados ao longo da rede;
 as \textbf{ocultas} realizam o processamento do dado de entrada;
 e a de \textbf{saída} devolve um vetor de números que representa o resultado da rede neural para a entrada dada.
-Enquanto o formato da entrada e da saída da rede neural determinam o número de neurônios das respectivas camadas, a quantidade de nós nas ocultas são arbitrários, normalmente definidos por meio de tentativa e erro.
+Enquanto o formato da entrada e da saída da rede neural determinam o número de neurônios das respectivas camadas, a quantidade de nós nas ocultas é arbitrário, normalmente definido por meio de tentativa e erro.
 
 \textbf{Neurônios}, ou nós, são funções que recebem, como entrada, a saída de cada neurônio da camada anterior e devolvem um número
 cujo significado e como são usados variam de acordo com o objetivo da rede.
@@ -62,7 +62,7 @@ A combinação linear dos neurônios é dada por:
 w_{1}a_{1} + w_{2}a_{2} + ... + w_{n}a_{n}
 \end{equation}
 
-Antes de ser passada para a função de ativação, é comum, mas não obrigatório adicionar à somatória \ref{eq:nn01} um viés \footnote{\textit{bias}, em inglês} $b$, uma constante que ajuda a melhor aproximar da função desconhecida.
+Antes de ser passada para a função de ativação, é comum, mas não obrigatório adicionar à somatória \ref{eq:nn01} um viés \footnote{\textit{bias}, em inglês} $b$, uma constante que ajuda a melhor aproximar a função desconhecida.
 A função de ativação realiza uma transformação não-linear no número que recebe como argumento, a soma de \ref{eq:nn01} com o viés neste caso, para mapear seu resultado em um intervalo e determinar se o neurônio $n$ deve ser ativado ou não.
 Tanto a transformação quanto a forma de mapear e o intervalo são determinados pela função utilizada.
 
@@ -85,7 +85,7 @@ Naturalmente, quanto maior for o erro, mais incorreta foi a previsão.%, e isso 
 Otimizar os pesos de forma a reduzir os erros obtidos com os exemplos parece ser o melhor caminho para aprimorar o modelo, mas isso não é necessariamente verdade.
 Os exemplos utilizados na primeira etapa compõe o \textbf{conjunto de treinamento}.
 Se o modelo tiver zero de erro em relação a esse conjunto, ele estará sofrendo de \textit{overfitting}, o que significa que a rede neural se adequa tanto ao conjunto de treinamento que saberá o que fazer apenas nele, estando possivelmente muito diferente da função que se deseja aproximar.
-Para determinar o grau de \textit{overfitting}, utiliza-se um \textbf{conjunto de validação}, exemplos diferentes do treinamento que são supridos à rede neural ocasionalmente e que não são utilizados para a atualização dos pesos.
+Para determinar o grau de \textit{overfitting}, utiliza-se um \textbf{conjunto de validação}, exemplos diferentes do conjunto de treinamento que são supridos à rede neural ocasionalmente e que não são utilizados para a atualização dos pesos.
 Se o erro do conjunto de treinamento diminuir, mas o do conjunto de validação não, então o modelo estará começando a sofrer de \textit{overfitting} e o treinamento deve ser interrompido.
 Por fim, utiliza-se um \textbf{conjunto de testes}, exemplos escolhidos pela mesma distribuição de probabilidade que o conjunto de treinamento para fazer uma avaliação do modelo obtido após o treinamento.
 Idealmente, um modelo com erro baixo nos três conjuntos não tem problemas de \textit{overfitting} e consegue resolver o problema para o qual foi criado.
@@ -133,7 +133,8 @@ a \textbf{etapa convolucional}, que dá o nome ao tipo da rede,
 e a \textbf{função de ativação}.
 
 A detecção de características de uma CNN é feita na \textbf{etapa convolucional} pelos filtros convolucionais, também chamados de \textit{kernel}, que são matrizes muito menores que a de entrada, mas com mesmo número de dimensões, que em muitos casos é 3: altura, largura e canais de cor.
-Os filtros convolucionais são os elementos básicos no processamento de imagens, pois são responsáveis por aprender e detectar características nas imagens de entrada.
+Isso faz com que eles sejam elementos básicos em processamento de imagem.
+%Os filtros convolucionais são os elementos básicos no processamento de imagens, pois são responsáveis por aprender e detectar características nas imagens de entrada.
 Eles são deslizados pela matriz de entrada, realizando o produto escalar com a área sobre a qual estão e criando uma nova matriz chamada de \textit{feature map}.
 Essa operação feita para cada filtro é chamada de convolução.
 Após os \textit{feature maps} de cada filtro serem feitos, eles são juntados de forma que a saída da camada tem o formato $N$x$M$x$D$, onde $N$ e $M$ são a altura e largura do \textit{feature map} e $D$ é o número de \textit{kernels}.
@@ -162,7 +163,7 @@ A partir de um certo ponto, a melhora se torna ínfima em comparação com o tem
 \section{Processo de Decisão de Markov}
 \label{sec:mdp}
 
-Antes de falar sobre aprendizado por reforço, é necessário explicar o que é um \textbf{Processo de Decisão de Markov} (\textit{Markov Decision Process} - MDP).
+Antes de falar sobre aprendizado por reforço, é necessário explicar o que é um \textbf{Processo de Decisão de Markov} (\textit{Markov Decision Process} (MDP)).
 Um MDP padrão possui as seguintes propriedades:
 a probabilidade de se chegar em um estado futuro $S'$ dado que a inteligência artificial, também conhecida como agente, se encontra no estado $S$ depende apenas da ação $A$ tomada nesse estado $S$, o que caracteriza a \textbf{propriedade Markoviana};
 existe um modelo probabilístico que caracteriza essa transição, dado por $P(S'|S,A)$;
@@ -213,13 +214,13 @@ Seu objetivo é explorar o espaço de estados a fim de aprender a recompensa esp
 As recompensas esperadas de cada ação em cada estado são armazenadas em uma tabela que deve mapear todas as ações para todos os estados.
 Isso é possível em domínios simples, como um Jogo da Velha, mas se torna impraticável conforme o espaço de estados aumenta.
 No caso do \textit{Pong} e do \textit{Asteroids} por exemplo, os \textit{frames} do jogo são os estados, de forma que um pixel que mude de cor já faz ser um estado completamente diferente do ponto de vista do computador.
-Em uma tela de 210x160 pixels, com cada pixel armazenando três números que vão de 0 à 255 para determinar sua cor, é evidente não ser possível armazenar na memória um mapeamento das ações para cada um desses estados.
+Em uma tela de 210x160 pixels, com cada pixel armazenando três números que variam de 0 à 255 para determinar sua cor, é evidente não ser possível armazenar na memória um mapeamento das ações para cada um desses estados.
 Mesmo que não houvesse esse obstáculo computacional, existem situações em que não é possível determinar qual ação retornará a maior recompensa, como na figura \ref{fig:unknown_best_action}.
 
 \begin{figure}[h!]
   \centering
   \includegraphics[scale=.275]{pong_unknown_best_action}
-  \caption{No \textit{Pong}, para que um jogador marque ponto, é necessário que a bola saia da tela pelo lado do adversário. Quando isso ocorre, não é possível dizer qual a melhor ação porque todas terão o mesmo resultado ou, mesmo que essa informação não seja conhecida, porque não se sabe onde a bola está.}
+  \caption{No \textit{Pong}, para que um jogador marque ponto, é necessário que a bola saia da tela pelo lado do adversário. Quando isso ocorre, não é possível dizer qual a melhor ação porque todas terão o mesmo resultado ou, se essa informação não for conhecida, porque não se sabe onde a bola está.}
 %  \caption{No \textit{Pong}, quando a bola fica fora da tela, não é possível dizer qual a melhor ação porque todas terão o mesmo resultado. No \textit{Pong}, não é possível ver a bola somente quando algum dos jogadores marca um ponto, pois ela saiu da tela pelo lado esquerdo ou direito; quando isso ocorre, todas as ações tomadas têm o mesmo resultado, pois é preciso esperar alguns instantes para uma nova bola aparecer e o jogo continuar.}
   \label{fig:unknown_best_action}
 \end{figure}
@@ -232,7 +233,7 @@ No contexto deste trabalho, a política ótima será encontrada utilizando uma v
 \section{\textit{Q-Learning}}
 \label{sec:ql}
 
-Quando não se conhece as probabilidades de transição ou a função de recompensa, informações necessárias para se obter a função valor pela equação de Bellman, é possível estimar $V(S)$ a partir de observações feitas sobre o ambiente.
+Quando não se conhece as probabilidades de transição ou a função de recompensa, informações necessárias para se obter a função valor pela \hyperref[eq:bellman]{equação de Bellman}, é possível estimar $V(S)$ a partir de observações feitas sobre o ambiente.
 Logo, o problema passa a ser como extrair a política do agente de uma função valor estimada.
 
 Seja $Q^{*}(S,A)$ a função Q-valor\footnote{O nome "Q-valor"{} vem do valor da qualidade da ação} que expressa a recompensa esperada de se começar no estado $S$, tomar a ação $A$ e continuar de maneira ótima. $Q^{*}(S,A)$ é uma parte da política gulosa para função valor ótima e é dada por:
@@ -318,10 +319,10 @@ Q(S,A) = \omega_{1}f_{1}(S,A) + \omega_{2}f_{2}(S,A) + ... + \omega_{n}f_{n}(S,A
 Como o $V(S')$ é o valor esperado e $Q(S,A)$ é o valor previsto, a atualização pode ser interpretada como ajustar o Q-valor pela diferença desses dois números.
 Além disso, como o \textit{Approximate Q-Learning} faz uma avaliação das características do estado em que o agente se encontra ($f_{i}(S,A)$) para tomar uma decisão, apenas os pesos ($\omega_{i}$) precisam ser atualizados.
 
-A atualização do $k$-ésimo peso, $\omega_{k}$, $k = 1, ..., n$, ocorre conforme a equação \ref{eq:w_update} abaixo.
+Seja $i$ a iteração atual, a atualização do $k$-ésimo peso, $\omega_{k}^{(i)}$, $k = 1, ..., n$, ocorre conforme a equação \ref{eq:w_update} abaixo.
 
 \begin{equation} \label{eq:w_update}
-\omega_{k}^{(i+1)}(S,A) = \omega_{k}^{(i)}(S,A) + \alpha[R(S,A,S') + \gamma V(S') - Q^{(i)}(S,A)]f_{k}(S,A), \hfill k = 1, 2, ..., n
+\omega_{k}^{(i+1)} = \omega_{k}^{(i)} + \alpha[R(S,A,S') + \gamma V(S') - Q^{(i)}(S,A)]f_{k}(S,A), \hfill k = 1, 2, ..., n
 \end{equation}
 
 Duas grandes vantagens de representar o Q-valor como uma combinação linear são evitar \textit{overfitting}, e ser matematicamente conveniente, ter maneiras convenientes de calcular erro e funções que generalizem as decisões.
@@ -338,13 +339,13 @@ Por se tratar de um tipo de aprendizado por reforço, mais precisamente \textit{
 
 Dado que o agente deve aprender enxergando a tela e tudo que ele vê são matrizes, a primeira etapa consiste em processar essas informações para poder aprender.
 %Em outras palavras, o primeiro passo é passar as imagens da tela por uma \textbf{rede neural convolucional}.
-Essa parte consiste em passar as imagens da tela por uma \textbf{rede neural convolucional} e funciona conforme descrito na \hyperref[sec:cnn]{respectiva seção}: as imagens são a entrada, ocorre o processamento nas camadas ocultas e, na camada de saída, cada neurônio tem um valor que determinam a ação tomada.
+Nessa parte, as imagens da tela são passadas por uma \textbf{rede neural convolucional}, funcionando conforme descrito na \hyperref[sec:cnn]{respectiva seção}: as imagens são a entrada, ocorre o processamento nas camadas ocultas e, na camada de saída, cada neurônio tem um valor que determinam a ação tomada.
 Contudo, como as imagens passadas não são rotuladas, a avaliação da saída da rede é feita de outra forma, por meio de \textbf{aprendizado por reforço}.
 %Conforme explicado \hyperref[sec:rl]{anteriormente}, aprendizado por reforço aprende sem o uso de exemplos rotulados, mas precisa que as características que a IA deve aprender estejam bem definidas.
 Em outras palavras, enquanto as características do ambiente são definidas pela rede, o cálculo do erro para a otimização dos pesos é feito pela parte de aprendizado por reforço.
 
 O \textbf{cálculo do erro} é feito por funções que retornam valores altos quando o modelo devolve respostas muito distantes da correta, e próximos de zero caso contrário, como o erro quadrático médio, \textit{cross-entropy} e \textit{Huber loss}~\cite{huber_loss}.
-Para minimizar o erro, normalmente utiliza-se o módulo do número retornado pela função de erro, para garantir que será positivo, com alguma variação do \textbf{método do maior declive}, também conhecido como \textbf{método do gradiente}~\cite{cauchy1847} \footnote{\textit{Gradient descent}, em inglês}, como o RMSProp~\cite{rmsprop} e o Adam~\cite{DBLP:journals/corr/KingmaB14}.
+Para minimizar o erro, normalmente utiliza-se o módulo ou o quadrado do número retornado pela função de erro, para garantir que será positivo, com alguma variação do \textbf{método do maior declive}, também conhecido como \textbf{método do gradiente}~\cite{cauchy1847} \footnote{\textit{Gradient descent}, em inglês}, como o RMSProp~\cite{rmsprop} e o Adam~\cite{DBLP:journals/corr/KingmaB14}.
 Em matemática, gradiente é uma generalização de derivada para múltiplas variáveis e, portanto, aponta para a direção de maior crescimento da função.
 O método do gradiente, por outro lado, utiliza o negativo do gradiente para apontar para a direção de maior decrescimento e, por consequência, para um mínimo local.
 
@@ -356,7 +357,7 @@ A redução do erro é feita atualizando os pesos da seguinte forma:
 x_{t+1} = x_{t} - \alpha \nabla F(x_{t})
 \end{equation}
 
-Intuitivamente, começa-se em um ponto $x_{0}$ qualquer e utiliza-se esse algoritmo para deslocar-se para um ponto vizinho $x_{1}$ que, se $\alpha$ for pequeno o suficiente, $F(x_{0}) \geq F(x_{1})$.
+Intuitivamente, começa-se em um ponto $x_{0}$ qualquer e utiliza-se esse algoritmo para deslocar-se para um ponto vizinho $x_{1}$ tal que, se $\alpha$ for pequeno o suficiente, $F(x_{0}) \geq F(x_{1})$.
 Se isso for feito iterativamente, tem-se $F(x_{t}) \geq F(x_{t+1})$ a cada passo.
 Importante notar que, se o $\alpha$ for muito alto, a redução do erro é rápida, porém instável ou pode sequer acontecer.
 Por outro lado, se for muito pequeno, a redução é precisa, mas lenta.
@@ -392,7 +393,8 @@ Nesta seção, serão apresentadas duas técnicas que ajudam a estabilizar e ace
 \subsection{\textit{Experience replay}}
 \label{sec:er}
 
-Estudado inicialmente como um método para acelerar a convergência em aprendizado por reforço, \textit{experience replay} mostrou-se útil para \textit{Deep Q-Learning} por ser uma técnica desse tipo de aprendizagem.
+Estudado inicialmente como um método para acelerar a convergência em aprendizado por reforço, \textit{experience replay} mostrou-se útil para \textit{Deep Q-Learning} pelo aprendizado ocorrer por esse tipo.
+%por ser uma técnica desse tipo de aprendizagem.
 Por conta da forma como \textit{Deep Q-Learning} funciona, se a rede aprendesse com os \textit{frames} conforme o agente os vê, a entrada seria composta por estados sequenciais altamente correlacionados.
 Isso significa que ela se atualizaria apenas com as experiências passadas mais recentes, esquecendo as mais antigas e sobrescrevendo os pesos obtidos no passado mais distante.
 Para contornar esse problema, utiliza-se um \textit{buffer} de memória que armazena uma quantidade pré-determinada de experiências passadas.

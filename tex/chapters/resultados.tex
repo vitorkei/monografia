@@ -10,7 +10,7 @@
 % ---------------------------------------------------------------------------- %
 
 Os resultados foram parcialmente como o esperado.
-Neste capítulo, serão descritos os resultados e porque estiveram ou não dentro das expectativas.
+Neste capítulo, eles serão descritos e será explicado porque estiveram ou não dentro das expectativas.
 Por conta da natureza de cada ambiente e de seus resultados, formas diferentes de avaliação foram aplicadas.
 
 \section{\textit{Gridworld}}
@@ -34,8 +34,8 @@ DQL & 66.15\% \\
 \label{table:gridworld_score}
 \end{center}
 
-Alguns experimentos diferentes, mas menos aprofundados, com menos treinamentos indicaram que número e posicionamento de armadilhas, e tamanho da \textit{grid} têm considerável influência no modelo construído.
-Por um lado, o agente encontrou caminhos até o objetivo com mais velocidade e consistência, uma vez que há menos estados a serem explorados e calculados.
+Alguns experimentos diferentes, mas menos aprofundados, com menos treinamentos indicaram que o número e o posicionamento das armadilhas e o tamanho da \textit{grid} têm considerável influência no modelo construído.
+Por um lado, o agente encontrou caminhos até o objetivo com mais velocidade e consistência, uma vez que há menos estados a serem explorados.
 Por outro, a quantidade de armadilhas e locais em que são colocadas tiveram maior impacto no aprendizado; quando há muitas armadilhas ou ficam muito próximas do objetivo, tornou-se mais comum o agente não conseguir alcançá-lo, pois ele tenta evitar as recompensas negativas a ponto de ficar preso em \textit{loops} entre alguns estados ou tentar mover-se contra uma parede.
 Esses problemas poderiam ser resolvidos com a escolha de hiperparâmetros melhores.
 
@@ -80,9 +80,9 @@ DQL & 21 \\
 \label{sec:res_asteroids}
 O agente não obteve resultados positivos em \textbf{\textit{Asteroids}} ao longo dos vários testes feitos.
 Apesar de ser um ambiente propício para o aprendizado por \textit{Deep Q-Learning}, tendo todas as informações claras na tela, ações bem definidas e recebimento de recompensas simples e consistente, o agente teve grande dificuldade em conseguir aprender.
-Por conta dessas características, esperava-se que ele conseguisse aprender a se comportar nesse domínio, ainda que com dificuldade.
+Por conta dessas características, esperava-se que ele conseguisse ter sucesso nesse domínio, ainda que com dificuldade.
 
-Os gráficos da figura \ref{fig:asteroids_score} foram obtidos pelo agente treinado com a arquitetura de rede e treinamento descritos no capítulo \hyperref[cap:implementacao]{Implementação}, exemplificando as pontuações obtidas nos treinamentos pelos quais passou, e por um agente aleatório.
+Os gráficos da figura \ref{fig:asteroids_score} foram obtidos pelo agente treinado com a arquitetura de rede e treinamento descritos no capítulo \hyperref[cap:implementacao]{Implementação}, exemplificando as pontuações obtidas nos treinamentos pelos quais passou e por um agente aleatório.
 
 \begin{figure}[t]
   \begin{minipage}[t]{.5\textwidth}
